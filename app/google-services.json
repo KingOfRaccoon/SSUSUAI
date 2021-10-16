@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "386307891380",
+    "project_id": "ssusuai",
+    "storage_bucket": "ssusuai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386307891380:android:dff83efb1e8079e0c3b7e1",
+        "android_client_info": {
+          "package_name": "com.castprogramms.ssusuai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386307891380-s6m014tjt0shho6qm2rrt09qg4m63flh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSo_pc1QJpKp5jQwoKaSx7DtsJyrCkKJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386307891380-s6m014tjt0shho6qm2rrt09qg4m63flh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
