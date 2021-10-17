@@ -23,7 +23,7 @@ class DataUserFirebaseRepository : DataUserInterface {
     }
 
     override fun getPerson(id: String): MutableLiveData<Resource<Person>> {
-        val mutableLiveData = MutableLiveData<Resource<Person>>()
+        val mutableLiveData = MutableLiveData<Resource<Person>>(Resource.Loading())
         firebase.collection(users_tag)
             .document(id)
             .addSnapshotListener { value, error ->
@@ -33,6 +33,8 @@ class DataUserFirebaseRepository : DataUserInterface {
                             mutableLiveData.postValue(Resource.Success(value.toObject(Admin::class.java)!!))
                         TypeOfPerson.User.name ->
                             mutableLiveData.postValue(Resource.Success(value.toObject(CommonUser::class.java)!!))
+                        else ->
+                            mutableLiveData.postValue(Resource.Error(error?.message.toString()))
                     }
                 } else {
                     mutableLiveData.postValue(Resource.Error(error?.message.toString()))

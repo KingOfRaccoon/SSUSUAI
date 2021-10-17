@@ -13,7 +13,7 @@ import org.koin.dsl.module
 class SuaiApplication: Application() {
     private val modules = module{
         single { DataUserFirebaseRepository() }
-        viewModel { AuthenticationViewModel(get()) }
+        viewModel { AuthenticationViewModel(get(), this@SuaiApplication) }
         viewModel { RegistrationViewModel() }
     }
 

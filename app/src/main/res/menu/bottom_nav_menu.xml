@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/chatFragment"
+        android:icon="@drawable/chat"
+        android:title="@null"/>
+
+    <item
+        android:id="@+id/newsFragment"
+        android:icon="@drawable/news"
+        android:title="@null"/>
+
+    <item
+        android:enabled="false"
+        android:title="@null"/>
+
+    <item
+        android:id="@+id/galleryFragment"
+        android:icon="@drawable/gallery"
+        android:title="@null"/>
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/profile"
+        android:title="@null"/>
+</menu>
