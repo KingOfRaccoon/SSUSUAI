@@ -12,7 +12,14 @@
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_registration.xml" value="0.38697916666666665" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/registration_activity.xml" value="0.38697916666666665" />
         <entry key="app/src/main/res/drawable/background_button.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/drawable/background_standart.xml" value="0.36875" />
+        <entry key="app/src/main/res/drawable/gradient_background.xml" value="0.21145833333333333" />
+        <entry key="app/src/main/res/drawable/ic_rectangle.xml" value="0.36875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.14322916666666666" />
+        <entry key="app/src/main/res/layout/fragment_authentication.xml" value="0.1953125" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.14322916666666666" />
+        <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.18020833333333333" />
       </map>
     </option>

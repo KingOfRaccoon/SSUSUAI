@@ -4,19 +4,16 @@ import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import android.view.animation.*
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.RegistrationActivity
 import com.castprogramms.ssusuai.databinding.FragmentAuthenticationBinding
 import com.castprogramms.ssusuai.repository.Resource
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -123,7 +120,7 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
                     findNavController()
                         .navigate(R.id.action_authenticationFragment_to_registrationFragment)
                 }
-            }, 250
+            }, 300
         )
     }
 }

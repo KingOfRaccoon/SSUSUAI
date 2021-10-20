@@ -3,6 +3,7 @@ package com.castprogramms.ssusuai.ui.custombottomnavigationview
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.core.view.isVisible
 import com.castprogramms.ssusuai.R
 import com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -47,6 +49,7 @@ class FabBottomNavigationView @JvmOverloads constructor(
         materialShapeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             setTint(ContextCompat.getColor(context, R.color.bottom_bar))
             paintStyle = Paint.Style.FILL_AND_STROKE
+            setCornerSize(40f)
         }
 
         background = materialShapeDrawable

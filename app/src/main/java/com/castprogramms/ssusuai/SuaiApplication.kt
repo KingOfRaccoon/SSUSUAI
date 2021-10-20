@@ -14,7 +14,7 @@ class SuaiApplication: Application() {
     private val modules = module{
         single { DataUserFirebaseRepository() }
         viewModel { AuthenticationViewModel(get(), this@SuaiApplication) }
-        viewModel { RegistrationViewModel() }
+        viewModel { RegistrationViewModel(get()) }
     }
 
     override fun onCreate() {

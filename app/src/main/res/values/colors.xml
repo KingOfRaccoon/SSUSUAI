@@ -13,4 +13,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="bottom_bar">@color/colorPrimary</color>
+
+    <color name="background_standard">#E3EBFF</color>
 </resources>
