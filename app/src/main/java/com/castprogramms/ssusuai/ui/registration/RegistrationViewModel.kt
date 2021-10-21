@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.castprogramms.ssusuai.repository.firebase.DataUserFirebaseRepository
 import com.castprogramms.ssusuai.users.Person
 
-class RegistrationViewModel(private val dataUserFirebaseRepository: DataUserFirebaseRepository)
-    : ViewModel() {
+class RegistrationViewModel(private val dataUserFirebaseRepository: DataUserFirebaseRepository) :
+    ViewModel() {
     private var birthday = ""
     private var name = ""
     private var surname = ""
@@ -22,7 +22,6 @@ class RegistrationViewModel(private val dataUserFirebaseRepository: DataUserFire
         this.surname = surname
     }
 
-    fun createPerson(idPerson: String, img: String) {
+    fun createPerson(idPerson: String, img: String) =
         dataUserFirebaseRepository.addPerson(idPerson, Person(name, surname, birthday, img))
-    }
 }

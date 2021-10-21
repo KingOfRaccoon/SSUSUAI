@@ -4,6 +4,7 @@ import android.app.Application
 import com.castprogramms.ssusuai.repository.firebase.DataUserFirebaseRepository
 import com.castprogramms.ssusuai.ui.authentication.AuthenticationViewModel
 import com.castprogramms.ssusuai.ui.registration.RegistrationViewModel
+import com.castprogramms.ssusuai.ui.splash.SplashViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -15,6 +16,7 @@ class SuaiApplication: Application() {
         single { DataUserFirebaseRepository() }
         viewModel { AuthenticationViewModel(get(), this@SuaiApplication) }
         viewModel { RegistrationViewModel(get()) }
+        viewModel { SplashViewModel(get()) }
     }
 
     override fun onCreate() {

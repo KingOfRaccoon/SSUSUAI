@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_registration"
-    app:startDestination="@id/authenticationFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/authenticationFragment"
@@ -23,4 +23,27 @@
         android:id="@+id/registrationFragment"
         android:name="com.castprogramms.ssusuai.ui.registration.RegistrationFragment"
         tools:layout="@layout/fragment_registration"/>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.castprogramms.ssusuai.ui.splash.SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_splashFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>

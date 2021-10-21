@@ -44,8 +44,15 @@ class DataUserFirebaseRepository : DataUserInterface {
         return mutableLiveData
     }
 
-    override fun addPerson(id: String, person: Person) {
-        firebase.collection(users_tag).document(id).set(person)
+    override fun addPerson(id: String, person: Person): MutableLiveData<Resource<String>> {
+        val mutableLiveData = MutableLiveData<Resource<String>>()
+        firebase.collection(users_tag).document(id).set(person).addOnSuccessListener {
+            mutableLiveData.postValue(Resource.Success("Success"))
+        }.addOnFailureListener {
+            mutableLiveData.postValue(Resource.Error(it.message.toString()))
+        }
+
+        return mutableLiveData
     }
 
 }
