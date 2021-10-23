@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<FabBottomNavigationView>(R.id.bottomNavigationView)
         fab.visibility = View.INVISIBLE
         bottomNavigationView.transform(fab)
-
+//        supportActionBar?.setBackgroundDrawable(getDrawable(R.drawable.background_standard))
         val navHostController =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.findNavController()
 

@@ -15,4 +15,7 @@
     <color name="bottom_bar">@color/colorPrimary</color>
 
     <color name="background_standard">#E3EBFF</color>
+
+    <color name="background_tint_button">#D7E1FF</color>
+    <color name="text_color_button">#7089FD</color>
 </resources>

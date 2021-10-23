@@ -9,4 +9,5 @@
     <string name="surname">Фамилия</string>
     <string name="dateHint">Дата рождения</string>
     <string name="registr">Зарегестрироваться</string>
+    <string name="edit">Редактировать</string>
 </resources>

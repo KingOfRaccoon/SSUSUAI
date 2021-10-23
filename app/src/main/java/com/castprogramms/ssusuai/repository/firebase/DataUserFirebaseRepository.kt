@@ -21,6 +21,7 @@ class DataUserFirebaseRepository : DataUserInterface {
     companion object {
         const val users_tag = "users"
     }
+//    val user = MutableLiveData<Resource<>>()
 
     override fun getPerson(id: String): MutableLiveData<Resource<Person>> {
         val mutableLiveData = MutableLiveData<Resource<Person>>(Resource.Loading())

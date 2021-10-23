@@ -31,15 +31,24 @@ class FabBottomNavigationView @JvmOverloads constructor(
     var cradleVerticalOffset = 0F
 
     init {
-        val ta = context.theme.obtainStyledAttributes(attrs, R.styleable.FabBottomNavigationView, 0, 0)
+        val ta =
+            context.theme.obtainStyledAttributes(attrs, R.styleable.FabBottomNavigationView, 0, 0)
         fabSize = ta.getDimension(R.styleable.FabBottomNavigationView_fab_size, 0F)
         fabCradleMargin = ta.getDimension(R.styleable.FabBottomNavigationView_fab_cradle_margin, 0F)
         fabCradleRoundedCornerRadius =
-            ta.getDimension(R.styleable.FabBottomNavigationView_fab_cradle_rounded_corner_radius, 0F)
-        cradleVerticalOffset = ta.getDimension(R.styleable.FabBottomNavigationView_cradle_vertical_offset, 0F)
+            ta.getDimension(
+                R.styleable.FabBottomNavigationView_fab_cradle_rounded_corner_radius,
+                0F
+            )
+        cradleVerticalOffset =
+            ta.getDimension(R.styleable.FabBottomNavigationView_cradle_vertical_offset, 0F)
 
-        topCurvedEdgeTreatment = BottomAppBarTopEdgeTreatment(fabCradleMargin, fabCradleRoundedCornerRadius, cradleVerticalOffset).apply {
-                fabDiameter = fabSize
+        topCurvedEdgeTreatment = BottomAppBarTopEdgeTreatment(
+            fabCradleMargin,
+            fabCradleRoundedCornerRadius,
+            cradleVerticalOffset
+        ).apply {
+            fabDiameter = fabSize
         }
 
         val shapeAppearanceModel = ShapeAppearanceModel.Builder()
@@ -62,17 +71,19 @@ class FabBottomNavigationView @JvmOverloads constructor(
                 override fun onHidden(fab: FloatingActionButton?) {
                     super.onHidden(fab)
                     ValueAnimator.ofFloat(materialShapeDrawable.interpolation, 0F).apply {
-                        addUpdateListener { materialShapeDrawable.interpolation = it.animatedValue as Float }
-                        start()
-                    }
+                        addUpdateListener {
+                            materialShapeDrawable.interpolation = it.animatedValue as Float
+                        }
+                    }.start()
                 }
             })
         } else {
             ValueAnimator.ofFloat(materialShapeDrawable.interpolation, 1F).apply {
-                addUpdateListener { materialShapeDrawable.interpolation = it.animatedValue as Float }
+                addUpdateListener {
+                    materialShapeDrawable.interpolation = it.animatedValue as Float
+                }
                 doOnEnd { fab.show() }
-                start()
-            }
+            }.start()
         }
     }
 }
