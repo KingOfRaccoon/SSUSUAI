@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    app:cardCornerRadius="20dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_new"
+            style="@style/standardText.body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/popup"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="A big-big-big Neeeeews name name!" />
+
+        <ImageButton
+            android:id="@+id/popup"
+            android:layout_marginTop="5dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/popup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/body_new"
+            android:layout_marginStart="15dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/standardText.body"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:lineSpacingExtra="10dp"
+            app:layout_constraintTop_toTopOf="@id/image_container"
+            app:layout_constraintStart_toEndOf="@id/image_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Body 2: Lorem ipsum dolor sit amet, consectetur adipiscingit, sed do  tempor incididunt fkgjfkgjkjgfkjg"/>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/image_container"
+            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toBottomOf="@id/title_new"
+            app:layout_constraintBottom_toBottomOf="@id/body_new"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/test_img_for_news"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/standardText.date"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/body_new"
+            app:layout_constraintEnd_toStartOf="@id/popup"
+            android:text="today 10:30"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

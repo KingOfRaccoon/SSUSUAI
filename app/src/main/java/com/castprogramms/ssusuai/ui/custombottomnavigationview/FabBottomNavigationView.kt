@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.Log
+import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -17,6 +18,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
+import de.hdodenhof.circleimageview.CircleImageView
 
 @SuppressLint("RestrictedApi")
 class FabBottomNavigationView @JvmOverloads constructor(
@@ -58,31 +60,30 @@ class FabBottomNavigationView @JvmOverloads constructor(
         materialShapeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             setTint(ContextCompat.getColor(context, R.color.bottom_bar))
             paintStyle = Paint.Style.FILL_AND_STROKE
-            setCornerSize(40f)
+            setCornerSize(100f)
         }
 
         background = materialShapeDrawable
     }
 
-    fun transform(fab: FloatingActionButton) {
-        Log.e("data", fab.isVisible.toString())
+    fun transform(fab: CircleImageView) {
         if (fab.isVisible) {
-            fab.hide(object : FloatingActionButton.OnVisibilityChangedListener() {
-                override fun onHidden(fab: FloatingActionButton?) {
-                    super.onHidden(fab)
-                    ValueAnimator.ofFloat(materialShapeDrawable.interpolation, 0F).apply {
-                        addUpdateListener {
-                            materialShapeDrawable.interpolation = it.animatedValue as Float
-                        }
-                    }.start()
-                }
-            })
+//            fab.hide(object : FloatingActionButton.OnVisibilityChangedListener() {
+//                override fun onHidden(fab: FloatingActionButton?) {
+//                    super.onHidden(fab)
+//                    ValueAnimator.ofFloat(materialShapeDrawable.interpolation, 0F).apply {
+//                        addUpdateListener {
+//                            materialShapeDrawable.interpolation = it.animatedValue as Float
+//                        }
+//                    }.start()
+//                }
+//            })
         } else {
             ValueAnimator.ofFloat(materialShapeDrawable.interpolation, 1F).apply {
                 addUpdateListener {
                     materialShapeDrawable.interpolation = it.animatedValue as Float
                 }
-                doOnEnd { fab.show() }
+                doOnEnd { fab.visibility = View.VISIBLE }
             }.start()
         }
     }

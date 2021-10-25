@@ -15,14 +15,21 @@
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/menu/bottom_nav_menu.xml" value="0.21875" />
         <entry key="app/src/main/res/drawable/background_button.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/drawable/background_standart.xml" value="0.36875" />
+        <entry key="app/src/main/res/drawable/bnv_tint.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/drawable/fab_bnv.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/drawable/gradient_background.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/ic_rectangle.xml" value="0.36875" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/drawable/popup.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_registration.xml" value="0.14322916666666666" />
         <entry key="app/src/main/res/layout/fragment_authentication.xml" value="0.1953125" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.14322916666666666" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.10277777777777777" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/item_new.xml" value="0.10555555555555556" />
+        <entry key="app/src/main/res/layout/item_news.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_visited_events.xml" value="0.18" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.18020833333333333" />
       </map>
     </option>

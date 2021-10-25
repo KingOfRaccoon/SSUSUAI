@@ -18,4 +18,16 @@
         <item name="android:backgroundTint">@color/background_tint_button</item>
         <item name="android:textColor">@color/text_color_button</item>
     </style>
+
+    <style name="standardText.date">
+        <item name="android:textColor">#9FADCA</item>
+    </style>
+
+    <style name="standardText.body">
+        <item name="android:textColor">#4F5A85</item>
+    </style>
+
+    <style name="standardText.profileText">
+        <item name="android:textColor">#A09FCA</item>
+    </style>
 </resources>
