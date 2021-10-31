@@ -18,7 +18,7 @@ object NeedTools {
             }
         }
         return if (curContext is LifecycleOwner) {
-            curContext as LifecycleOwner
+            curContext
         } else {
             null
         }

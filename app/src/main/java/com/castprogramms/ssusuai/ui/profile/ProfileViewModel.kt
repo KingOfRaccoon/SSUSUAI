@@ -14,5 +14,5 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 class ProfileViewModel(
     private val dataUserFirebaseRepository: DataUserFirebaseRepository
 ) : ViewModel() {
-    fun getUser(userId: String) = dataUserFirebaseRepository.getPerson(userId)
+    fun getCommonUser() = dataUserFirebaseRepository.commonUser
 }

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/chatFragment"
+        android:id="@+id/chatsFragment"
         android:icon="@drawable/chat"
         android:title="@null"/>
 
@@ -12,7 +12,7 @@
         android:title="@null"/>
 
     <item
-        android:enabled="false"
+        android:id="@+id/calendarFragment"
         android:title="@null"/>
 
     <item

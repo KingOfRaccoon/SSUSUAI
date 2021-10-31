@@ -5,37 +5,52 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentProfileBinding
 import com.castprogramms.ssusuai.repository.Resource
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val viewModel: ProfileViewModel by viewModel()
-    private lateinit var binding : FragmentProfileBinding
+    private lateinit var binding: FragmentProfileBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
-        val googleAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
-        if (googleAccount != null)
-            viewModel.getUser(googleAccount.id).observe(viewLifecycleOwner, {
-                when (it) {
-                    is Resource.Error -> {
-
-                    }
-                    is Resource.Loading -> {
-                    }
-                    is Resource.Success -> {
-                        if (it.data != null) {
-                            binding.fullNameProfile.text = it.data.getFullName()
-                            setUserImg(it.data.img)
+        binding.root.startNestedScroll(0)
+        (requireActivity() as MainActivity).setHtmlText("Профиль")
+        (requireActivity() as MainActivity).slideUp()
+        val adapter = VisitedEventAdapter()
+        viewModel.getCommonUser().observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Error -> {}
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    if (it.data != null) {
+                        binding.fullNameProfile.text = it.data.getFullName()
+                        setUserImg(it.data.img)
+                        if (it.data.visitedEvents.isNotEmpty()) {
+                            binding.layoutNoVisitedEvents.visibility = View.GONE
+                            binding.recyclerVisitedEvents.visibility = View.VISIBLE
+                            adapter.setVisitedEvents(it.data.visitedEvents.toMutableList())
+                        }
+                        else {
+                            setEmptyMessage()
                         }
                     }
                 }
-            })
-        binding.recyclerVisitedEvents.adapter = VisitedEventAdapter()
+            }
+        })
+
+        binding.buttonGoToCalendar.setOnClickListener {
+            (requireActivity() as MainActivity).centerBNVClick()
+        }
+    }
+
+    private fun setEmptyMessage() {
+        binding.recyclerVisitedEvents.visibility = View.GONE
+        binding.layoutNoVisitedEvents.visibility = View.VISIBLE
     }
 
     private fun setUserImg(img: String) {

@@ -13,4 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="TabLayoutRating">
+        <item name="tabTextColor">@color/white</item>
+        <item name="tabIndicatorColor">@color/purple_600</item>
+        <item name="android:nextFocusUp">@color/norm_black</item>
+        <item name="android:backgroundTint">@color/norm_black</item>
+    </style>
+
 </resources>

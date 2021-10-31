@@ -11,4 +11,10 @@
     <string name="registr">Зарегестрироваться</string>
     <string name="edit">Редактировать</string>
     <string name="visited">Посещенные мероприятия</string>
+    <string name="no_visited_events">Вы пока не посетили ни одного мероприятия :( \n Не пора ли это исправить?</string>
+    <string name="today">Сегодня</string>
+    <string name="time">Время</string>
+    <string name="event">Мероприятие</string>
+    <string name="soon">Скоро</string>
+    <string name="go_to_calendar">Перейти в календарь</string>
 </resources>

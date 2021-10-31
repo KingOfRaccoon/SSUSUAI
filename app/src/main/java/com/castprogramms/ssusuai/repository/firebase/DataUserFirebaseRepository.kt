@@ -17,8 +17,9 @@ class DataUserFirebaseRepository(private val firebase: FirebaseFirestore) : Data
     companion object {
         const val users_tag = "users"
     }
-    val user = MutableLiveData<Resource<Person>>()
-    var typeOfPerson = TypeOfPerson.User
+
+    val commonUser = MutableLiveData<Resource<CommonUser>>()
+    val admin = MutableLiveData<Resource<Admin>>()
 
     override fun getPerson(id: String): MutableLiveData<Resource<Person>> {
         val mutableLiveData = MutableLiveData<Resource<Person>>(Resource.Loading())
@@ -28,14 +29,13 @@ class DataUserFirebaseRepository(private val firebase: FirebaseFirestore) : Data
                 if (value != null) {
                     when (value.getString("typeOfPerson")) {
                         TypeOfPerson.Admin.name -> {
-                            typeOfPerson = TypeOfPerson.Admin
                             mutableLiveData.postValue(Resource.Success(value.toObject(Admin::class.java)!!))
+                            admin.postValue(Resource.Success(value.toObject(Admin::class.java)!!))
                         }
-                        TypeOfPerson.User.name ->{
-                            typeOfPerson = TypeOfPerson.User
+                        TypeOfPerson.User.name -> {
                             mutableLiveData.postValue(Resource.Success(value.toObject(CommonUser::class.java)!!))
+                            commonUser.postValue(Resource.Success(value.toObject(CommonUser::class.java)!!))
                         }
-
                         else ->
                             mutableLiveData.postValue(Resource.Error(error?.message.toString()))
                     }
