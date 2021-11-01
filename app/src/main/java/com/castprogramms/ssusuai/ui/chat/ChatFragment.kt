@@ -13,11 +13,12 @@ class ChatFragment: Fragment(R.layout.fragment_chat) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentChatBinding.bind(view)
         val adapter = MessageAdapter()
-        binding.recyclerMessages.adapter = MessageAdapter()
+        binding.recyclerMessages.adapter = adapter
         binding.recyclerMessages.layoutManager = LinearLayoutManager(requireContext()).apply {
             reverseLayout = true
             stackFromEnd = true
         }
         binding.recyclerMessages.scrollToPosition(0)
+        ((requireActivity() as MainActivity).setIsChat(true))
     }
 }

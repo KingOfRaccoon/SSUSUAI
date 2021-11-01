@@ -26,7 +26,7 @@
         app:fab_size="50dp"
         android:layout_margin="10dp"
         app:menu="@menu/bottom_nav_menu"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+        app:layout_behavior=".ui.custombottomnavigationview.HideBehaviorWithBlockChat" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:background="@drawable/fab_bnv"
@@ -36,6 +36,6 @@
         app:elevation="16dp"
         app:layout_anchor="@id/bottomNavigationView"
         app:layout_anchorGravity="fill_vertical|center_horizontal"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+        app:layout_behavior=".ui.custombottomnavigationview.HideBehaviorWithBlockChat" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

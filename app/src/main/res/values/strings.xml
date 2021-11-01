@@ -17,4 +17,5 @@
     <string name="event">Мероприятие</string>
     <string name="soon">Скоро</string>
     <string name="go_to_calendar">Перейти в календарь</string>
+    <string name="message">Сообщение...</string>
 </resources>

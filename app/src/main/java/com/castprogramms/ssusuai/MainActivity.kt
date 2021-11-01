@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.FabBottomNavigationView
+import com.castprogramms.ssusuai.ui.custombottomnavigationview.HideBehaviorWithBlockChat
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import de.hdodenhof.circleimageview.CircleImageView
@@ -52,15 +53,16 @@ class MainActivity : AppCompatActivity() {
 
     fun slideUp(){
         try {
-            ((bottomNavigationView.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBottomViewOnScrollBehavior).slideUp(fab)
-            ((fab.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBottomViewOnScrollBehavior).slideUp(bottomNavigationView)
+            setIsChat(false)
+            ((bottomNavigationView.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBehaviorWithBlockChat).slideUp(fab)
+            ((fab.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBehaviorWithBlockChat).slideUp(bottomNavigationView)
         }catch (e: Exception){}
     }
 
     fun slideDown(){
         try {
-            ((bottomNavigationView.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBottomViewOnScrollBehavior).slideDown(fab)
-            ((fab.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBottomViewOnScrollBehavior).slideDown(bottomNavigationView)
+            ((bottomNavigationView.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBehaviorWithBlockChat).slideDown(fab)
+            ((fab.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBehaviorWithBlockChat).slideDown(bottomNavigationView)
         }catch (e: Exception){
 
         }
@@ -69,5 +71,10 @@ class MainActivity : AppCompatActivity() {
     fun centerBNVClick(){
         (bottomNavigationView.getChildAt(0) as BottomNavigationMenuView)
             .getChildAt(2).performClick()
+    }
+
+    fun setIsChat(isChat: Boolean){
+        ((bottomNavigationView.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBehaviorWithBlockChat).setIsChat(isChat)
+        ((fab.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBehaviorWithBlockChat).setIsChat(isChat)
     }
 }
