@@ -7,13 +7,23 @@ import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentChatsBinding
 
-class ChatsFragment: Fragment(R.layout.fragment_chats) {
+class ChatsFragment(val chatsType: ChatsType = ChatsType.All): Fragment(R.layout.fragment_chats) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        retainInstance = true
         val binding = FragmentChatsBinding.bind(view)
-        binding.recyclerChats.adapter = ChatsAdapter{ (requireActivity() as MainActivity).slideDown() }
         (requireActivity() as MainActivity).setHtmlText("Сообщения")
         (requireActivity() as MainActivity).slideUp()
+        val adapter = ChatsAdapter{ (requireActivity() as MainActivity).slideDown() }
+        binding.recyclerChats.adapter = adapter
+        when(chatsType){
+            ChatsType.All -> {
+
+            }
+            ChatsType.PERSONAL -> {
+
+            }
+        }
     }
 }

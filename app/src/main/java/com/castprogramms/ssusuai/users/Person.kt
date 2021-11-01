@@ -5,6 +5,7 @@ open class Person(
     val surname: String = "",
     val dateOfBirthday: String = "",
     val img: String = "",
+    val chats: List<String> = listOf(),
     val typeOfPerson: String = TypeOfPerson.User.name
 ){
 
