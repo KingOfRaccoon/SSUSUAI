@@ -27,6 +27,7 @@ class SuaiApplication : Application() {
         }
         single { DataUserFirebaseRepository(get()) }
         single { NewsFirebaseRepository(get()) }
+        viewModel { MainActivityViewModel(get()) }
         viewModel { AuthenticationViewModel(get(), this@SuaiApplication) }
         viewModel { RegistrationViewModel(get()) }
         viewModel { SplashViewModel(get()) }

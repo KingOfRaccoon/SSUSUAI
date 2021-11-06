@@ -7,7 +7,7 @@ import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentChatsBinding
 
-class ChatsFragment(val chatsType: ChatsType = ChatsType.All): Fragment(R.layout.fragment_chats) {
+class ChatsFragment(val chatsType: ChatsType = ChatsType.Group): Fragment(R.layout.fragment_chats) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -18,7 +18,7 @@ class ChatsFragment(val chatsType: ChatsType = ChatsType.All): Fragment(R.layout
         val adapter = ChatsAdapter{ (requireActivity() as MainActivity).slideDown() }
         binding.recyclerChats.adapter = adapter
         when(chatsType){
-            ChatsType.All -> {
+            ChatsType.Group -> {
 
             }
             ChatsType.PERSONAL -> {

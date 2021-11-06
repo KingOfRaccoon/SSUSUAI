@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="TabLayoutRating">
+    <style name="TabLayoutChats">
         <item name="tabTextColor">@color/white</item>
         <item name="tabIndicatorColor">@color/purple_600</item>
         <item name="android:nextFocusUp">@color/norm_black</item>

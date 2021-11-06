@@ -68,6 +68,7 @@
             app:cardCornerRadius="10dp">
 
             <ImageView
+                android:id="@+id/image_new_in_card"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/test_img_for_news"/>

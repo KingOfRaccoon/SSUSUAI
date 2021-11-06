@@ -7,6 +7,5 @@ class CommonUser(
     surname: String = "",
     dateOfBirthday: String = "",
     img: String = "",
-    chats: List<String> = listOf(),
     val visitedEvents: List<Event> = listOf()
-) : Person(name, surname, dateOfBirthday, img, chats, TypeOfPerson.User.name)
+) : Person(name, surname, dateOfBirthday, img, TypeOfPerson.User.name)

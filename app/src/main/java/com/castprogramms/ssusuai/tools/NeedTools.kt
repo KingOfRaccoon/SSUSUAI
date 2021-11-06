@@ -2,6 +2,7 @@ package com.castprogramms.ssusuai.tools
 
 import android.content.Context
 import android.content.ContextWrapper
+import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import java.lang.Exception
 
@@ -23,4 +24,7 @@ object NeedTools {
             null
         }
     }
+
+    fun View.toTransitionGroup() = this to transitionName
+
 }

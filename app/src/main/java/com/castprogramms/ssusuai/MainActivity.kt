@@ -11,14 +11,24 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.FabBottomNavigationView
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.HideBehaviorWithBlockChat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import de.hdodenhof.circleimageview.CircleImageView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.Exception
 
 class MainActivity : AppCompatActivity() {
+    val viewModel: MainActivityViewModel by viewModel()
     private lateinit var bottomNavigationView : FabBottomNavigationView
     private lateinit var fab: CircleImageView
+
+    override fun onStart() {
+        super.onStart()
+        val googleAuth = GoogleSignIn.getLastSignedInAccount(this)
+        if (googleAuth != null)
+            viewModel.getUser(googleAuth.id)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         }
         supportActionBar?.setBackgroundDrawable(getDrawable(R.drawable.background_standard))
         supportActionBar?.elevation = 0f
+
+        supportActionBar?.setDisplayShowHomeEnabled(false)
 
 
         navHostController?.let {

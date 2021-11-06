@@ -12,6 +12,7 @@ class CalendarFragment: Fragment(R.layout.fragment_calendar) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         binding = FragmentCalendarBinding.bind(view)
         binding.recyclerEventsSoon.adapter = SoonEventAdapter()
         binding.recyclerEvents.adapter = EventAdapter()

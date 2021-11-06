@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="TabLayoutRating" parent="standardText">
+    <style name="TabLayoutChats" parent="standardText">
         <item name="tabSelectedTextColor">@color/white</item>
         <item name="tabTextColor">#4F5A85</item>
         <item name="tabIndicatorColor">@color/background_bnv_fab</item>
@@ -57,6 +57,10 @@
 
     <style name="standardText.text_in_card_in_calendar">
         <item name="android:textColor">#212525</item>
+    </style>
+
+    <style name="standardText.counter">
+        <item name="android:textColor">#BFBFBF</item>
     </style>
 
 

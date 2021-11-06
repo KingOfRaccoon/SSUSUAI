@@ -13,20 +13,29 @@
     <fragment
         android:id="@+id/newsFragment"
         android:name="com.castprogramms.ssusuai.ui.news.NewsFragment"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsFragment_to_newFragment"
+            app:destination="@id/newFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.castprogramms.ssusuai.ui.calendar.CalendarFragment"
         tools:layout="@layout/fragment_calendar"/>
     <fragment
-        android:id="@+id/chatsFragment"
-        android:name="com.castprogramms.ssusuai.ui.chats.ChatsFragment" >
+        android:id="@+id/chatFragment"
+        android:name="com.castprogramms.ssusuai.ui.chat.ChatFragment"/>
+    <fragment
+        android:id="@+id/allTypeChatFragment"
+        android:name="com.castprogramms.ssusuai.ui.alltypechat.AllTypeChatFragment"
+        android:label="AllTypeChatFragment" >
         <action
-            android:id="@+id/action_chatsFragment_to_chatFragment"
+            android:id="@+id/action_allTypeChatFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
     </fragment>
     <fragment
-        android:id="@+id/chatFragment"
-        android:name="com.castprogramms.ssusuai.ui.chat.ChatFragment"/>
+        android:id="@+id/newFragment"
+        android:name="com.castprogramms.ssusuai.ui.new.NewFragment"
+        android:label="NewFragment" />
 </navigation>

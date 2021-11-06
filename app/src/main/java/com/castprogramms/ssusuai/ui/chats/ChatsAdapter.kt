@@ -27,7 +27,7 @@ class ChatsAdapter(val slideDown: () -> Unit) : RecyclerView.Adapter<ChatsAdapte
         fun bind(){
             binding.root.setOnClickListener {
                 slideDown()
-                it.findNavController().navigate(R.id.action_chatsFragment_to_chatFragment)
+                it.findNavController().navigate(R.id.action_allTypeChatFragment_to_chatFragment)
             }
         }
     }

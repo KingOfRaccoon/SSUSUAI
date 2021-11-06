@@ -5,5 +5,4 @@ class Admin(
     surname: String = "",
     dateOfBirthday: String = "",
     img: String = "",
-    chats: List<String> = listOf()
-) : Person(name, surname, dateOfBirthday, img, chats, TypeOfPerson.Admin.name)
+) : Person(name, surname, dateOfBirthday, img, TypeOfPerson.Admin.name)

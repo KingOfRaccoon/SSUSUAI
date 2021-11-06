@@ -1,6 +1,6 @@
 package com.castprogramms.ssusuai.ui.chats
 
-enum class ChatsType {
-    All,
-    PERSONAL
+enum class ChatsType(val text: String) {
+    Group("Группы"),
+    PERSONAL("Личные")
 }
