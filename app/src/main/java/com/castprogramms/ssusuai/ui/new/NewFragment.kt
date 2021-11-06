@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -14,6 +15,9 @@ import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentNewBinding
 
 class NewFragment: Fragment(R.layout.fragment_new) {
+    private val args: NewFragmentArgs by navArgs()
+    private val position by lazy { args.position }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentNewBinding.bind(view)
@@ -22,7 +26,7 @@ class NewFragment: Fragment(R.layout.fragment_new) {
 
         setupFavoriteButton()
         binding.imageNew.apply {
-            transitionName = "image_new_card_1"
+            transitionName = "test$position"
             startEnterTransitionAfterLoadingImage(R.drawable.test_img_for_news.toString(),this)
         }
     }
@@ -33,7 +37,9 @@ class NewFragment: Fragment(R.layout.fragment_new) {
 
     private fun setSharedElementTransitionOnEnter() {
         sharedElementEnterTransition = TransitionInflater.from(context)
-            .inflateTransition(R.transition.shared_element_transition)
+            .inflateTransition(android.R.transition.move)
+        sharedElementReturnTransition = TransitionInflater.from(context)
+            .inflateTransition(android.R.transition.move)
     }
 
     private fun startEnterTransitionAfterLoadingImage(

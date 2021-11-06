@@ -37,5 +37,10 @@
     <fragment
         android:id="@+id/newFragment"
         android:name="com.castprogramms.ssusuai.ui.new.NewFragment"
-        android:label="NewFragment" />
+        android:label="NewFragment" >
+        <argument
+            android:name="position"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>
