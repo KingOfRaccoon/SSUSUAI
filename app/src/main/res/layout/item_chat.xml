@@ -34,7 +34,7 @@
             style="@style/standardText.body"
             android:text="Имя пользователя"
             android:textStyle="bold"
-            android:textSize="24sp"/>
+            android:textSize="18sp"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_last_message"
@@ -46,7 +46,7 @@
             android:gravity="bottom"
             style="@style/standardText.date"
             android:textStyle="bold"
-            android:textSize="19sp"
+            android:textSize="15sp"
             android:text="Последнее сообщение"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
