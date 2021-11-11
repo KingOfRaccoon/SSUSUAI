@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <Transition
+        android:id="@+id/startToEnd"
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@id/start"
+        app:duration="1000"/>
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint
+            android:id="@+id/recycler_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:overScrollMode="always"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:shimmer_recycler_auto_start="true"
+            app:shimmer_recycler_item_count="6" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+
+        <Constraint
+            android:visibility="gone"
+            android:id="@+id/recycler_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:overScrollMode="always"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:shimmer_recycler_auto_start="true"
+            app:shimmer_recycler_item_count="6" />
+
+        <Constraint
+            android:id="@+id/main_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:elevation="3dp"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="3dp"/>
+
+        <Constraint
+            android:id="@+id/image_new"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_img_for_new"
+            android:transitionName="test"
+            app:layout_constraintDimensionRatio="2.47:1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/goToGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/background_oval_for_new_button"
+            android:backgroundTint="#d7e1FF"
+            android:padding="16dp"
+            android:src="@drawable/news"
+            app:layout_constraintBottom_toBottomOf="@id/image_new"
+            app:layout_constraintEnd_toEndOf="@id/image_new"
+            app:tint="#4F5A85" />
+
+        <Constraint
+            android:id="@+id/text_title_new"
+            style="@style/standardTextBold.day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="40dp"
+            android:text="Neeeeews name name!"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:transitionName="textTitleTN"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_new" />
+
+        <Constraint
+            android:id="@+id/text_body_new"
+            style="@style/standardText.body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="20dp"
+            android:text="Body 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed  dolore magna aliqua. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.      Donec quam felis, ultricies nec,  eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis"
+            android:textSize="21sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_title_new" />
+
+        <Constraint
+            android:id="@+id/image_counter_see_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="33dp"
+            android:src="@drawable/watch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_body_new" />
+
+        <Constraint
+            android:id="@+id/text_counter_see_new"
+            style="@style/standardText.counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="65"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/image_counter_see_new"
+            app:layout_constraintStart_toEndOf="@id/image_counter_see_new"
+            app:layout_constraintTop_toTopOf="@id/image_counter_see_new" />
+
+        <Constraint
+            android:id="@+id/button_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/background_oval_for_new_button"
+            android:backgroundTint="#d7e1FF"
+            android:padding="10dp"
+            android:src="@drawable/like"
+            app:layout_constraintBottom_toBottomOf="@id/text_counter_like_new"
+            app:layout_constraintEnd_toStartOf="@id/text_counter_like_new"
+            app:layout_constraintTop_toTopOf="@id/text_counter_like_new" />
+
+        <Constraint
+            android:id="@+id/text_counter_like_new"
+            style="@style/standardText.counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="28dp"
+            android:text="32"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </ConstraintSet>
+</MotionScene>

@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.motion.widget.MotionLayout android:id="@+id/motion"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_standard">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layoutDescription="@xml/fragment_news_motion_scene"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.todkars.shimmer.ShimmerRecyclerView
+        android:id="@+id/recycler_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:itemCount="6"
+        tools:listitem="@layout/item_news"
+        android:overScrollMode="always"
+        app:shimmer_recycler_auto_start="true"
+        app:shimmer_recycler_item_count="6"/>
 
     <com.google.android.material.card.MaterialCardView
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/main_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="7dp"
         android:layout_marginEnd="7dp"
         android:elevation="3dp"
@@ -99,6 +111,7 @@
                 app:layout_constraintTop_toTopOf="@id/image_counter_see_new" />
 
             <ImageButton
+                android:id="@+id/button_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -128,4 +141,4 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.text.Html
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     val viewModel: MainActivityViewModel by viewModel()
     private lateinit var bottomNavigationView : FabBottomNavigationView
     private lateinit var fab: CircleImageView
+    private lateinit var navHostController: NavController
 
     override fun onStart() {
         super.onStart()
@@ -37,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         fab = findViewById(R.id.fab)
         fab.visibility = View.INVISIBLE
         bottomNavigationView.transform(fab)
-        val navHostController =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.findNavController()
+        navHostController =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.findNavController()!!
 
         fab.setOnClickListener {
             centerBNVClick()
@@ -49,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(false)
 
 
-        navHostController?.let {
+        navHostController.let {
             val appBarConfiguration = AppBarConfiguration(navHostController.graph)
             setupActionBarWithNavController(navHostController, appBarConfiguration)
             bottomNavigationView.setupWithNavController(navHostController)

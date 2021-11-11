@@ -13,12 +13,6 @@ class RegistrationActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
         supportActionBar?.hide()
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationManager.notificationChannels.forEach {
-                Log.e("data", it.description)
-            }
-        }
     }
 
     fun goToMainActivity(){

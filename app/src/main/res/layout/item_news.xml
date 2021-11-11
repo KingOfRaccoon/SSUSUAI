@@ -16,6 +16,7 @@
         android:padding="10dp">
 
         <com.google.android.material.textview.MaterialTextView
+            android:transitionName="textStart"
             android:id="@+id/title_new"
             style="@style/standardText.body"
             android:layout_width="0dp"
@@ -68,6 +69,7 @@
             app:cardCornerRadius="10dp">
 
             <ImageView
+                android:transitionName="test_start"
                 android:id="@+id/image_new_in_card"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
