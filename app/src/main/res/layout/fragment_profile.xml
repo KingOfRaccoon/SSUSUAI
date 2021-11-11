@@ -77,7 +77,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="31dp"
             android:text="@string/visited"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             style="@style/standardText.profileText"/>
 
