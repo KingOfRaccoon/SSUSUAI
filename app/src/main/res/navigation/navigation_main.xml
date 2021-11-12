@@ -38,4 +38,8 @@
         android:id="@+id/newFragment"
         android:name="com.castprogramms.ssusuai.ui.new.NewFragment"
         android:label="NewFragment" />
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.castprogramms.ssusuai.ui.gallery.GalleryFragment"
+        android:label="GalleryFragment" />
 </navigation>

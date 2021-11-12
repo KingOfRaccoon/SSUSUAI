@@ -16,10 +16,13 @@
     <string name="time">Время</string>
     <string name="event">Мероприятие</string>
     <string name="soon">Скоро</string>
+    <string name="photos">Фотографии</string>
+    <string name="albums">События</string>
     <string name="go_to_calendar">Перейти в календарь</string>
     <string name="message">Сообщение...</string>
 
     <string name="about_sno">
         Cтуденческое научное общество — это форма организации научного творчества молодёжи и научно-исследовательской работы студентов, направленная на подготовку научных и инженерных кадров, их вовлечения в разработку конкретных проектов в период обучения.
     </string>
+    <string name="all">All</string>
 </resources>
