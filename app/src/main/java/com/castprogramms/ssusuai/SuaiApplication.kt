@@ -1,9 +1,11 @@
 package com.castprogramms.ssusuai
 
 import android.app.Application
+import com.castprogramms.ssusuai.repository.firebase.ChatsFirebaseRepository
 import com.castprogramms.ssusuai.repository.firebase.DataUserFirebaseRepository
 import com.castprogramms.ssusuai.repository.firebase.NewsFirebaseRepository
 import com.castprogramms.ssusuai.ui.authentication.AuthenticationViewModel
+import com.castprogramms.ssusuai.ui.chats.ChatsViewModel
 import com.castprogramms.ssusuai.ui.profile.ProfileViewModel
 import com.castprogramms.ssusuai.ui.registration.RegistrationViewModel
 import com.castprogramms.ssusuai.ui.splash.SplashViewModel
@@ -27,11 +29,13 @@ class SuaiApplication : Application() {
         }
         single { DataUserFirebaseRepository(get()) }
         single { NewsFirebaseRepository(get()) }
+        single { ChatsFirebaseRepository(get()) }
         viewModel { MainActivityViewModel(get()) }
         viewModel { AuthenticationViewModel(get(), this@SuaiApplication) }
         viewModel { RegistrationViewModel(get()) }
         viewModel { SplashViewModel(get()) }
         viewModel { ProfileViewModel(get()) }
+        viewModel { ChatsViewModel(get(), get(), this@SuaiApplication) }
     }
 
     override fun onCreate() {

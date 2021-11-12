@@ -29,6 +29,7 @@ class NewFragment : Fragment(R.layout.fragment_new) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.setHasOptionsMenu(true)
+        (requireActivity() as MainActivity).setHtmlText("Новость") //TODO выводить название новости
         val animation = TransitionInflater.from(requireContext())
             .inflateTransition(android.R.transition.move)
         sharedElementReturnTransition = animation
@@ -39,7 +40,6 @@ class NewFragment : Fragment(R.layout.fragment_new) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentNewBinding.bind(view)
         val new = requireArguments().getSerializable("new") as New
-        (requireActivity() as MainActivity).setHtmlText("Новость") //TODO выводить название новости
         ViewCompat.setTransitionName(binding.imageNew, requireArguments().getString("img_card_name"))
         postponeEnterTransition()
         startEnterTransitionAfterLoadingImage(new.titleImg , binding.imageNew)

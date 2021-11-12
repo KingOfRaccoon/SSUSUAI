@@ -5,4 +5,14 @@ class Admin(
     surname: String = "",
     dateOfBirthday: String = "",
     img: String = "",
-) : Person(name, surname, dateOfBirthday, img, TypeOfPerson.Admin.name)
+    idsPublicChat: List<String> = listOf(),
+    idsPersonalChat: List<String> = listOf()
+) : Person(
+    name,
+    surname,
+    dateOfBirthday,
+    img,
+    TypeOfPerson.Admin.name,
+    idsPublicChat,
+    idsPersonalChat
+)
