@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentChatBinding
+import com.castprogramms.ssusuai.tools.ui.BounceEdgeEffectFactory
 
 class ChatFragment: Fragment(R.layout.fragment_chat) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -18,6 +19,7 @@ class ChatFragment: Fragment(R.layout.fragment_chat) {
         val binding = FragmentChatBinding.bind(view)
         val adapter = MessageAdapter()
         binding.recyclerMessages.adapter = adapter
+        binding.recyclerMessages.edgeEffectFactory = BounceEdgeEffectFactory()
         binding.recyclerMessages.layoutManager = LinearLayoutManager(requireContext()).apply {
             reverseLayout = true
             stackFromEnd = true

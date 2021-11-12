@@ -15,11 +15,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val viewModel: ProfileViewModel by viewModel()
     private lateinit var binding: FragmentProfileBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (requireActivity() as MainActivity).setHtmlText("Профиль")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
         binding.root.startNestedScroll(0)
-        (requireActivity() as MainActivity).setHtmlText("Профиль")
         (requireActivity() as MainActivity).slideUp()
         val adapter = VisitedEventAdapter()
         viewModel.getCommonUser().observe(viewLifecycleOwner, {

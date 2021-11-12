@@ -5,7 +5,9 @@ open class Person(
     val surname: String = "",
     val dateOfBirthday: String = "",
     val img: String = "",
-    val typeOfPerson: String = TypeOfPerson.User.name
+    val typeOfPerson: String = TypeOfPerson.User.name,
+    val idsPublicChat: List<String> = listOf(),
+    val idsPersonalChat: List<String> = listOf()
 ){
 
     fun getFullName() = "$name $surname"

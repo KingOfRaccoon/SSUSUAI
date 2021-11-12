@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background_standard">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_standard"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,63 +13,63 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_day"
+            style="@style/standardTextBold.day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="6dp"
-            style="@style/standardTextBold.day"
-            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:text="24"
             android:textSize="40sp"
-            android:text="24"/>
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_day_week"
+            style="@style/standardText.date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            app:layout_constraintTop_toTopOf="@id/text_day"
-            app:layout_constraintStart_toEndOf="@id/text_day"
             android:text="Wed"
-            style="@style/standardText.date"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/text_day"
+            app:layout_constraintTop_toTopOf="@id/text_day" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_mouth_and_year"
+            style="@style/standardText.date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_day_week"
-            app:layout_constraintStart_toEndOf="@id/text_day"
-            android:text="Jan 2020"
             android:layout_marginStart="7dp"
             android:layout_marginTop="1dp"
+            android:text="Jan 2020"
             android:textSize="18sp"
-            style="@style/standardText.date"
-            app:layout_constraintBottom_toBottomOf="@id/text_day"/>
+            app:layout_constraintBottom_toBottomOf="@id/text_day"
+            app:layout_constraintStart_toEndOf="@id/text_day"
+            app:layout_constraintTop_toBottomOf="@id/text_day_week" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_today"
+            style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/button"
-            android:text="@string/today"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="35dp"
+            android:text="@string/today"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="35dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_for_events"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:layout_marginEnd="7dp"
-            app:layout_constraintTop_toBottomOf="@id/button_today"
             android:layout_marginTop="14dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="7dp"
+            app:cardCornerRadius="32dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:cardCornerRadius="32dp">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_today">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -77,66 +77,65 @@
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/recycler_dates"
-                    android:layout_marginTop="30dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:itemCount="7"
-                    tools:listitem="@layout/item_date"/>
+                    tools:listitem="@layout/item_date" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_title_time"
+                    style="@style/standardText.calendar_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/recycler_dates"
+                    android:layout_marginStart="28dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginStart="26dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    style="@style/standardText.calendar_text"
-                    android:textStyle="bold"
+                    android:text="@string/time"
                     android:textSize="16sp"
-                    android:text="@string/time"/>
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_dates" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_title_event"
+                    style="@style/standardText.calendar_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/recycler_dates"
-                    android:layout_marginTop="8dp"
                     android:layout_marginStart="22dp"
-                    app:layout_constraintStart_toEndOf="@id/text_title_time"
+                    android:layout_marginTop="8dp"
                     android:text="@string/event"
-                    style="@style/standardText.calendar_text"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textSize="16sp"/>
+                    app:layout_constraintStart_toEndOf="@id/text_title_time"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_dates" />
 
                 <ImageButton
+                    app:layout_constraintTop_toBottomOf="@id/recycler_dates"
                     android:id="@+id/button_filter_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/filter_events"
-                    app:layout_constraintTop_toBottomOf="@id/recycler_dates"
                     android:layout_marginTop="6dp"
+                    android:background="@drawable/filter_events"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="28dp"/>
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/recycler_events"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginEnd="28dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
                     android:layout_marginTop="19dp"
-                    app:layout_constraintTop_toBottomOf="@id/text_title_event"
+                    android:layout_marginEnd="28dp"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_event"
+                    app:layout_constraintTop_toBottomOf="@id/text_title_event"
                     tools:itemCount="2"
-                    />
+                    tools:listitem="@layout/item_event" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -144,28 +143,29 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_soon"
+            style="@style/standardText.profileText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/card_for_events"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="22dp"
+            android:layout_marginTop="20dp"
             android:text="@string/soon"
-            style="@style/standardText.profileText"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textSize="16sp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_for_events" />
 
         <com.todkars.shimmer.ShimmerRecyclerView
             android:id="@+id/recycler_events_soon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_soon"
             android:layout_marginStart="7dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_soon"
             tools:itemCount="6"
-            tools:listitem="@layout/item_soon_event"/>
+            tools:listitem="@layout/item_soon_event" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -18,7 +18,7 @@ class DatesAdapter: RecyclerView.Adapter<DatesAdapter.DatesViewHolder>() {
         holder.bind()
     }
 
-    override fun getItemCount() = 7
+    override fun getItemCount() = 9
 
     inner class DatesViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val binding = ItemDateBinding.bind(view)

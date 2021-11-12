@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.text.Html
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.navigation.ActionOnlyNavDirections
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.fragment.FragmentNavigatorDestinationBuilder
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -14,6 +17,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.FabBottomNavigationView
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.HideBehaviorWithBlockChat
+import com.castprogramms.ssusuai.ui.news.NewsFragmentDirections
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
@@ -49,17 +53,17 @@ class MainActivity : AppCompatActivity() {
         }
         supportActionBar?.setBackgroundDrawable(getDrawable(R.drawable.background_standard))
         supportActionBar?.elevation = 0f
-
-        supportActionBar?.setDisplayShowHomeEnabled(false)
-
-
         navHostController.let {
             val appBarConfiguration = AppBarConfiguration(navHostController.graph)
             setupActionBarWithNavController(navHostController, appBarConfiguration)
             bottomNavigationView.setupWithNavController(navHostController)
         }
-
-        findViewById<CoordinatorLayout>(R.id.main_activity)
+        navHostController.addOnDestinationChangedListener { _, destination, _ ->
+            val needHomeButton = arrayOf(R.id.newFragment, R.id.chatFragment)
+            supportActionBar?.setDisplayHomeAsUpEnabled(
+                destination.id in needHomeButton
+            )
+        }
     }
 
     fun setHtmlText(text: String){
@@ -79,9 +83,7 @@ class MainActivity : AppCompatActivity() {
         try {
             ((bottomNavigationView.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBehaviorWithBlockChat).slideDown(fab)
             ((fab.layoutParams as CoordinatorLayout.LayoutParams).behavior as HideBehaviorWithBlockChat).slideDown(bottomNavigationView)
-        }catch (e: Exception){
-
-        }
+        }catch (e: Exception){}
     }
 
     fun centerBNVClick(){
