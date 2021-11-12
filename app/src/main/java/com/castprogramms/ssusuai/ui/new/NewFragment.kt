@@ -34,6 +34,7 @@ class NewFragment : Fragment(R.layout.fragment_new) {
             .inflateTransition(android.R.transition.move)
         sharedElementReturnTransition = animation
         sharedElementEnterTransition = animation
+        (activity as MainActivity?)?.slideDown()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

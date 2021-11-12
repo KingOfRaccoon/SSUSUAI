@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
             viewModel.getUser(googleAuth.id)
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

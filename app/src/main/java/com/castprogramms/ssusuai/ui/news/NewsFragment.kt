@@ -26,6 +26,7 @@ class NewsFragment : Fragment(R.layout.fragment_news), NewsClickCallback {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as MainActivity).setHtmlText("Лента новостей")
         (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as MainActivity?)?.slideUp()
         binding = FragmentNewsBinding.bind(view)
         binding.recyclerNews.adapter = NewsAdapter(this)
         binding.recyclerNews.edgeEffectFactory = BounceEdgeEffectFactory()
