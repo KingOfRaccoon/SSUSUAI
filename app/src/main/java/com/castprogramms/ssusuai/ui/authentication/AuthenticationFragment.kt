@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import android.view.animation.*
 import androidx.core.graphics.drawable.toBitmap
@@ -108,6 +109,7 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
                 } else {
                     Snackbar.make(requireView(), "Возникла проблема :(", Snackbar.LENGTH_SHORT)
                         .show()
+                    Log.e("firebase", it.exception?.message.toString())
                 }
             }
         }

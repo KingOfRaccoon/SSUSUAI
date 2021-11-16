@@ -38,7 +38,11 @@
     <fragment
         tools:layout="@layout/fragment_new"
         android:id="@+id/newFragment"
-        android:name="com.castprogramms.ssusuai.ui.new.NewFragment"/>
+        android:name="com.castprogramms.ssusuai.ui.new.NewFragment">
+        <action
+            android:id="@+id/action_newFragment_to_inAlbumFragment"
+            app:destination="@id/inAlbumFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/galleryFragment"

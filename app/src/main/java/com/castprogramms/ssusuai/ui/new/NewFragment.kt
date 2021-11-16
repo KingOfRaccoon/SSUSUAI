@@ -44,6 +44,10 @@ class NewFragment : Fragment(R.layout.fragment_new) {
         ViewCompat.setTransitionName(binding.imageNew, requireArguments().getString("img_card_name"))
         postponeEnterTransition()
         startEnterTransitionAfterLoadingImage(new.titleImg , binding.imageNew)
+
+        binding.goToGallery.setOnClickListener {
+            findNavController().navigate(R.id.action_newFragment_to_inAlbumFragment)
+        }
     }
 
     private fun startEnterTransitionAfterLoadingImage(

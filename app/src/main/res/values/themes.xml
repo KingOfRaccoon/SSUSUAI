@@ -22,6 +22,10 @@
         <item name="android:background">@color/white</item>
     </style>
 
+    <style name="CardBackground">
+        <item name="android:background">@color/white</item>
+    </style>
+
     <style name="TabLayoutChats" parent="standardText">
         <item name="tabSelectedTextColor">@color/white</item>
         <item name="tabTextColor">#4F5A85</item>

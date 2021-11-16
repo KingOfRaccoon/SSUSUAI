@@ -24,6 +24,10 @@
         <item name="android:background">@color/d_btnv</item>
     </style>
 
+    <style name="CardBackground">
+        <item name="android:background">@color/d_day_fio</item>
+    </style>
+
     <style name="TabLayoutChats">
         <item name="tabTextColor">@color/white</item>
         <item name="tabIndicatorColor">@color/d_day_fio</item>
@@ -40,4 +44,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="standardTextBold.day">
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>
