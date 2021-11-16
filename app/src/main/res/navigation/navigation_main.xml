@@ -71,8 +71,7 @@
     <fragment
         android:id="@+id/inAlbumFragment"
         android:name="com.castprogramms.ssusuai.ui.inalbum.InAlbumFragment"
-        android:label="InAlbumFragment" />
-        android:label="GalleryFragment" />
+        tools:layout="@layout/in_album_fragment" />
     <fragment
         android:id="@+id/addPersonalChatFragment"
         android:name="com.castprogramms.ssusuai.ui.addchat.AddPersonalChatFragment"

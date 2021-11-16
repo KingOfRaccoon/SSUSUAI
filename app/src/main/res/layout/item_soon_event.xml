@@ -6,6 +6,7 @@
     android:layout_marginBottom="8dp"
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="16dp"
+    style="@style/CardBackgroundTint"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +40,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/date_event"
-            style="@style/standardText"
+            style="@style/textInSmalCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

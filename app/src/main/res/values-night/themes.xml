@@ -28,6 +28,14 @@
         <item name="android:background">@color/d_day_fio</item>
     </style>
 
+    <style name="CardBackgroundTint">
+        <item name="android:backgroundTint">@color/d_day_fio</item>
+    </style>
+
+    <style name="background_card_event">
+        <item name="android:backgroundTint">#C3CFFF</item>
+    </style>
+
     <style name="TabLayoutChats">
         <item name="tabTextColor">@color/white</item>
         <item name="tabIndicatorColor">@color/d_day_fio</item>
@@ -46,5 +54,17 @@
 
     <style name="standardTextBold.day">
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="standardText.text_in_card_in_calendar">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textInSmalCard">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textAGA">
+        <item name="android:textColor">@color/d_day_fio</item>
     </style>
 </resources>

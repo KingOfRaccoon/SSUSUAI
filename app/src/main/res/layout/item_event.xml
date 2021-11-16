@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="11:35"
-        style="@style/standardTextBold.start_time_and_and_text_in_card_in_calendar"
+        style="@style/standardText.text_in_card_in_calendar"
         android:textStyle="bold"
         android:textSize="16sp"/>
 
@@ -68,7 +68,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_desc_event"
-                style="@style/standardText.text_in_card_in_calendar"
+                style="@style/textAGA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -91,7 +91,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_location"
-                style="@style/standardText.text_in_card_in_calendar"
+                style="@style/textAGA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -116,7 +116,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_name_leading"
-                style="@style/standardText.text_in_card_in_calendar"
+                style="@style/textAGA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
