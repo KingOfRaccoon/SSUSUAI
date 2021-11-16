@@ -8,6 +8,7 @@
     android:layout_marginStart="21dp"
     android:layout_marginEnd="21dp"
     app:cardCornerRadius="20dp"
+    style="@style/CardBackgroundTint"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 

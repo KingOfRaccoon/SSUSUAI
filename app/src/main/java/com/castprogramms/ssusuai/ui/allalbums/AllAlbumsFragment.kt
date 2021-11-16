@@ -30,7 +30,6 @@ class AllAlbumsFragment : Fragment(R.layout.fragment_all_albums) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAllAlbumsBinding.bind(view)
-
         binding.root.startNestedScroll(0)
         (requireActivity() as MainActivity).setHtmlText("Альбомы")
         (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)

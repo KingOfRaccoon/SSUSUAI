@@ -44,7 +44,11 @@
         android:name="com.castprogramms.ssusuai.ui.new.NewFragment">
         <action
             android:id="@+id/action_newFragment_to_inAlbumFragment"
-            app:destination="@id/inAlbumFragment" />
+            app:destination="@id/inAlbumFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in" />
     </fragment>
 
     <fragment
@@ -54,7 +58,11 @@
         android:label="GalleryFragment" >
         <action
             android:id="@+id/action_galleryFragment_to_allAlbumsFragment"
-            app:destination="@id/allAlbumsFragment" />
+            app:destination="@id/allAlbumsFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in" />
         <action
             android:id="@+id/action_galleryFragment_to_inAlbumFragment"
             app:destination="@id/inAlbumFragment" />
