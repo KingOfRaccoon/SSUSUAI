@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentAllTypeChatBinding
@@ -24,6 +25,7 @@ class AllTypeChatFragment: Fragment(R.layout.fragment_all_type_chat), AddChatCal
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.setHasOptionsMenu(true)
+        (requireActivity() as MainActivity).slideUp()
         binding = FragmentAllTypeChatBinding.bind(view)
         binding.viewPager2.adapter = ChatsViewPagerAdapter(this)
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
@@ -49,7 +51,10 @@ class AllTypeChatFragment: Fragment(R.layout.fragment_all_type_chat), AddChatCal
                 Toast.makeText(requireContext(), typeOfChats.text, Toast.LENGTH_LONG).show()
             }
             ChatsType.PERSONAL -> {
-                Toast.makeText(requireContext(), typeOfChats.text, Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireContext(), typeOfChats.text, Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_allTypeChatFragment_to_addPersonalChatFragment)
+                (requireActivity() as MainActivity).slideDown()
+                (requireActivity() as MainActivity).setIsChat(true)
             }
         }
     }

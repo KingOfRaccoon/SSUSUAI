@@ -60,7 +60,7 @@ class FabBottomNavigationView @JvmOverloads constructor(
         materialShapeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             setTint(ContextCompat.getColor(context, R.color.bottom_bar))
             paintStyle = Paint.Style.FILL_AND_STROKE
-            setCornerSize(100f)
+            setCornerSize(88f)
         }
 
         background = materialShapeDrawable

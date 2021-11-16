@@ -5,21 +5,14 @@ import android.os.Bundle
 import android.text.Html
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.navigation.ActionOnlyNavDirections
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
-import androidx.navigation.NavHostController
-import androidx.navigation.fragment.FragmentNavigatorDestinationBuilder
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.FabBottomNavigationView
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.HideBehaviorWithBlockChat
-import com.castprogramms.ssusuai.ui.news.NewsFragmentDirections
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import de.hdodenhof.circleimageview.CircleImageView
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,8 +30,6 @@ class MainActivity : AppCompatActivity() {
         if (googleAuth != null)
             viewModel.getUser(googleAuth.id)
     }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +52,15 @@ class MainActivity : AppCompatActivity() {
             bottomNavigationView.setupWithNavController(navHostController)
         }
         navHostController.addOnDestinationChangedListener { _, destination, _ ->
-            val needHomeButton = arrayOf(R.id.newFragment, R.id.chatFragment)
+            val needHomeButton = arrayOf(R.id.newFragment, R.id.chatFragment, R.id.addPersonalChatFragment)
             supportActionBar?.setDisplayHomeAsUpEnabled(
                 destination.id in needHomeButton
             )
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.arrow_back)
         }
+
+//        val arrow = resources.getDrawable(R.drawable.arrow_back)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.arrow_back)
     }
 
     fun setHtmlText(text: String){

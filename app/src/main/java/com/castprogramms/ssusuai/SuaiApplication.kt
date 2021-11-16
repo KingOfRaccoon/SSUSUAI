@@ -4,7 +4,9 @@ import android.app.Application
 import com.castprogramms.ssusuai.repository.firebase.ChatsFirebaseRepository
 import com.castprogramms.ssusuai.repository.firebase.DataUserFirebaseRepository
 import com.castprogramms.ssusuai.repository.firebase.NewsFirebaseRepository
+import com.castprogramms.ssusuai.ui.addchat.AddPersonalChatViewModel
 import com.castprogramms.ssusuai.ui.authentication.AuthenticationViewModel
+import com.castprogramms.ssusuai.ui.chat.ChatViewModel
 import com.castprogramms.ssusuai.ui.chats.ChatsViewModel
 import com.castprogramms.ssusuai.ui.profile.ProfileViewModel
 import com.castprogramms.ssusuai.ui.registration.RegistrationViewModel
@@ -36,6 +38,8 @@ class SuaiApplication : Application() {
         viewModel { SplashViewModel(get()) }
         viewModel { ProfileViewModel(get()) }
         viewModel { ChatsViewModel(get(), get(), this@SuaiApplication) }
+        viewModel { AddPersonalChatViewModel(get(), get()) }
+        viewModel { ChatViewModel(get()) }
     }
 
     override fun onCreate() {

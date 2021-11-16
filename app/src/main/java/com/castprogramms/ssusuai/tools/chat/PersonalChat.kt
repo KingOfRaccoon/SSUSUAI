@@ -5,7 +5,7 @@ class PersonalChat(
     icon: String = "",
     val idFirstUser: String = "",
     val idSecondUser: String = ""
-) : Chat(messages, icon) {
+) : Chat(messages, icon, TypeChats.PersonalChat) {
     override fun equals(other: Any?): Boolean {
         return if (other is PersonalChat)
             this.idFirstUser == other.idFirstUser && this.idSecondUser == other.idSecondUser
