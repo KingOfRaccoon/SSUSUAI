@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_allTypeChatFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_allTypeChatFragment_to_addPersonalChatFragment"
+            app:destination="@id/addPersonalChatFragment" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_new"
@@ -69,4 +72,13 @@
         android:id="@+id/inAlbumFragment"
         android:name="com.castprogramms.ssusuai.ui.inalbum.InAlbumFragment"
         android:label="InAlbumFragment" />
+        android:label="GalleryFragment" />
+    <fragment
+        android:id="@+id/addPersonalChatFragment"
+        android:name="com.castprogramms.ssusuai.ui.addchat.AddPersonalChatFragment"
+        android:label="AddPersonalChatFragment" >
+        <action
+            android:id="@+id/action_addPersonalChatFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
 </navigation>

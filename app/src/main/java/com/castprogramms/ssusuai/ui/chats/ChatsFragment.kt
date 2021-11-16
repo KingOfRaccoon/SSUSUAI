@@ -82,9 +82,9 @@ class ChatsFragment(
                 is Resource.Success -> {
                     if (it.data != null) {
                         when (chatsType) {
-                            ChatsType.Group ->
-                                viewModel.getPersonalChats(it.data.idsPersonalChat)
                             ChatsType.PERSONAL ->
+                                viewModel.getPersonalChats(it.data.idsPersonalChat)
+                            ChatsType.Group ->
                                 viewModel.getPublicChats(it.data.idsPublicChat)
                         }
                     }

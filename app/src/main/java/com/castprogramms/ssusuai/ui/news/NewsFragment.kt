@@ -39,7 +39,6 @@ class NewsFragment : Fragment(R.layout.fragment_news), NewsClickCallback {
     }
 
     override fun clickOnNews(position: Int, binding: ItemNewsBinding, new: New) {
-
         val bundle = Bundle()
         bundle.putSerializable("new", new)
         bundle.putString("img_card_name", "img" + new.title.split(" ").first())

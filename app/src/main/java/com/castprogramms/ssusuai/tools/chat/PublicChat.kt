@@ -5,7 +5,7 @@ class PublicChat(
     icon: String = "",
     val idsUsers: List<String> = listOf(),
     val name: String = ""
-) : Chat(messages, icon) {
+) : Chat(messages, icon, TypeChats.PublicChat) {
     override fun equals(other: Any?): Boolean {
         return if (other is PublicChat)
             this.idsUsers == other.idsUsers && this.name == other.name

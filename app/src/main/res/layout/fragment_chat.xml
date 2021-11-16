@@ -7,15 +7,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.todkars.shimmer.ShimmerRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_messages"
         app:layout_constraintBottom_toTopOf="@id/button_send"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:listitem="@layout/item_message"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_height="0dp"
+        tools:listitem="@layout/item_message"/>
 
     <ImageButton
         android:id="@+id/button_send"
@@ -41,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="9dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_send"
         app:layout_constraintBottom_toBottomOf="@id/button_send"
@@ -49,6 +49,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userNameText"
+            android:capitalize="sentences"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

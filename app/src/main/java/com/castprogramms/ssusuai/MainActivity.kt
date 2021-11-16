@@ -57,11 +57,15 @@ class MainActivity : AppCompatActivity() {
             bottomNavigationView.setupWithNavController(navHostController)
         }
         navHostController.addOnDestinationChangedListener { _, destination, _ ->
-            val needHomeButton = arrayOf(R.id.newFragment, R.id.chatFragment)
+            val needHomeButton = arrayOf(R.id.newFragment, R.id.chatFragment, R.id.addPersonalChatFragment)
             supportActionBar?.setDisplayHomeAsUpEnabled(
                     destination.id in needHomeButton
             )
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.arrow_back)
         }
+
+//        val arrow = resources.getDrawable(R.drawable.arrow_back)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.arrow_back)
     }
 
     fun setHtmlText(text: String) {
