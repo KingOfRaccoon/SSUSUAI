@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="12dp"
     style="@style/CardBackgroundTint"
     app:cardCornerRadius="20dp">
@@ -33,7 +34,7 @@
             app:layout_constraintStart_toEndOf="@id/image_user_chat_card"
             android:layout_marginStart="15dp"
             style="@style/standardText.body"
-            android:text="Имя пользователя"
+            tools:text="Имя пользователя"
             android:textStyle="bold"
             android:textSize="18sp"/>
 
@@ -48,9 +49,10 @@
             style="@style/standardText.date"
             android:textStyle="bold"
             android:textSize="15sp"
-            android:text="Последнее сообщение"/>
+            tools:text="Последнее сообщение"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:visibility="gone"
             android:id="@+id/image_background_counter"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -61,6 +63,7 @@
             android:src="@drawable/background_for_counter_new_messages"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:visibility="gone"
             android:id="@+id/text_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

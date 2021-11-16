@@ -4,11 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.castprogramms.ssusuai.repository.Resource
 import com.castprogramms.ssusuai.repository.firebase.ChatsFirebaseRepository
+import com.castprogramms.ssusuai.repository.firebase.DataUserFirebaseRepository
 import com.castprogramms.ssusuai.tools.chat.Chat
 import com.castprogramms.ssusuai.tools.chat.Message
 import com.castprogramms.ssusuai.tools.chat.TypeChats
 
-class ChatViewModel(private val chatsFirebaseRepository: ChatsFirebaseRepository) : ViewModel() {
+class ChatViewModel(
+    private val chatsFirebaseRepository: ChatsFirebaseRepository,
+    private val dataUserFirebaseRepository: DataUserFirebaseRepository
+) : ViewModel() {
     val mutableLiveDataChat = MutableLiveData<Resource<out Chat>>()
 
     fun <T : Chat> getChat(idChat: String, typeChats: TypeChats) {
@@ -17,5 +21,10 @@ class ChatViewModel(private val chatsFirebaseRepository: ChatsFirebaseRepository
         }
     }
 
-    fun addMessage(idChat: String, message: Message) = chatsFirebaseRepository.addMessage(idChat, message)
+    fun addMessage(idChat: String, message: Message) =
+        chatsFirebaseRepository.addMessage(idChat, message)
+
+    fun getUser(id: String) = dataUserFirebaseRepository.getPerson(id)
+
+    fun getPersonWithoutLiveData(id: String) = dataUserFirebaseRepository.getPersonWithoutLiveData(id)
 }

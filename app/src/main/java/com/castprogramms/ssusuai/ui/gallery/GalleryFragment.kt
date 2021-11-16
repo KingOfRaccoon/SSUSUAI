@@ -22,6 +22,11 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
         (requireActivity() as MainActivity).setHtmlText("Галерея")
     }
 
+    override fun onStart() {
+        super.onStart()
+        (requireActivity() as MainActivity).setHtmlText("Галерея")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentGalleryBinding.bind(view)

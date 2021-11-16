@@ -74,7 +74,7 @@ class DataUserFirebaseRepository(private val firebase: FirebaseFirestore) : Data
                 val list = mutableListOf<Pair<String, Person>>()
                 value.documents.forEach {
                     checkPersonNotInChats(person, it.id).observeForever { bool ->
-                        if (bool && id != it.id) {
+                        if (!bool && id != it.id) {
                             val person = it.toObject(Person::class.java)
                             if (person != null)
                                 list.add(it.id to person)
@@ -92,6 +92,10 @@ class DataUserFirebaseRepository(private val firebase: FirebaseFirestore) : Data
 
     private fun checkPersonNotInChats(person: Person, id: String): MutableLiveData<Boolean> {
         val mutableLiveData = MutableLiveData<Boolean>()
+        if (person.idsPersonalChat.isEmpty()) {
+            mutableLiveData.postValue(false)
+            return mutableLiveData
+        }
         person.idsPersonalChat.forEach {
             firebase.collection(ChatsFirebaseRepository.chats_tag)
                 .document(it).get().addOnSuccessListener {
@@ -100,6 +104,29 @@ class DataUserFirebaseRepository(private val firebase: FirebaseFirestore) : Data
                         mutableLiveData.postValue(chat.idFirstUser == id || chat.idSecondUser == id)
                 }
         }
+        return mutableLiveData
+    }
+
+    fun getPersonWithoutLiveData(id: String): MutableLiveData<Resource<Person>> {
+        val mutableLiveData = MutableLiveData<Resource<Person>>(Resource.Loading())
+        firebase.collection(users_tag)
+            .document(id)
+            .addSnapshotListener { value, error ->
+                if (value != null) {
+                    when (value.getString("typeOfPerson")) {
+                        TypeOfPerson.Admin.name -> {
+                            mutableLiveData.postValue(Resource.Success(value.toObject(Admin::class.java)!!))
+                        }
+                        TypeOfPerson.User.name -> {
+                            mutableLiveData.postValue(Resource.Success(value.toObject(CommonUser::class.java)!!))
+                        }
+                        else ->
+                            mutableLiveData.postValue(Resource.Error(error?.message.toString()))
+                    }
+                } else {
+                    mutableLiveData.postValue(Resource.Error(error?.message.toString()))
+                }
+            }
         return mutableLiveData
     }
 }
