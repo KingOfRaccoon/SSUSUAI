@@ -39,7 +39,7 @@ class SuaiApplication : Application() {
         viewModel { ProfileViewModel(get()) }
         viewModel { ChatsViewModel(get(), get(), this@SuaiApplication) }
         viewModel { AddPersonalChatViewModel(get(), get()) }
-        viewModel { ChatViewModel(get()) }
+        viewModel { ChatViewModel(get(), get()) }
     }
 
     override fun onCreate() {

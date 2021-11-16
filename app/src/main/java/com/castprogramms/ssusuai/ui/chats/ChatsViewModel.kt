@@ -47,9 +47,5 @@ class ChatsViewModel(
         }
     }
 
-    fun getTypeUser() = dataUserFirebaseRepository.typeOfPerson
-
-    override fun onCleared() {
-        super.onCleared()
-    }
+    fun getUser(id: String) = dataUserFirebaseRepository.getPersonWithoutLiveData(id)
 }

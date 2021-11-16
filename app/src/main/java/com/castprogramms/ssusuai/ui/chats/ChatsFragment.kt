@@ -10,11 +10,7 @@ import com.castprogramms.ssusuai.repository.Resource
 import com.castprogramms.ssusuai.tools.chat.PersonalChat
 import com.castprogramms.ssusuai.tools.chat.PublicChat
 import com.castprogramms.ssusuai.tools.ui.BounceEdgeEffectFactory
-import com.castprogramms.ssusuai.ui.alltypechat.AddChatCallback
-import com.castprogramms.ssusuai.users.Admin
-import com.castprogramms.ssusuai.users.CommonUser
 import com.castprogramms.ssusuai.users.Person
-import com.castprogramms.ssusuai.users.TypeOfPerson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatsFragment(
@@ -34,7 +30,9 @@ class ChatsFragment(
         when (chatsType) {
             ChatsType.Group -> {
                 val adapter =
-                    ChatsAdapter<PublicChat> { (requireActivity() as MainActivity).slideDown() }
+                    ChatsAdapter<PublicChat>( { (requireActivity() as MainActivity).slideDown() }) {
+                        viewModel.getUser(it)
+                    }
                 binding.recyclerChats.adapter = adapter
                 viewModel.liveDataPublicChats.observe(viewLifecycleOwner, {
                     when (it) {
@@ -51,7 +49,11 @@ class ChatsFragment(
             }
             ChatsType.PERSONAL -> {
                 val adapter =
-                    ChatsAdapter<PersonalChat> { (requireActivity() as MainActivity).slideDown() }
+                    ChatsAdapter<PersonalChat>({ (requireActivity() as MainActivity).slideDown() }) {
+                        viewModel.getUser(
+                            it
+                        )
+                    }
                 binding.recyclerChats.adapter = adapter
                 viewModel.liveDataPersonalChats.observe(viewLifecycleOwner, {
                     when (it) {

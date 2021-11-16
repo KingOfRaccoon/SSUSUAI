@@ -3,14 +3,17 @@ package com.castprogramms.ssusuai.ui.chat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.ItemMessageBinding
+import com.castprogramms.ssusuai.repository.Resource
 import com.castprogramms.ssusuai.tools.chat.Message
+import com.castprogramms.ssusuai.users.Person
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 
-class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
+class MessageAdapter() : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
     val messages = mutableListOf<Message>()
 
     fun setMessages(newMessages: List<Message>){

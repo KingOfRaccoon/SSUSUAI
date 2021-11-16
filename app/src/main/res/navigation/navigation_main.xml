@@ -58,8 +58,7 @@
     <fragment
         android:id="@+id/galleryFragment"
         tools:layout="@layout/fragment_gallery"
-        android:name="com.castprogramms.ssusuai.ui.gallery.GalleryFragment"
-        android:label="GalleryFragment" >
+        android:name="com.castprogramms.ssusuai.ui.gallery.GalleryFragment" >
         <action
             android:id="@+id/action_galleryFragment_to_allAlbumsFragment"
             app:destination="@id/allAlbumsFragment"
@@ -78,7 +77,6 @@
     <fragment
         android:id="@+id/allAlbumsFragment"
         android:name="com.castprogramms.ssusuai.ui.allalbums.AllAlbumsFragment"
-        android:label="fragment_all_albums"
         tools:layout="@layout/fragment_all_albums" >
         <action
             android:id="@+id/action_allAlbumsFragment_to_inAlbumFragment"
@@ -94,10 +92,10 @@
         tools:layout="@layout/in_album_fragment" />
     <fragment
         android:id="@+id/addPersonalChatFragment"
-        android:name="com.castprogramms.ssusuai.ui.addchat.AddPersonalChatFragment"
-        android:label="AddPersonalChatFragment" >
+        android:name="com.castprogramms.ssusuai.ui.addchat.AddPersonalChatFragment" >
         <action
             android:id="@+id/action_addPersonalChatFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
+            app:destination="@id/chatFragment"
+            app:popUpTo="@id/allTypeChatFragment" />
     </fragment>
 </navigation>

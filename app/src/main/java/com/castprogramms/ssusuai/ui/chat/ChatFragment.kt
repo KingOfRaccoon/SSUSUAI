@@ -27,6 +27,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         super.onCreate(savedInstanceState)
         idChat = requireArguments().getString("idChat").toString()
         typeChats = requireArguments().getSerializable("typeChat") as TypeChats
+        (requireActivity() as MainActivity).setHtmlText("Диалог")
         when (typeChats) {
             TypeChats.PersonalChat -> {
                 viewModel.getChat<PersonalChat>(idChat, typeChats)
@@ -41,6 +42,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         super.onViewCreated(view, savedInstanceState)
         this.setHasOptionsMenu(true)
         val binding = FragmentChatBinding.bind(view)
+        binding.recyclerMessages.scrollToPosition(0)
         val adapter = MessageAdapter()
         binding.recyclerMessages.adapter = adapter
         binding.recyclerMessages.edgeEffectFactory = BounceEdgeEffectFactory()
@@ -66,8 +68,12 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
                         is Resource.Success -> {
                             if (it.data != null) {
                                 val chat = it.data as PersonalChat
+                                val count = adapter.itemCount
                                 adapter.setMessages(chat.messages.reversed())
-                                binding.recyclerMessages.smoothScrollToPosition(0)
+                                if (count != 0)
+                                    binding.recyclerMessages.smoothScrollToPosition(0)
+                                else
+                                    binding.recyclerMessages.scrollToPosition(0)
                             }
                         }
                     }
