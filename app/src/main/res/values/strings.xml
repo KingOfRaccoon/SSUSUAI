@@ -16,6 +16,7 @@
     <string name="time">Время</string>
     <string name="event">Мероприятие</string>
     <string name="soon">Скоро</string>
+    <string name="last">Недавние</string>
     <string name="photos">Фотографии</string>
     <string name="albums">События</string>
     <string name="go_to_calendar">Перейти в календарь</string>
@@ -25,4 +26,6 @@
         Cтуденческое научное общество — это форма организации научного творчества молодёжи и научно-исследовательской работы студентов, направленная на подготовку научных и инженерных кадров, их вовлечения в разработку конкретных проектов в период обучения.
     </string>
     <string name="all">All</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

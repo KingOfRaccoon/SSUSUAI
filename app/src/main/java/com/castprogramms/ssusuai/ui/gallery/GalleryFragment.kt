@@ -2,14 +2,14 @@ package com.castprogramms.ssusuai.ui.gallery
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.findNavController
 import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentGalleryBinding
 import com.google.android.flexbox.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class GalleryFragment : Fragment(R.layout.fragment_gallery) {
     private val viewModel: GalleryViewModel by viewModel()
@@ -29,8 +29,15 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
         }
 
         binding.recyclerPhotos.apply {
+            postponeEnterTransition()
+            doOnPreDraw {
+                startPostponedEnterTransition()
+            }
             layoutManager = flexboxLayoutManager
             adapter = PhotosAdapter()
+        }
+        binding.allAlbums.setOnClickListener {
+            findNavController().navigate(R.id.action_galleryFragment_to_allAlbumsFragment)
         }
     }
 }

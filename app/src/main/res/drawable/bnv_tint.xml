@@ -3,7 +3,6 @@
     <item android:state_pressed="true">
         <color android:color="@color/background_bnv_fab"/>
     </item>
-
     <item>
         <color android:color="@color/black"/>
     </item>

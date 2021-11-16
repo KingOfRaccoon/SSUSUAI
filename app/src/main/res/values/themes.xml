@@ -14,6 +14,14 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
+    <style name="background_std">
+        <item name="android:background">@drawable/background_standard</item>
+    </style>
+
+    <style name="btnv_back">
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
     <style name="TabLayoutChats" parent="standardText">
         <item name="tabSelectedTextColor">@color/white</item>
         <item name="tabTextColor">#4F5A85</item>
@@ -25,6 +33,11 @@
     <style name="button">
         <item name="android:backgroundTint">@color/background_tint_button</item>
         <item name="android:textColor">@color/text_color_button</item>
+    </style>
+
+    <style name="standardTextBold">
+        <item name="android:fontFamily">@font/centurygothic_bold</item>
+        <item name="android:textColor">@color/d_day_fio</item>
     </style>
 
     <style name="standardText.date">
@@ -62,7 +75,6 @@
     <style name="standardText.counter">
         <item name="android:textColor">#BFBFBF</item>
     </style>
-
 
 
 </resources>

@@ -21,4 +21,10 @@
     <color name="norm_black">#353535</color>
     <color name="purple_600">#8DAEF6</color>
     <color name="grey_indicator">#F0F0F0F0</color>
+    
+    <!--  DARK  -->
+    <color name="d_day_fio">#4F5A85</color>
+    <color name="d_main_accent">#B6C5FF</color>
+    <color name="d_btnv">#3D4870</color>
+    <color name="d_background">#202F52</color>
 </resources>
