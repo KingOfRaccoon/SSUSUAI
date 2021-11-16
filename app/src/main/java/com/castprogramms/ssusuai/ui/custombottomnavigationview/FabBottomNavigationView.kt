@@ -12,6 +12,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.castprogramms.ssusuai.R
+import com.castprogramms.ssusuai.tools.Utils.isDarkThemeOn
 import com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
@@ -58,7 +59,12 @@ class FabBottomNavigationView @JvmOverloads constructor(
             .build()
 
         materialShapeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
-            setTint(ContextCompat.getColor(context, R.color.bottom_bar))
+            if (context.isDarkThemeOn()){
+                setTint(ContextCompat.getColor(context, R.color.d_background))
+            } else {
+                setTint(ContextCompat.getColor(context, R.color.bottom_bar))
+            }
+
             paintStyle = Paint.Style.FILL_AND_STROKE
             setCornerSize(88f)
         }

@@ -25,9 +25,11 @@
         tools:layout="@layout/fragment_calendar"/>
     <fragment
         android:id="@+id/chatFragment"
+        tools:layout="@layout/fragment_chat"
         android:name="com.castprogramms.ssusuai.ui.chat.ChatFragment"/>
     <fragment
         android:id="@+id/allTypeChatFragment"
+        tools:layout="@layout/fragment_all_type_chat"
         android:name="com.castprogramms.ssusuai.ui.alltypechat.AllTypeChatFragment">
         <action
             android:id="@+id/action_allTypeChatFragment_to_chatFragment"
@@ -37,12 +39,35 @@
             app:destination="@id/addPersonalChatFragment" />
     </fragment>
     <fragment
+        tools:layout="@layout/fragment_new"
         android:id="@+id/newFragment"
         android:name="com.castprogramms.ssusuai.ui.new.NewFragment"/>
 
     <fragment
         android:id="@+id/galleryFragment"
+        tools:layout="@layout/fragment_gallery"
         android:name="com.castprogramms.ssusuai.ui.gallery.GalleryFragment"
+        android:label="GalleryFragment" >
+        <action
+            android:id="@+id/action_galleryFragment_to_allAlbumsFragment"
+            app:destination="@id/allAlbumsFragment" />
+        <action
+            android:id="@+id/action_galleryFragment_to_inAlbumFragment"
+            app:destination="@id/inAlbumFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allAlbumsFragment"
+        android:name="com.castprogramms.ssusuai.ui.allalbums.AllAlbumsFragment"
+        android:label="fragment_all_albums"
+        tools:layout="@layout/fragment_all_albums" >
+        <action
+            android:id="@+id/action_allAlbumsFragment_to_inAlbumFragment"
+            app:destination="@id/inAlbumFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inAlbumFragment"
+        android:name="com.castprogramms.ssusuai.ui.inalbum.InAlbumFragment"
+        android:label="InAlbumFragment" />
         android:label="GalleryFragment" />
     <fragment
         android:id="@+id/addPersonalChatFragment"

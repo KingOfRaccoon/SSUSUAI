@@ -24,6 +24,7 @@
         app:elevation="37dp"
         app:fab_cradle_rounded_corner_radius="8dp"
         app:fab_size="50dp"
+        style="@style/btnv_back"
         android:layout_margin="10dp"
         app:menu="@menu/bottom_nav_menu"
         app:layout_behavior=".ui.custombottomnavigationview.HideBehaviorWithBlockChat" />

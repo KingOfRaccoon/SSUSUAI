@@ -5,53 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/background_std"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".ui.allalbums.AllAlbumsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_soon"
+            style="@style/standardText.profileText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_soon"
-                style="@style/standardText.profileText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="2dp"
-                android:text="@string/soon"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/all_albums"
-                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/all"
-                android:textColor="@color/background_bnv_fab"
-                android:textSize="14sp"
-                app:icon="@drawable/chevron_right_24"
-                app:iconGravity="end"
-                app:iconTint="@color/background_bnv_fab" />
-
-        </RelativeLayout>
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/last"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_album_big"
+            android:id="@+id/all_card_album_big"
             android:layout_width="match_parent"
             android:layout_height="245dp"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             app:cardCornerRadius="20dp"
@@ -104,7 +81,8 @@
                 android:id="@+id/img_for_album"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/test_album" />
+                android:background="@drawable/test_album"
+                android:contentDescription="hbhb" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -118,7 +96,7 @@
             app:layout_constraintTop_toBottomOf="@+id/card_album_big">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_album_small_1"
+                android:id="@+id/all_card_album_small_1"
                 android:layout_width="0dp"
                 android:layout_height="140dp"
                 android:layout_marginStart="20dp"
@@ -152,16 +130,17 @@
                     android:elevation="100dp" />
 
                 <ImageView
-                    android:id="@+id/img_dor_album_small_1"
+                    android:id="@+id/all_img_for_album_small_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/test_album"
+                    android:contentDescription="sca"
                     android:scaleType="centerCrop" />
 
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_album_small_2"
+                android:id="@+id/all_card_album_small_2"
                 android:layout_width="0dp"
                 android:layout_height="140dp"
                 android:layout_alignParentEnd="true"
@@ -173,7 +152,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/title_albums_small_2"
+                    android:id="@+id/all_title_albums_small_2"
                     style="@style/standardText.body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -195,10 +174,11 @@
                     android:elevation="100dp" />
 
                 <ImageView
-                    android:id="@+id/img_dor_album_small_2"
+                    android:id="@+id/all_img_dor_album_small_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/test_album"
+                    android:contentDescription="sac"
                     android:scaleType="centerCrop" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -208,14 +188,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="390dp" />
+                app:layout_constraintGuide_percent="0.05" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/g2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="20dp" />
+                app:layout_constraintGuide_percent="0.95" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/g3"
@@ -226,48 +206,21 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_photo"
-            style="@style/standardText.profileText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/photos"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-        <LinearLayout
+        <com.todkars.shimmer.ShimmerRecyclerView
+            android:id="@+id/recycler_albums"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:orientation="vertical"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginTop="6dp"
+            android:overScrollMode="always"
+            style="@style/background_std"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_photo">
+            app:layout_constraintTop_toBottomOf="@+id/text_photo"
+            app:shimmer_recycler_auto_start="true"
+            app:shimmer_recycler_item_count="6"
+            tools:listitem="@layout/item_album" />
 
-            <com.todkars.shimmer.ShimmerRecyclerView
-                android:id="@+id/recycler_photos"
-                android:layout_gravity="center_vertical|center_horizontal|center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:overScrollMode="always"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_photo"
-                app:shimmer_recycler_auto_start="false"
-                app:shimmer_recycler_item_count="6"
-                tools:listitem="@layout/item_photo" />
-
-        </LinearLayout>
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

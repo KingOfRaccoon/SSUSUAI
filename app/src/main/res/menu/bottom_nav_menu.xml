@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/newsFragment"
-        android:icon="@drawable/news"
+        android:icon="@drawable/gallery"
         android:title="@null"/>
 
     <item
@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/galleryFragment"
-        android:icon="@drawable/gallery"
+        android:icon="@drawable/news"
         android:title="@null"/>
 
     <item

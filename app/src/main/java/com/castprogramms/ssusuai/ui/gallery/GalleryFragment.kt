@@ -2,14 +2,15 @@ package com.castprogramms.ssusuai.ui.gallery
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentGalleryBinding
 import com.google.android.flexbox.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class GalleryFragment : Fragment(R.layout.fragment_gallery) {
     private val viewModel: GalleryViewModel by viewModel()
@@ -30,11 +31,28 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
             flexWrap = FlexWrap.WRAP
             flexDirection = FlexDirection.ROW
             alignItems = AlignItems.STRETCH
+            justifyContent = JustifyContent.CENTER
         }
 
         binding.recyclerPhotos.apply {
+            postponeEnterTransition()
+            doOnPreDraw {
+                startPostponedEnterTransition()
+            }
             layoutManager = flexboxLayoutManager
             adapter = PhotosAdapter()
+        }
+        binding.allAlbums.setOnClickListener {
+            findNavController().navigate(R.id.action_galleryFragment_to_allAlbumsFragment)
+        }
+        binding.cardAlbumBig.setOnClickListener {
+            findNavController().navigate(R.id.action_galleryFragment_to_inAlbumFragment)
+        }
+        binding.cardAlbumSmall1.setOnClickListener {
+            findNavController().navigate(R.id.action_galleryFragment_to_inAlbumFragment)
+        }
+        binding.cardAlbumSmall2.setOnClickListener {
+            findNavController().navigate(R.id.action_galleryFragment_to_inAlbumFragment)
         }
     }
 }
