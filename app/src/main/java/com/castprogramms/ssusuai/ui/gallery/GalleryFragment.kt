@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
@@ -26,6 +27,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
             flexWrap = FlexWrap.WRAP
             flexDirection = FlexDirection.ROW
             alignItems = AlignItems.STRETCH
+            justifyContent = JustifyContent.CENTER
         }
 
         binding.recyclerPhotos.apply {
@@ -38,6 +40,15 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
         }
         binding.allAlbums.setOnClickListener {
             findNavController().navigate(R.id.action_galleryFragment_to_allAlbumsFragment)
+        }
+        binding.cardAlbumBig.setOnClickListener {
+            findNavController().navigate(R.id.action_galleryFragment_to_inAlbumFragment)
+        }
+        binding.cardAlbumSmall1.setOnClickListener {
+            findNavController().navigate(R.id.action_galleryFragment_to_inAlbumFragment)
+        }
+        binding.cardAlbumSmall2.setOnClickListener {
+            findNavController().navigate(R.id.action_galleryFragment_to_inAlbumFragment)
         }
     }
 }

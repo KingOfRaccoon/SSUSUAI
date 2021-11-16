@@ -48,10 +48,21 @@
         <action
             android:id="@+id/action_galleryFragment_to_allAlbumsFragment"
             app:destination="@id/allAlbumsFragment" />
+        <action
+            android:id="@+id/action_galleryFragment_to_inAlbumFragment"
+            app:destination="@id/inAlbumFragment" />
     </fragment>
     <fragment
         android:id="@+id/allAlbumsFragment"
         android:name="com.castprogramms.ssusuai.ui.allalbums.AllAlbumsFragment"
         android:label="fragment_all_albums"
-        tools:layout="@layout/fragment_all_albums" />
+        tools:layout="@layout/fragment_all_albums" >
+        <action
+            android:id="@+id/action_allAlbumsFragment_to_inAlbumFragment"
+            app:destination="@id/inAlbumFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inAlbumFragment"
+        android:name="com.castprogramms.ssusuai.ui.inalbum.InAlbumFragment"
+        android:label="InAlbumFragment" />
 </navigation>

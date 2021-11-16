@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/background_std"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/album_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24.09.2020"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="24dp"
+        style="@style/standardText.profileText"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_album_in_list"
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="20dp"
+        style="@style/background_std"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="18dp"
+            android:elevation="120dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_albums"
+                style="@style/standardText.body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="A big-big-big name name!"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:transitionName="textStart" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_for_album"
+            android:elevation="100dp" />
+
+        <ImageView
+            android:id="@+id/img_for_album"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/test_album"
+            android:contentDescription="hbhb" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

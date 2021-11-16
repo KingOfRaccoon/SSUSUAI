@@ -101,7 +101,7 @@
                 android:elevation="100dp" />
 
             <ImageView
-                android:id="@+id/img_dor_album"
+                android:id="@+id/img_for_album"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/test_album" />
@@ -208,14 +208,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.05" />
+                app:layout_constraintGuide_end="390dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/g2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.95" />
+                app:layout_constraintGuide_end="20dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/g3"
@@ -239,20 +239,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-        <com.todkars.shimmer.ShimmerRecyclerView
-            android:id="@+id/recycler_photos"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginStart="5dp"
             android:orientation="vertical"
-            android:overScrollMode="always"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_photo"
-            app:shimmer_recycler_auto_start="true"
-            app:shimmer_recycler_item_count="6"
-            tools:listitem="@layout/item_photo" />
+            app:layout_constraintTop_toBottomOf="@+id/text_photo">
+
+            <com.todkars.shimmer.ShimmerRecyclerView
+                android:id="@+id/recycler_photos"
+                android:layout_gravity="center_vertical|center_horizontal|center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:overScrollMode="always"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_photo"
+                app:shimmer_recycler_auto_start="false"
+                app:shimmer_recycler_item_count="6"
+                tools:listitem="@layout/item_photo" />
+
+        </LinearLayout>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

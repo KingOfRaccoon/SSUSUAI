@@ -19,7 +19,7 @@
     </style>
 
     <style name="btnv_back">
-        <item name="backgroundTint">@color/white</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="TabLayoutChats" parent="standardText">
