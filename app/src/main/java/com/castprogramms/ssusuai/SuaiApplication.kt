@@ -32,14 +32,14 @@ class SuaiApplication : Application() {
         single { DataUserFirebaseRepository(get()) }
         single { NewsFirebaseRepository(get()) }
         single { ChatsFirebaseRepository(get()) }
-        viewModel { MainActivityViewModel(get()) }
-        viewModel { AuthenticationViewModel(get(), this@SuaiApplication) }
-        viewModel { RegistrationViewModel(get()) }
-        viewModel { SplashViewModel(get()) }
-        viewModel { ProfileViewModel(get()) }
-        viewModel { ChatsViewModel(get(), get(), this@SuaiApplication) }
-        viewModel { AddPersonalChatViewModel(get(), get()) }
-        viewModel { ChatViewModel(get(), get()) }
+        single { MainActivityViewModel(get()) }
+        single { AuthenticationViewModel(get(), this@SuaiApplication) }
+        single { RegistrationViewModel(get()) }
+        single { SplashViewModel(get()) }
+        single { ProfileViewModel(get()) }
+        single { ChatsViewModel(get(), get(), this@SuaiApplication) }
+        single { AddPersonalChatViewModel(get(), get()) }
+        single { ChatViewModel(get(), get()) }
     }
 
     override fun onCreate() {

@@ -1,6 +1,8 @@
 package com.castprogramms.ssusuai.ui.chat
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -20,6 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatFragment : Fragment(R.layout.fragment_chat) {
     val viewModel: ChatViewModel by viewModel()
+    lateinit var binding: FragmentChatBinding
     private var typeChats = TypeChats.PublicChat
     private var idChat = ""
 
@@ -41,7 +44,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.setHasOptionsMenu(true)
-        val binding = FragmentChatBinding.bind(view)
+        binding = FragmentChatBinding.bind(view)
         binding.recyclerMessages.scrollToPosition(0)
         val adapter = MessageAdapter()
         binding.recyclerMessages.adapter = adapter
@@ -52,22 +55,24 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             isSmoothScrollbarEnabled = true
             orientation = LinearLayoutManager.VERTICAL
         }
+
+        binding.userNameText.text = Editable.Factory.getInstance().newEditable(viewModel.message)
         binding.recyclerMessages.scrollToPosition(0)
         ((requireActivity() as MainActivity).setIsChat(true))
+        val googleAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
 
         when (typeChats) {
             TypeChats.PersonalChat -> {
                 viewModel.mutableLiveDataChat.observe(viewLifecycleOwner, {
                     when (it) {
                         is Resource.Error -> {
-
                         }
                         is Resource.Loading -> {
-
                         }
                         is Resource.Success -> {
                             if (it.data != null) {
                                 val chat = it.data as PersonalChat
+                                viewModel.getPersonWithoutLiveData(if (chat.idFirstUser == googleAccount?.id) chat.idSecondUser else chat.idFirstUser)
                                 val count = adapter.itemCount
                                 adapter.setMessages(chat.messages.reversed())
                                 if (count != 0)
@@ -84,15 +89,29 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             }
         }
 
+        viewModel.mutableLiveDataOtherUser.observe(viewLifecycleOwner, {
+            when(it){
+                is Resource.Error -> {}
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    if (it.data != null){
+                        (requireActivity() as MainActivity).setHtmlText(it.data.getFullName())
+                        (requireActivity() as MainActivity).setCustomImage(it.data.img)
+                        adapter.mutableLiveData.postValue(it.data)
+                    }
+                }
+            }
+        })
+
         binding.buttonSend.setOnClickListener {
             if (binding.userNameText.text?.trim().toString().isNotEmpty()
-                && GoogleSignIn.getLastSignedInAccount(requireContext()) != null
+                && googleAccount != null
             ) {
                 viewModel.addMessage(
                     idChat,
                     Message(
                         binding.userNameText.text?.trim().toString(),
-                        GoogleSignIn.getLastSignedInAccount(requireContext()).id
+                        googleAccount.id
                     )
                 )
                 binding.userNameText.text?.clear()
@@ -104,5 +123,10 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         if (item.itemId == android.R.id.home)
             findNavController().popBackStack()
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.message = binding.userNameText.text.toString()
     }
 }

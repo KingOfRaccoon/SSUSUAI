@@ -1,11 +1,15 @@
 package com.castprogramms.ssusuai.ui.chat
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.ItemMessageBinding
 import com.castprogramms.ssusuai.repository.Resource
@@ -15,9 +19,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 class MessageAdapter() : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
     val messages = mutableListOf<Message>()
+    val mutableLiveData = MutableLiveData<Person>()
 
-    fun setMessages(newMessages: List<Message>){
-        val diff = DiffUtil.calculateDiff(object : DiffUtil.Callback(){
+    fun setMessages(newMessages: List<Message>) {
+        val diff = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
             override fun getOldListSize(): Int {
                 return messages.size
             }
@@ -43,9 +48,11 @@ class MessageAdapter() : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
         return MessageViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_message, parent, false)
+                .inflate(R.layout.item_message, parent, false),
+            parent.findViewTreeLifecycleOwner()
         )
     }
+
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         holder.bind(messages[position])
         holder.setIsRecyclable(false)
@@ -53,17 +60,26 @@ class MessageAdapter() : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>(
 
     override fun getItemCount() = messages.size
 
-    inner class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MessageViewHolder(view: View, private val lifecycleOwner: LifecycleOwner?) :
+        RecyclerView.ViewHolder(view) {
         private val binding = ItemMessageBinding.bind(view)
 
         fun bind(message: Message) {
+
             val googleSignIn = GoogleSignIn.getLastSignedInAccount(itemView.context)
             if (message.idUser == googleSignIn!!.id) {
                 binding.theirMessage.root.visibility = View.GONE
                 binding.messageBodyMy.visibility = View.VISIBLE
-//                binding.myMessage.visibility = View.GONE
                 binding.messageBodyMy.text = message.text
             } else {
+                lifecycleOwner?.let {
+                    mutableLiveData.observe(it, {
+                        Glide.with(itemView)
+                            .load(it.img)
+                            .into(binding.theirMessage.avatar)
+                        binding.theirMessage.name.text = it.getFullName()
+                    })
+                }
                 binding.myMessage.visibility = View.GONE
                 binding.theirMessage.messageBody.text = message.text
             }
