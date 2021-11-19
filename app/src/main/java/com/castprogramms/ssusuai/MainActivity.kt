@@ -47,7 +47,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         binding.fab.visibility = View.INVISIBLE
         binding.bottomNavigationView.transform(binding.fab)
-        navHostController = binding.navHostFragment.findNavController()
+        navHostController =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.findNavController()!!
+
 
         binding.fab.setOnClickListener {
             centerBNVClick()

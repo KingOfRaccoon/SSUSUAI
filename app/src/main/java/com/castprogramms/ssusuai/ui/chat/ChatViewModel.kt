@@ -17,7 +17,7 @@ class ChatViewModel(
 ) : ViewModel() {
     val mutableLiveDataChat = MutableLiveData<Resource<out Chat>>()
     val mutableLiveDataOtherUser = MutableLiveData<Resource<Person>>()
-    var message = ""
+    val messages = mutableMapOf<String, String>()
     private val observer = Observer<Resource<Person>> {
         mutableLiveDataOtherUser.postValue(it)
     }

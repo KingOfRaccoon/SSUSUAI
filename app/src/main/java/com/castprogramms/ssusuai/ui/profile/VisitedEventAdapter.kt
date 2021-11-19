@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.ItemVisitedEventBinding
 import com.castprogramms.ssusuai.tools.Event
-import com.castprogramms.ssusuai.tools.time.TimeModule
+import com.castprogramms.ssusuai.tools.time.DataTime
 
 class VisitedEventAdapter : RecyclerView.Adapter<VisitedEventAdapter.VisitedEventViewHolder>() {
     private val visitedEventsList = mutableListOf<Event>()
@@ -51,7 +51,7 @@ class VisitedEventAdapter : RecyclerView.Adapter<VisitedEventAdapter.VisitedEven
                 .into(binding.imageEvent)
 
             binding.nameEvent.text = event.name
-            binding.dateEvent.text = TimeModule.getServiceTime(event.date)
+            binding.dateEvent.text = event.date.getServiceTime()
         }
     }
 }

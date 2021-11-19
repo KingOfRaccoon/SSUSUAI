@@ -56,7 +56,8 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             orientation = LinearLayoutManager.VERTICAL
         }
 
-        binding.userNameText.text = Editable.Factory.getInstance().newEditable(viewModel.message)
+        binding.userNameText.text =
+            Editable.Factory.getInstance().newEditable(viewModel.messages[idChat].orEmpty())
         binding.recyclerMessages.scrollToPosition(0)
         ((requireActivity() as MainActivity).setIsChat(true))
         val googleAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
@@ -65,10 +66,8 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             TypeChats.PersonalChat -> {
                 viewModel.mutableLiveDataChat.observe(viewLifecycleOwner, {
                     when (it) {
-                        is Resource.Error -> {
-                        }
-                        is Resource.Loading -> {
-                        }
+                        is Resource.Error -> {}
+                        is Resource.Loading -> {}
                         is Resource.Success -> {
                             if (it.data != null) {
                                 val chat = it.data as PersonalChat
@@ -84,17 +83,18 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
                     }
                 })
             }
+
             TypeChats.PublicChat -> {
 
             }
         }
 
         viewModel.mutableLiveDataOtherUser.observe(viewLifecycleOwner, {
-            when(it){
+            when (it) {
                 is Resource.Error -> {}
                 is Resource.Loading -> {}
                 is Resource.Success -> {
-                    if (it.data != null){
+                    if (it.data != null) {
                         (requireActivity() as MainActivity).setHtmlText(it.data.getFullName())
                         (requireActivity() as MainActivity).setCustomImage(it.data.img)
                         adapter.mutableLiveData.postValue(it.data)
@@ -127,6 +127,6 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
 
     override fun onPause() {
         super.onPause()
-        viewModel.message = binding.userNameText.text.toString()
+        viewModel.messages[idChat] = binding.userNameText.text.toString()
     }
 }

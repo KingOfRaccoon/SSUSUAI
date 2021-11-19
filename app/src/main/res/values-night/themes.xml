@@ -31,7 +31,7 @@
     </style>
 
     <style name="CardBackgroundTint">
-        <item name="android:backgroundTint">@color/d_day_fio</item>
+        <item name="android:background">@color/d_day_fio</item>
     </style>
 
     <style name="background_card_event">
