@@ -17,12 +17,19 @@
         <action
             android:id="@+id/action_newsFragment_to_newFragment"
             app:destination="@id/newFragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_addNewsFragment"
+            app:destination="@id/addNewFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.castprogramms.ssusuai.ui.calendar.CalendarFragment"
-        tools:layout="@layout/fragment_calendar"/>
+        tools:layout="@layout/fragment_calendar">
+        <action
+            android:id="@+id/action_calendarFragment_to_addEventFragment2"
+            app:destination="@id/addEventFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         tools:layout="@layout/fragment_chat"
@@ -73,6 +80,9 @@
             app:exitAnim="@anim/right_out"
             app:popEnterAnim="@anim/left_in"
             app:popExitAnim="@anim/right_in" />
+        <action
+            android:id="@+id/action_galleryFragment_to_addAlbumFragment"
+            app:destination="@id/addAlbumFragment" />
     </fragment>
     <fragment
         android:id="@+id/allAlbumsFragment"
@@ -98,4 +108,18 @@
             app:destination="@id/chatFragment"
             app:popUpTo="@id/allTypeChatFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addEventFragment"
+        android:name="com.castprogramms.ssusuai.ui.addEvent.AddEventFragment"
+        android:label="fragment_add_event"
+        tools:layout="@layout/fragment_add_event" />
+    <fragment
+        android:id="@+id/addNewFragment"
+        android:name="com.castprogramms.ssusuai.ui.addNew.AddNewFragment"
+        android:label="fragment_add_news" />
+    <fragment
+        android:id="@+id/addAlbumFragment"
+        android:name="com.castprogramms.ssusuai.ui.addAlbum.AddAlbumFragment"
+        android:label="add_album_fragment"
+        tools:layout="@layout/add_album_fragment" />
 </navigation>

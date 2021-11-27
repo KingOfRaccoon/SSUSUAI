@@ -6,7 +6,10 @@ class Admin(
     dateOfBirthday: String = "",
     img: String = "",
     idsPublicChat: List<String> = listOf(),
-    idsPersonalChat: List<String> = listOf()
+    idsPersonalChat: List<String> = listOf(),
+
+    val nameOrganization : String = ""
+
 ) : Person(
     name,
     surname,

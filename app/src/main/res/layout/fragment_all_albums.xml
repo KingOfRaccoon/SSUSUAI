@@ -79,6 +79,7 @@
 
             <ImageView
                 android:id="@+id/img_for_album"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/test_album"

@@ -3,22 +3,30 @@ package com.castprogramms.ssusuai.ui.calendar
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
+import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentCalendarBinding
+import com.castprogramms.ssusuai.repository.Resource
 import com.castprogramms.ssusuai.tools.time.DataTime
 import com.castprogramms.ssusuai.tools.ui.CenterSmoothScroller
+import com.castprogramms.ssusuai.users.Admin
+import com.castprogramms.ssusuai.users.CommonUser
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
-import com.castprogramms.ssusuai.MainActivity
 
-class CalendarFragment : Fragment(R.layout.fragment_calendar){
+class CalendarFragment : Fragment(R.layout.fragment_calendar) {
+    private val viewModel: CalendarViewModel by viewModel()
     private var currentIndex = 0
     lateinit var binding: FragmentCalendarBinding
-    var dx = 0f
-    var dy = 0f
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,17 +37,38 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar){
         binding.textDayWeek.text = currentDate.getDayOfWeek()
         binding.textMouthAndYear.text = currentDate.getMouthAndYear()
         val datesLayoutManager = LinearLayoutManager(requireContext(), HORIZONTAL, false)
-        val datesAdapter = DatesAdapter(datesLayoutManager, object : DatesAdapter.OnDatesClickListener{
-            override fun clickOnDate(position: Int) {
-                currentIndex = position
-                smoothScroller.targetPosition = position
-                Handler(Looper.getMainLooper()).postDelayed({
-                    binding.recyclerDates.layoutManager?.startSmoothScroll(
-                        smoothScroller
-                    )
-                }, 2)
+        val datesAdapter =
+            DatesAdapter(datesLayoutManager, object : DatesAdapter.OnDatesClickListener {
+                override fun clickOnDate(position: Int) {
+                    currentIndex = position
+                    smoothScroller.targetPosition = position
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        binding.recyclerDates.layoutManager?.startSmoothScroll(
+                            smoothScroller
+                        )
+                    }, 2)
+                }
+            })
+        val userId = GoogleSignIn.getLastSignedInAccount(requireContext()).id
+        viewModel.getUser(userId).observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Error -> {}
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    if (userId != null) {
+                        when (it.data) {
+                            is CommonUser -> {
+                                setHasOptionsMenu(false)
+                            }
+                            is Admin -> {
+                                setHasOptionsMenu(true)
+                            }
+                        }
+                    }
+                }
             }
         })
+
         datesAdapter.dates = generateDatesAdapter()
         binding.recyclerEventsSoon.adapter = SoonEventAdapter()
         binding.recyclerEvents.adapter = EventAdapter()
@@ -71,7 +100,8 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar){
 
         datesAdapter.dates.forEachIndexed { index, it ->
             if (it.day == currentDate.day
-                && it.getMouthAndYear() == currentDate.getMouthAndYear()) {
+                && it.getMouthAndYear() == currentDate.getMouthAndYear()
+            ) {
                 currentIndex = index
                 smoothScroller.targetPosition = index
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -85,7 +115,8 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar){
         binding.buttonToday.setOnClickListener {
             datesAdapter.dates.forEachIndexed { index, it ->
                 if (it.day == currentDate.day
-                    && it.getMouthAndYear() == currentDate.getMouthAndYear()) {
+                    && it.getMouthAndYear() == currentDate.getMouthAndYear()
+                ) {
                     currentIndex = index
 
                     smoothScroller.targetPosition = index
@@ -111,4 +142,17 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar){
         return dates
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.add_event_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_add_event -> {
+                findNavController().navigate(R.id.action_calendarFragment_to_addEventFragment2)
+            }
+        }
+        return true
+    }
 }

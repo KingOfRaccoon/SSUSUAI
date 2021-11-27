@@ -33,6 +33,7 @@ class AllAlbumAdapter(private var value: List<Event>) :
             binding.titleAlbums.text = event.name
             Glide.with(itemView)
                 .load(event.img)
+                .centerCrop()
                 .into(binding.imgForAlbum)
             binding.cardAlbumInList.setOnClickListener {
                 it.findNavController().navigate(R.id.action_allAlbumsFragment_to_inAlbumFragment)
