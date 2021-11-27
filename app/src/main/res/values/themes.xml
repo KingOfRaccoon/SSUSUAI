@@ -31,6 +31,10 @@
         <item name="android:backgroundTint">@color/white</item>
     </style>
 
+    <style name="FieldMessage">
+        <item name="boxBackgroundColor">@color/white</item>
+    </style>
+
     <style name="TabLayoutChats" parent="standardText">
         <item name="tabSelectedTextColor">@color/white</item>
         <item name="tabTextColor">#4F5A85</item>

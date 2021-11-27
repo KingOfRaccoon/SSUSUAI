@@ -36,6 +36,10 @@
         <item name="android:backgroundTint">#C3CFFF</item>
     </style>
 
+    <style name="FieldMessage">
+        <item name="boxBackgroundColor">@color/d_background</item>
+    </style>
+
     <style name="TabLayoutChats">
         <item name="tabTextColor">@color/white</item>
         <item name="tabIndicatorColor">@color/d_day_fio</item>
