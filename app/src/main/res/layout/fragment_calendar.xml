@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.castprogramms.ssusuai.tools.ui.CustomNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -53,23 +54,23 @@
             style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="35dp"
             android:text="@string/today"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/text_day_week"
+            app:layout_constraintBottom_toBottomOf="@id/text_mouth_and_year"/>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_for_events"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="7dp"
             app:cardCornerRadius="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_today">
+            app:layout_constraintTop_toBottomOf="@id/text_mouth_and_year">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -126,15 +127,15 @@
                     android:layout_marginEnd="28dp"/>
 
                 <com.todkars.shimmer.ShimmerRecyclerView
+                    app:layout_constraintTop_toBottomOf="@id/text_title_event"
                     android:id="@+id/recycler_events"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="19dp"
                     android:layout_marginEnd="28dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/text_title_event"
                     tools:itemCount="2"
                     tools:listitem="@layout/item_event" />
 
@@ -170,4 +171,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+</com.castprogramms.ssusuai.tools.ui.CustomNestedScrollView>

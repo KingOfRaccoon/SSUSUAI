@@ -1,5 +1,6 @@
 package com.castprogramms.ssusuai
 
+import com.castprogramms.ssusuai.tools.time.DataTime
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,5 +14,12 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+    @Test
+    fun testTimeModule(){
+        val startTime = DataTime(2021, 0, 1, "02:31", 7)
+        println(startTime.getServiceTime())
+        assertEquals(startTime.getServiceTime(), "31 Декабря, 22:31")
     }
 }

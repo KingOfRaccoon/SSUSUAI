@@ -16,6 +16,7 @@ import com.castprogramms.ssusuai.databinding.ItemChatBinding
 import com.castprogramms.ssusuai.repository.Resource
 import com.castprogramms.ssusuai.tools.chat.Chat
 import com.castprogramms.ssusuai.tools.chat.PersonalChat
+import com.castprogramms.ssusuai.tools.chat.PublicChat
 import com.castprogramms.ssusuai.tools.chat.TypeChats
 import com.castprogramms.ssusuai.users.Person
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -42,7 +43,13 @@ class ChatsAdapter<T : Chat>(
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return this@ChatsAdapter.chats[oldItemPosition].second == chats[newItemPosition].second
+                return if (this@ChatsAdapter.chats[oldItemPosition].second is PersonalChat) {
+                    (this@ChatsAdapter.chats[oldItemPosition].second as PersonalChat).idFirstUser == (chats[newItemPosition].second as PersonalChat).idFirstUser
+                            && (this@ChatsAdapter.chats[oldItemPosition].second as PersonalChat).idSecondUser == (chats[newItemPosition].second as PersonalChat).idSecondUser
+                } else
+                    (this@ChatsAdapter.chats[oldItemPosition].second as PublicChat).idsUsers == (chats[newItemPosition].second as PublicChat).idsUsers
+                            && (this@ChatsAdapter.chats[oldItemPosition].second as PublicChat).name == (chats[newItemPosition].second as PublicChat).name
+
             }
         }
         this.chats.clear()

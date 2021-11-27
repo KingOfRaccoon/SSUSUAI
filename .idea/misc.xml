@@ -8,6 +8,7 @@
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/background_button.xml" value="0.403125" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/background_dark.xml" value="0.18333333333333332" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/background_for_counter_new_messages.xml" value="0.18333333333333332" />
+        <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/background_item_date.xml" value="0.3851851851851852" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/background_oval_for_new_button.xml" value="0.1685185185185185" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/background_standard.xml" value="0.18333333333333332" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/bnv_tint.xml" value="0.18888888888888888" />
@@ -16,6 +17,7 @@
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/chat.xml" value="0.18888888888888888" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/chevron_right_24.xml" value="0.18888888888888888" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/circle.xml" value="0.18888888888888888" />
+        <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/current_day_background.xml" value="0.39692307692307693" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/done.xml" value="0.23489583333333333" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/ellipsis.xml" value="0.18888888888888888" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/fab_bnv.xml" value="0.18888888888888888" />
@@ -35,6 +37,7 @@
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/drawable/watch.xml" value="0.18888888888888888" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/activity_main.xml" value="0.18342391304347827" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/activity_registration.xml" value="0.38697916666666665" />
+        <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/custom_image_for_app_bar.xml" value="0.1828125" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_add_personal_chat.xml" value="0.38697916666666665" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_add_private_chat.xml" value="0.25" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_all_albums.xml" value="0.264" />
@@ -43,6 +46,7 @@
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_calendar.xml" value="0.4" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_chat.xml" value="0.33" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_chats.xml" value="0.18819655521783182" />
+        <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_events.xml" value="0.375" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_gallery.xml" value="0.1828125" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_new.xml" value="0.33" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_news.xml" value="0.3451086956521739" />
@@ -50,10 +54,7 @@
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_registration.xml" value="0.24157303370786518" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/fragment_splash.xml" value="0.27447916666666666" />
-        <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/in_album_fragment.xml" value="0.27447916666666666" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_add_user.xml" value="0.33" />
-        <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_add_user_personal_chat.xml" value="0.27447916666666666" />
-        <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_album.xml" value="0.27447916666666666" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_chat.xml" value="0.21875" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_date.xml" value="1.2" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_event.xml" value="0.27447916666666666" />
@@ -62,7 +63,6 @@
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_photo.xml" value="0.1828125" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_soon_event.xml" value="0.27447916666666666" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_symbol_all_users.xml" value="0.33" />
-        <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_symbol_all_users_personal_chat.xml" value="0.27447916666666666" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_symbol_all_users_private_chat.xml" value="0.21875" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/item_visited_event.xml" value="0.27447916666666666" />
         <entry key="..\:/StudioProjects/SSUSUAI/app/src/main/res/layout/my_message.xml" value="0.38697916666666665" />

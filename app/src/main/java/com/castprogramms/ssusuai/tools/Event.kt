@@ -4,7 +4,7 @@ import com.castprogramms.ssusuai.tools.time.DataTime
 
 data class Event(
     var name: String = "",
-    var date: DataTime = DataTime(),
     val img: String = "",
-    val desc: String = ""
+    val desc: String = "",
+    var date: DataTime = DataTime.now()
 )
