@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.castprogramms.ssusuai.tools.ui.CustomNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -126,15 +127,15 @@
                     android:layout_marginEnd="28dp"/>
 
                 <com.todkars.shimmer.ShimmerRecyclerView
+                    app:layout_constraintTop_toBottomOf="@id/text_title_event"
                     android:id="@+id/recycler_events"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="19dp"
                     android:layout_marginEnd="28dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/text_title_event"
                     tools:itemCount="2"
                     tools:listitem="@layout/item_event" />
 
@@ -170,4 +171,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+</com.castprogramms.ssusuai.tools.ui.CustomNestedScrollView>

@@ -18,13 +18,13 @@ class AllAlbumsFragment : Fragment(R.layout.fragment_all_albums) {
     private lateinit var binding: FragmentAllAlbumsBinding
 
     val list : List<Event> = listOf(
-        Event("Event number ONE", DataTime(2021, 6, 12, "12:30", 0)),
-        Event("The big Buuuuuuuuulk!", DataTime(2021, 4, 2, "12:00", 0)),
-        Event("Event number ONE", DataTime(2021, 1, 11, "20:30", 0)),
-        Event("What's happened?", DataTime(2020, 12, 12, "12:30", 0)),
-        Event("Event number ONE", DataTime(2020, 11, 24, "17:30", 0)),
-        Event("What's happened?", DataTime(2020, 7, 1, "125:00", 0)),
-        Event("Event number ONE", DataTime(2020, 5, 9, "12:30", 0))
+        Event("Event number ONE", date = DataTime(2021, 6, 12, "12:30", 0)),
+        Event("The big Buuuuuuuuulk!", date = DataTime(2021, 4, 2, "12:00", 0)),
+        Event("Event number ONE", date = DataTime(2021, 1, 11, "20:30", 0)),
+        Event("What's happened?", date = DataTime(2020, 12, 12, "12:30", 0)),
+        Event("Event number ONE", date = DataTime(2020, 11, 24, "17:30", 0)),
+        Event("What's happened?", date = DataTime(2020, 7, 1, "125:00", 0)),
+        Event("Event number ONE", date = DataTime(2020, 5, 9, "12:30", 0))
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
