@@ -1,17 +1,11 @@
 package com.castprogramms.ssusuai
 
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.text.Html
-import android.view.Gravity
 import android.view.View
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -19,14 +13,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.castprogramms.ssusuai.databinding.ActivityMainBinding
 import com.castprogramms.ssusuai.tools.Utils.isDarkThemeOn
-import com.castprogramms.ssusuai.ui.custombottomnavigationview.FabBottomNavigationView
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.HideBehaviorWithBlockChat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
-import com.google.android.material.textview.MaterialTextView
-import de.hdodenhof.circleimageview.CircleImageView
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class MainActivity : AppCompatActivity() {
     val viewModel: MainActivityViewModel by viewModel()

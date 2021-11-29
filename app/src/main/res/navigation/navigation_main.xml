@@ -8,7 +8,11 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.castprogramms.ssusuai.ui.profile.ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/newsFragment"
@@ -72,7 +76,8 @@
             app:enterAnim="@anim/left_out"
             app:exitAnim="@anim/right_out"
             app:popEnterAnim="@anim/left_in"
-            app:popExitAnim="@anim/right_in" />
+            app:popExitAnim="@anim/right_in"
+            app:popUpTo="@id/galleryFragment" />
         <action
             android:id="@+id/action_galleryFragment_to_inAlbumFragment"
             app:destination="@id/inAlbumFragment"
@@ -111,15 +116,16 @@
     <fragment
         android:id="@+id/addEventFragment"
         android:name="com.castprogramms.ssusuai.ui.addEvent.AddEventFragment"
-        android:label="fragment_add_event"
         tools:layout="@layout/fragment_add_event" />
     <fragment
         android:id="@+id/addNewFragment"
-        android:name="com.castprogramms.ssusuai.ui.addNew.AddNewFragment"
-        android:label="fragment_add_news" />
+        android:name="com.castprogramms.ssusuai.ui.addNew.AddNewFragment" />
     <fragment
         android:id="@+id/addAlbumFragment"
         android:name="com.castprogramms.ssusuai.ui.addAlbum.AddAlbumFragment"
-        android:label="add_album_fragment"
         tools:layout="@layout/add_album_fragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.castprogramms.ssusuai.ui.editProfile.EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>

@@ -18,7 +18,7 @@ class InAlbumFragment : Fragment(R.layout.in_album_fragment) {
         binding = InAlbumFragmentBinding.bind(view)
         binding.root.startNestedScroll(0)
         (requireActivity() as MainActivity).setHtmlText("Название альбома")
-        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val flexboxLayoutManager = FlexboxLayoutManager(requireContext()).apply {
             flexWrap = FlexWrap.WRAP
@@ -36,4 +36,5 @@ class InAlbumFragment : Fragment(R.layout.in_album_fragment) {
             adapter = PhotosAdapter()
         }
     }
+
 }

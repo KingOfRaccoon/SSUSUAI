@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
@@ -50,6 +51,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         binding.buttonGoToCalendar.setOnClickListener {
             (requireActivity() as MainActivity).centerBNVClick()
+        }
+        binding.buttonEditProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
     }
 

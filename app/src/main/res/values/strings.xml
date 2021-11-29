@@ -17,6 +17,7 @@
     <string name="event">Мероприятие</string>
     <string name="soon">Скоро</string>
     <string name="last">Недавние</string>
+    <string name="edit_icon">Изменить</string>
     <string name="photos">Фотографии</string>
     <string name="albums">События</string>
     <string name="go_to_calendar">Перейти в календарь</string>

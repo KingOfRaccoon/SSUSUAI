@@ -12,6 +12,7 @@ import com.castprogramms.ssusuai.ui.authentication.AuthenticationViewModel
 import com.castprogramms.ssusuai.ui.calendar.CalendarViewModel
 import com.castprogramms.ssusuai.ui.chat.ChatViewModel
 import com.castprogramms.ssusuai.ui.chats.ChatsViewModel
+import com.castprogramms.ssusuai.ui.editProfile.EditProfileViewModel
 import com.castprogramms.ssusuai.ui.gallery.GalleryViewModel
 import com.castprogramms.ssusuai.ui.news.NewsViewModel
 import com.castprogramms.ssusuai.ui.profile.ProfileViewModel
@@ -47,6 +48,7 @@ class SuaiApplication : Application() {
         viewModel { CalendarViewModel(get())}
         viewModel { NewsViewModel(get())}
         viewModel { GalleryViewModel(get())}
+        viewModel { EditProfileViewModel(get())}
         viewModel { AddAlbumViewModel()}
         viewModel { ChatsViewModel(get(), get(), this@SuaiApplication) }
         viewModel { AddPersonalChatViewModel(get(), get()) }

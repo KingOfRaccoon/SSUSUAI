@@ -3,6 +3,7 @@ package com.castprogramms.ssusuai.ui.allalbums
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
@@ -32,7 +33,7 @@ class AllAlbumsFragment : Fragment(R.layout.fragment_all_albums) {
         binding = FragmentAllAlbumsBinding.bind(view)
         binding.root.startNestedScroll(0)
         (requireActivity() as MainActivity).setHtmlText("Альбомы")
-        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.recyclerAlbums.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerAlbums.adapter = AllAlbumAdapter(list)
@@ -48,5 +49,10 @@ class AllAlbumsFragment : Fragment(R.layout.fragment_all_albums) {
         binding.allCardAlbumSmall2.setOnClickListener {
             findNavController().navigate(R.id.action_allAlbumsFragment_to_inAlbumFragment)
         }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home)
+            findNavController().popBackStack()
+        return super.onOptionsItemSelected(item)
     }
 }
