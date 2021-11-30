@@ -3,6 +3,7 @@ package com.castprogramms.ssusuai.ui.calendar
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -49,13 +50,13 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
                     }, 2)
                 }
             })
-        val userId = GoogleSignIn.getLastSignedInAccount(requireContext()).id
-        viewModel.getUser(userId).observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Error -> {}
-                is Resource.Loading -> {}
-                is Resource.Success -> {
-                    if (userId != null) {
+        val user = GoogleSignIn.getLastSignedInAccount(requireContext())
+        if (user != null) {
+            viewModel.getUser(user.id).observe(viewLifecycleOwner, {
+                when (it) {
+                    is Resource.Error -> {}
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
                         when (it.data) {
                             is CommonUser -> {
                                 setHasOptionsMenu(false)
@@ -66,14 +67,14 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
                         }
                     }
                 }
-            }
-        })
-
+            })
+        }
         datesAdapter.dates = generateDatesAdapter()
         binding.recyclerEventsSoon.adapter = SoonEventAdapter()
         binding.recyclerEvents.adapter = EventAdapter()
         binding.recyclerDates.layoutManager = datesLayoutManager
         binding.recyclerDates.adapter = datesAdapter
+        println(binding.recyclerDates.getChildAt(0))
 
 
 //

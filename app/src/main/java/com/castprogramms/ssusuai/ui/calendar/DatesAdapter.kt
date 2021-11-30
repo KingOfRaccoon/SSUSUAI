@@ -20,7 +20,6 @@ class DatesAdapter(
     private val onDatesClickListener: OnDatesClickListener
 ) :
     RecyclerView.Adapter<DatesAdapter.DatesViewHolder>() {
-    var currentPositionLiveData = MutableLiveData(-1)
     var currentPosition = -1
     var dates = mutableListOf<DataTime>()
         set(value) {
@@ -64,6 +63,12 @@ class DatesAdapter(
             binding.textDaySymbol.text = dataTime.getShortcutDayOfWeek()
             binding.textDayNumber.text = dataTime.day.toString()
 
+            if (position == currentPosition){
+                binding.root.setBackgroundResource(R.drawable.current_day_background)
+                binding.textDayNumber.setTextColor(Color.WHITE)
+                binding.textDaySymbol.setTextColor(Color.WHITE)
+            }
+
         }
     }
 
@@ -91,6 +96,7 @@ class DatesAdapter(
         if (targetView != null) {
             // change the appearance
             val binding = ItemDateBinding.bind(targetView)
+//            if ()
             binding.root.setBackgroundResource(R.drawable.current_day_background)
             binding.textDayNumber.setTextColor(Color.WHITE)
             binding.textDaySymbol.setTextColor(Color.WHITE)
@@ -111,7 +117,7 @@ class DatesAdapter(
                 binding.root.setBackgroundResource(R.drawable.background_item_date)
                 binding.textDayNumber.setTextColor(Color.parseColor("#212525"))
                 binding.textDaySymbol.setTextColor(Color.parseColor("#BCC1CD"))
-                binding.root.elevation = 0f
+                binding.root.elevation = 5f
             }
         }
         currentPosition = -1
