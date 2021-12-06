@@ -1,8 +1,6 @@
 package com.castprogramms.ssusuai
 
 import android.app.Application
-import android.app.usage.UsageEvents.Event.NONE
-import android.bluetooth.BluetoothAdapter.ERROR
 import com.castprogramms.ssusuai.repository.firebase.ChatsFirebaseRepository
 import com.castprogramms.ssusuai.repository.firebase.DataUserFirebaseRepository
 import com.castprogramms.ssusuai.repository.firebase.NewsFirebaseRepository
@@ -21,19 +19,30 @@ import com.castprogramms.ssusuai.ui.splash.SplashViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.firestoreSettings
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import org.koin.dsl.module
-import java.util.logging.Level
 
 class SuaiApplication : Application() {
     private val modules = module {
         single {
+            firestoreSettings {
+                isPersistenceEnabled = true
+            }
+        }
+        single {
             Firebase.firestore.apply {
-                firestoreSettings = firestoreSettings {
-                    isPersistenceEnabled = true
+                firestoreSettings = get()
+            }
+        }
+        single{
+            Firebase.storage.apply {
+                firestoreSettings {
+                    get()
                 }
             }
         }
@@ -52,13 +61,13 @@ class SuaiApplication : Application() {
         viewModel { AddAlbumViewModel()}
         viewModel { ChatsViewModel(get(), get(), this@SuaiApplication) }
         viewModel { AddPersonalChatViewModel(get(), get()) }
-        single { ChatViewModel(get(), get()) }
+        viewModel { ChatViewModel(get(), get()) }
     }
 
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidLogger(if (BuildConfig.DEBUG) org.koin.core.logger.Level.ERROR else org.koin.core.logger.Level.NONE)
+            androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@SuaiApplication)
             modules(modules)
         }

@@ -4,16 +4,11 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.ItemDateBinding
 import com.castprogramms.ssusuai.tools.time.DataTime
-import androidx.cardview.widget.CardView
-import android.widget.TextView
 
 class DatesAdapter(
     val layoutManager: LinearLayoutManager,
