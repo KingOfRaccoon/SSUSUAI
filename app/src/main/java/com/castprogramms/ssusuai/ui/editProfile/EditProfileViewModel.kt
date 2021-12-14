@@ -1,5 +1,6 @@
 package com.castprogramms.ssusuai.ui.editProfile
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.castprogramms.ssusuai.repository.Resource
@@ -17,12 +18,12 @@ class EditProfileViewModel (private val dataUserFirebaseRepository: DataUserFire
 
 //TODO починить обновление данных
 
-//    fun updateUserFirstName(name: String, id: String) = dataUserFirebaseRepository.editNameStudent(name, id)
-//    fun updateUserSecondName(lastName: String, id: String) = dataUserFirebaseRepository.editLastNameStudent(lastName, id)
+    fun updateUserFirstName(name: String, id: String) = dataUserFirebaseRepository.editNameStudent(name, id)
+    fun updateUserSecondName(lastName: String, id: String) = dataUserFirebaseRepository.editLastNameStudent(lastName, id)
 
-//    fun loadPhotoUser(uri: Uri, userId: String) {
-//        dataUserFirebaseRepository.loadPhotoUser(uri, userId).observeForever {
-//            lifeDataLoadPhoto.postValue(it)
-//        }
-//    }
+    fun loadPhotoUser(uri: Uri, userId: String) {
+        dataUserFirebaseRepository.loadPhotoUser(uri, userId).observeForever {
+            lifeDataLoadPhoto.postValue(it)
+        }
+    }
 }

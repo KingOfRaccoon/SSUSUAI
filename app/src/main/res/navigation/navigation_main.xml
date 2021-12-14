@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
@@ -11,7 +12,11 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
     </fragment>
 
     <fragment
@@ -34,17 +39,23 @@
             android:id="@+id/action_calendarFragment_to_addEventFragment2"
             app:destination="@id/addEventFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/chatFragment"
         tools:layout="@layout/fragment_chat"
         android:name="com.castprogramms.ssusuai.ui.chat.ChatFragment"/>
+
     <fragment
         android:id="@+id/allTypeChatFragment"
         tools:layout="@layout/fragment_all_type_chat"
         android:name="com.castprogramms.ssusuai.ui.alltypechat.AllTypeChatFragment">
         <action
             android:id="@+id/action_allTypeChatFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
         <action
             app:enterAnim="@anim/left_out"
             app:exitAnim="@anim/right_out"
@@ -53,6 +64,7 @@
             android:id="@+id/action_allTypeChatFragment_to_addPersonalChatFragment"
             app:destination="@id/addPersonalChatFragment" />
     </fragment>
+
     <fragment
         tools:layout="@layout/fragment_new"
         android:id="@+id/newFragment"
@@ -89,6 +101,7 @@
             android:id="@+id/action_galleryFragment_to_addAlbumFragment"
             app:destination="@id/addAlbumFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/allAlbumsFragment"
         android:name="com.castprogramms.ssusuai.ui.allalbums.AllAlbumsFragment"
@@ -101,10 +114,12 @@
             app:popEnterAnim="@anim/left_in"
             app:popExitAnim="@anim/right_in"/>
     </fragment>
+
     <fragment
         android:id="@+id/inAlbumFragment"
         android:name="com.castprogramms.ssusuai.ui.inalbum.InAlbumFragment"
         tools:layout="@layout/in_album_fragment" />
+
     <fragment
         android:id="@+id/addPersonalChatFragment"
         android:name="com.castprogramms.ssusuai.ui.addchat.AddPersonalChatFragment" >
@@ -113,17 +128,22 @@
             app:destination="@id/chatFragment"
             app:popUpTo="@id/allTypeChatFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/addEventFragment"
         android:name="com.castprogramms.ssusuai.ui.addEvent.AddEventFragment"
         tools:layout="@layout/fragment_add_event" />
+
     <fragment
+        tools:layout="@layout/fragment_add_news"
         android:id="@+id/addNewFragment"
         android:name="com.castprogramms.ssusuai.ui.addNew.AddNewFragment" />
+
     <fragment
         android:id="@+id/addAlbumFragment"
         android:name="com.castprogramms.ssusuai.ui.addAlbum.AddAlbumFragment"
         tools:layout="@layout/add_album_fragment" />
+
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.castprogramms.ssusuai.ui.editProfile.EditProfileFragment"

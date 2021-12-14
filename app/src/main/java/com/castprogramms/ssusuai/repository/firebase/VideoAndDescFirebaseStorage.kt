@@ -1,40 +1,35 @@
-/*
 package com.castprogramms.ssusuai.repository.firebase
 
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.castprogramms.ssusuai.repository.Resource
+import com.castprogramms.ssusuai.repository.interfaces.VideoAndDescApi
+import com.castprogramms.ssusuai.tools.EditProfile
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.storage.FirebaseStorage
 
-class VideoAndDescFirebaseStorage : VideoAndDescApi {
-    private val storage = FirebaseStorage.getInstance(BuildConfig.STORAGE_BUCKET)
+class VideoAndDescFirebaseStorage(storage: FirebaseStorage, val firebase: FirebaseFirestore) :
+    VideoAndDescApi {
     private val ref = storage.reference
-
-    val settings = FirebaseFirestoreSettings.Builder()
-        .setPersistenceEnabled(true)
-        .build()
-    val fireStore = FirebaseFirestore.getInstance(FirebaseApp.getInstance("test")).apply {
-        firestoreSettings = settings
-    }
 
     fun loadPhotoUser(uri: Uri, userID: String): MutableLiveData<Resource<String>> {
         val mutableLiveData = MutableLiveData<Resource<String>>(Resource.Loading())
         ref.child(imagesTag + userID).putFile(uri).addOnSuccessListener {
             ref.child(imagesTag + userID).downloadUrl.addOnCompleteListener {
-                fireStore.collection(DataUserFirebase.studentTag)
+                firebase.collection(DataUserFirebaseRepository.users_tag)
                     .document(userID)
                     .update(EditProfile.IMG.desc, it.result.toString()).addOnCompleteListener {
-                        if (it.isSuccessful)
+                        if (it.isSuccessful) {
                             mutableLiveData.postValue(Resource.Success("Всё успешно"))
-                        else
-                            mutableLiveData.postValue(Resource.Error(it.exception?.message))
+                        } else {
+                            mutableLiveData.postValue(Resource.Error(it.exception?.message.toString()))
+                        }
                     }
             }
-        }.addOnFailureListener{
-            mutableLiveData.postValue(Resource.Error(it.message))
+        }.addOnFailureListener {
+            mutableLiveData.postValue(Resource.Error(it.message.toString()))
         }
 
         return mutableLiveData
@@ -44,4 +39,3 @@ class VideoAndDescFirebaseStorage : VideoAndDescApi {
         const val imagesTag = "images/"
     }
 }
-*/

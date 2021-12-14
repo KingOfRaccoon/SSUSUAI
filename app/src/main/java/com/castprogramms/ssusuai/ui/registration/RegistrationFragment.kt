@@ -37,17 +37,21 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
             if (googleAccount != null) {
                 if (checkEmpty())
                     viewModel.createPerson(googleAccount.id, googleAccount.photoUrl.toString())
-                        .observe(viewLifecycleOwner, {
-                            when(it){
+                        .observe(viewLifecycleOwner) {
+                            when (it) {
                                 is Resource.Error -> {
-                                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        requireContext(),
+                                        it.message.toString(),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                                 is Resource.Loading -> {}
                                 is Resource.Success -> {
                                     (requireActivity() as RegistrationActivity).goToMainActivity()
                                 }
                             }
-                        })
+                        }
             }
         }
     }

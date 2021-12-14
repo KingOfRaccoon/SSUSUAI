@@ -1,5 +1,6 @@
 package com.castprogramms.ssusuai.repository.firebase
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.castprogramms.ssusuai.repository.interfaces.DataUserInterface
 import com.castprogramms.ssusuai.repository.Resource
@@ -15,24 +16,14 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 class DataUserFirebaseRepository(
     private val firebase: FirebaseFirestore,
-   /* private val videoAndDescFirebaseStorage: VideoAndDescFirebaseStorage,*/) : DataUserInterface {
+    private val videoAndDescFirebaseStorage: VideoAndDescFirebaseStorage) : DataUserInterface {
 
     companion object {
         const val users_tag = "users"
     }
-//    val settings = FirebaseFirestoreSettings.Builder()
-//        .setPersistenceEnabled(true)
-//        .build()
-
     val commonUser = MutableLiveData<Resource<CommonUser>>()
     val admin = MutableLiveData<Resource<Admin>>()
     var typeOfPerson = TypeOfPerson.User
-
-//    val fireStore = FirebaseFirestore.getInstance(
-//        FirebaseApp.getInstance("test")
-//    ).apply {
-//        firestoreSettings = settings
-//    }
 
     override fun getPerson(id: String): MutableLiveData<Resource<Person>> {
         val mutableLiveData = MutableLiveData<Resource<Person>>(Resource.Loading())
@@ -102,17 +93,17 @@ class DataUserFirebaseRepository(
     }
 //TODO починить обновление данных
 
-//    fun editNameStudent(first_name: String, userID: String) {
-//        fireStore.collection(userID)
-//            .document(userID)
-//            .update(EditProfile.FIRST_NAME.desc, first_name)
-//    }
-//
-//    fun editLastNameStudent(second_name: String, userID: String) {
-//        fireStore.collection(userID)
-//            .document(userID)
-//            .update(EditProfile.SECOND_NAME.desc, second_name)
-//    }
+    fun editNameStudent(first_name: String, userID: String) {
+        firebase.collection(users_tag)
+            .document(userID)
+            .update(EditProfile.FIRST_NAME.desc, first_name)
+    }
+
+    fun editLastNameStudent(second_name: String, userID: String) {
+        firebase.collection(users_tag)
+            .document(userID)
+            .update(EditProfile.SECOND_NAME.desc, second_name)
+    }
 
     private fun checkPersonNotInChats(person: Person, id: String): MutableLiveData<Boolean> {
         val mutableLiveData = MutableLiveData<Boolean>()
@@ -153,6 +144,6 @@ class DataUserFirebaseRepository(
             }
         return mutableLiveData
     }
-//    fun loadPhotoUser(uri: Uri, userId: String) =
-//        videoAndDescFirebaseStorage.loadPhotoUser(uri, userId)
+    fun loadPhotoUser(uri: Uri, userId: String) =
+        videoAndDescFirebaseStorage.loadPhotoUser(uri, userId)
 }

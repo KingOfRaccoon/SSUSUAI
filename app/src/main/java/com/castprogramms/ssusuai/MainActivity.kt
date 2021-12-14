@@ -20,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     val viewModel: MainActivityViewModel by viewModel()
-    val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) } 
     private lateinit var navHostController: NavController
 
     override fun onStart() {

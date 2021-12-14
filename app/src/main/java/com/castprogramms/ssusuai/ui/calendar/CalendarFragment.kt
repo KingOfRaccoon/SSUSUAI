@@ -3,7 +3,6 @@ package com.castprogramms.ssusuai.ui.calendar
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -35,7 +34,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
         val smoothScroller = CenterSmoothScroller(requireContext())
         val currentDate = DataTime.now()
         binding.textDay.text = currentDate.day.toString()
-        binding.textDayWeek.text = currentDate.getDayOfWeek()
+        binding.textDayWeek.text = currentDate.getDayOfWeekText()
         binding.textMouthAndYear.text = currentDate.getMouthAndYear()
         val datesLayoutManager = LinearLayoutManager(requireContext(), HORIZONTAL, false)
         val datesAdapter =

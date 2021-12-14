@@ -88,14 +88,4 @@ class NewFragment : Fragment(R.layout.fragment_new) {
             findNavController().popBackStack()
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.children.forEach { item ->
-            if (item.itemId == android.R.id.home)
-                item.icon = item.icon.apply {
-                    this.setTint(Color.parseColor("#5481D8"))
-                }
-        }
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 }

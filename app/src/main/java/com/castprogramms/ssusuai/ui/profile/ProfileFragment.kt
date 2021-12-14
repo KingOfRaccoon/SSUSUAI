@@ -1,9 +1,16 @@
 package com.castprogramms.ssusuai.ui.profile
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.core.graphics.drawable.toAdaptiveIcon
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toIcon
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.castprogramms.ssusuai.MainActivity
@@ -15,6 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val viewModel: ProfileViewModel by viewModel()
     private lateinit var binding: FragmentProfileBinding
+    var uri = Uri.EMPTY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +61,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             (requireActivity() as MainActivity).centerBNVClick()
         }
         binding.buttonEditProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
+            ViewCompat.setTransitionName(binding.imageProfile, "image")
+            val extra = FragmentNavigator.Extras.Builder()
+                .addSharedElement(binding.imageProfile, binding.imageProfile.transitionName)
+                .build()
+            val bundle = Bundle().apply {
+                putString("Uri", uri.toString())
+            }
+            findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment, bundle, null, extra)
         }
     }
 
@@ -64,6 +79,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun setUserImg(img: String) {
         binding.imageProfile.background = null
+        uri = Uri.parse(img)
         Glide.with(binding.imageProfile)
             .load(Uri.parse(img))
             .into(binding.imageProfile)

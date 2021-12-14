@@ -1,5 +1,6 @@
 package com.castprogramms.ssusuai.tools.time
 
+import com.google.firebase.firestore.IgnoreExtraProperties
 import java.time.DayOfWeek
 import java.util.*
 
@@ -55,16 +56,41 @@ data class DataTime(
         return string
     }
 
-    fun getDayOfWeek() = when(dayOfWeek){
-        Calendar.MONDAY -> "Понедельник"
-        Calendar.TUESDAY -> "Вторник"
-        Calendar.WEDNESDAY -> "Среда"
-        Calendar.THURSDAY -> "Четверг"
-        Calendar.FRIDAY -> "Пятница"
-        Calendar.SATURDAY -> "Суббота"
-        Calendar.SUNDAY -> "Воскресенье"
-        else -> ""
+    fun getTimeForChat(): String{
+        val diffOffsetTime =
+            (Calendar.getInstance().timeZone.rawOffset / 1000 / 3600) - timeZone
+        val time = time.split(":")
+        val calendar = Calendar.getInstance()
+        calendar.set(
+            year,
+            mouth,
+            day,
+            time[0].toInt(),
+            time[1].toInt()
+        )
+        calendar.timeZone.rawOffset = timeZone * 3600 * 1000
+        calendar.add(Calendar.HOUR, diffOffsetTime)
+        val newDataTime = DataTime(calendar)
+
+        var string = ""
+        val date = now()
+        when (date.day - newDataTime.day) {
+//            -1 -> string += "Завтра"
+            0 -> string += "Сегодня, "
+            1 -> string += "Вчера, "
+            else -> {
+//                string += newDataTime.day.toString()
+//                string += " "
+//                string += getMouth(newDataTime.mouth)
+            }
+        }
+        string += newDataTime.day.toString()
+        string += " "
+        string += getMouth(newDataTime.mouth)
+        return string
     }
+
+
 
     fun getShortcutDayOfWeek() = when(dayOfWeek){
         Calendar.MONDAY -> "Пн"
@@ -92,6 +118,17 @@ data class DataTime(
         11 -> "Декабря"
         else -> ""
     } + " $year"
+
+    fun getDayOfWeekText() = when(dayOfWeek){
+        Calendar.MONDAY -> "Понедельник"
+        Calendar.TUESDAY -> "Вторник"
+        Calendar.WEDNESDAY -> "Среда"
+        Calendar.THURSDAY -> "Четверг"
+        Calendar.FRIDAY -> "Пятница"
+        Calendar.SATURDAY -> "Суббота"
+        Calendar.SUNDAY -> "Воскресенье"
+        else -> ""
+    }
 
 
     companion object {

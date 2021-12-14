@@ -4,6 +4,7 @@ import android.app.Application
 import com.castprogramms.ssusuai.repository.firebase.ChatsFirebaseRepository
 import com.castprogramms.ssusuai.repository.firebase.DataUserFirebaseRepository
 import com.castprogramms.ssusuai.repository.firebase.NewsFirebaseRepository
+import com.castprogramms.ssusuai.repository.firebase.VideoAndDescFirebaseStorage
 import com.castprogramms.ssusuai.ui.addAlbum.AddAlbumViewModel
 import com.castprogramms.ssusuai.ui.addchat.AddPersonalChatViewModel
 import com.castprogramms.ssusuai.ui.authentication.AuthenticationViewModel
@@ -42,11 +43,12 @@ class SuaiApplication : Application() {
         single{
             Firebase.storage.apply {
                 firestoreSettings {
-                    get()
+                    this.setPersistenceEnabled(true).build()
                 }
             }
         }
-        single { DataUserFirebaseRepository(get()) }
+        single { VideoAndDescFirebaseStorage(get(), get()) }
+        single { DataUserFirebaseRepository(get(), get()) }
         single { NewsFirebaseRepository(get()) }
         single { ChatsFirebaseRepository(get()) }
         viewModel { MainActivityViewModel(get()) }
