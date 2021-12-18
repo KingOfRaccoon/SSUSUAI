@@ -57,7 +57,7 @@ class SuaiApplication : Application() {
         viewModel { SplashViewModel(get()) }
         viewModel { ProfileViewModel(get()) }
         viewModel { CalendarViewModel(get())}
-        viewModel { NewsViewModel(get())}
+        viewModel { NewsViewModel(get(), get())}
         viewModel { GalleryViewModel(get())}
         viewModel { EditProfileViewModel(get())}
         viewModel { AddAlbumViewModel()}

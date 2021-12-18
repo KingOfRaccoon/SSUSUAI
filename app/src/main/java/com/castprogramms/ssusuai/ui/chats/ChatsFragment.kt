@@ -14,19 +14,32 @@ import com.castprogramms.ssusuai.users.Person
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatsFragment(
-    private val chatsType: ChatsType = ChatsType.Group
 ) : Fragment(R.layout.fragment_chats) {
     val viewModel: ChatsViewModel by viewModel()
 
+    override fun onStart() {
+        super.onStart()
+
+        loadUserData()
+        println("start")
+    }
+    lateinit var chatsType: ChatsType
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        chatsType = requireArguments().getSerializable("chat_type") as ChatsType
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        retainInstance = true
         val binding = FragmentChatsBinding.bind(view)
+
+        println("create view")
         (requireActivity() as MainActivity).setHtmlText("Сообщения")
         (requireActivity() as MainActivity).slideUp()
 
         binding.recyclerChats.edgeEffectFactory = BounceEdgeEffectFactory()
-        loadUserData()
+        println(chatsType.name)
         when (chatsType) {
             ChatsType.Group -> {
                 val adapter =
@@ -34,7 +47,7 @@ class ChatsFragment(
                         viewModel.getUser(it)
                     }
                 binding.recyclerChats.adapter = adapter
-                viewModel.liveDataPublicChats.observe(viewLifecycleOwner, {
+                viewModel.liveDataPublicChats.observe(viewLifecycleOwner) {
                     when (it) {
                         is Resource.Error -> {
                         }
@@ -45,7 +58,7 @@ class ChatsFragment(
                                 adapter.setChats(it.data)
                         }
                     }
-                })
+                }
             }
             ChatsType.PERSONAL -> {
                 val adapter =
@@ -55,25 +68,26 @@ class ChatsFragment(
                         )
                     }
                 binding.recyclerChats.adapter = adapter
-                viewModel.liveDataPersonalChats.observe(viewLifecycleOwner, {
+                viewModel.liveDataPersonalChats.observe(viewLifecycleOwner) {
                     when (it) {
                         is Resource.Error -> {
                         }
                         is Resource.Loading -> {
                         }
                         is Resource.Success -> {
+                            println(it.data)
                             if (it.data != null)
                                 adapter.setChats(it.data)
                         }
                     }
-                })
+                }
             }
         }
 
     }
 
     private fun loadUserData() {
-        viewModel.getUser<Person>().observe(viewLifecycleOwner, {
+        viewModel.getUser<Person>().observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {
 
@@ -84,14 +98,16 @@ class ChatsFragment(
                 is Resource.Success -> {
                     if (it.data != null) {
                         when (chatsType) {
-                            ChatsType.PERSONAL ->
+                            ChatsType.PERSONAL -> {
                                 viewModel.getPersonalChats(it.data.idsPersonalChat)
+                                println(it.data.idsPersonalChat)
+                            }
                             ChatsType.Group ->
                                 viewModel.getPublicChats(it.data.idsPublicChat)
                         }
                     }
                 }
             }
-        })
+        }
     }
 }

@@ -19,7 +19,7 @@ class AddPersonalChatViewModel(
         }
     }
 
-    fun getCurrentUser() = dataUserFirebaseRepository.commonUser
+    fun getCurrentUser() = dataUserFirebaseRepository.person
 
     fun addPersonalChat(id: String, pair: Pair<String, Person>) =
         chatsFirebaseRepository.addPersonalChat(id, pair)

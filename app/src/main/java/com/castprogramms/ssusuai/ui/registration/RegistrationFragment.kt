@@ -34,9 +34,9 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         validate()
         val googleAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
         binding.doneButton.setOnClickListener {
-            if (googleAccount != null) {
+            if (googleAccount?.id != null) {
                 if (checkEmpty())
-                    viewModel.createPerson(googleAccount.id, googleAccount.photoUrl.toString())
+                    viewModel.createPerson(googleAccount.id!!, googleAccount.photoUrl.toString())
                         .observe(viewLifecycleOwner) {
                             when (it) {
                                 is Resource.Error -> {

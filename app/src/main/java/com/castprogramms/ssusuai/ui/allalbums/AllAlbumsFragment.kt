@@ -30,6 +30,7 @@ class AllAlbumsFragment : Fragment(R.layout.fragment_all_albums) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.setHasOptionsMenu(true)
         binding = FragmentAllAlbumsBinding.bind(view)
         binding.root.startNestedScroll(0)
         (requireActivity() as MainActivity).setHtmlText("Альбомы")

@@ -8,4 +8,6 @@ interface NewsInterface {
     fun getAllNews(): MutableLiveData<Resource<List<New>>>
     fun getNew(title: String): MutableLiveData<Resource<New>>
     fun addNew(new: New): MutableLiveData<Resource<String>>
+    fun addLikeToNew(new: New, idUser: String)
+    fun addSeeToNew(new: New, idUser: String)
 }

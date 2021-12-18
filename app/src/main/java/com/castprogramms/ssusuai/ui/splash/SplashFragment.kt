@@ -19,8 +19,8 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         val binding = FragmentSplashBinding.bind(view)
 
         val googleAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
-        if (googleAccount != null) {
-            viewModel.getUser(googleAccount.id).observe(viewLifecycleOwner, {
+        if (googleAccount?.id != null) {
+            viewModel.getUser(googleAccount.id!!).observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> {
                         findNavController()
@@ -31,7 +31,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
                         (requireActivity() as RegistrationActivity).goToMainActivity()
                     }
                 }
-            })
+            }
         } else {
             findNavController().navigate(R.id.action_splashFragment_to_authenticationFragment)
         }

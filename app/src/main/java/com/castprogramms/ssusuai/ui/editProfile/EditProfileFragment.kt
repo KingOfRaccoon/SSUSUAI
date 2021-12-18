@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.provider.MediaStore
 import android.text.Editable
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -23,15 +24,16 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
     lateinit var binding: FragmentEditProfileBinding
     private val viewModel: EditProfileViewModel by viewModel()
-    lateinit var googleAccount : GoogleSignInAccount
+    var googleAccount : GoogleSignInAccount? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.setHasOptionsMenu(true)
         (requireActivity() as MainActivity).setHtmlText("Редактирование")
         (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding = FragmentEditProfileBinding.bind(view)
         googleAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
-        viewModel.getCommonUser().observe(viewLifecycleOwner, {
+        viewModel.getCommonUser().observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {}
                 is Resource.Loading -> {
@@ -48,7 +50,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
                     }
                 }
             }
-        })
+        }
 
         val animImg: Animation = AlphaAnimation(0.3f, 1.0f)
         animImg.duration = 3100
@@ -74,9 +76,9 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
         //TODO починить обновление данных
 
         binding.buttonEditNowProfile.setOnClickListener {
-            if (!binding.userName.text.isNullOrEmpty() && !binding.lastNameUser.text.isNullOrEmpty() && googleAccount != null && googleAccount.id != null){
-                viewModel.updateUserFirstName(binding.userName.text.toString(), googleAccount.id!!)
-                viewModel.updateUserSecondName(binding.lastNameUser.text.toString(), googleAccount.id!!)
+            if (!binding.userName.text.isNullOrEmpty() && !binding.lastNameUser.text.isNullOrEmpty() && googleAccount?.id != null){
+                viewModel.updateUserFirstName(binding.userName.text.toString(), googleAccount?.id!!)
+                viewModel.updateUserSecondName(binding.lastNameUser.text.toString(), googleAccount?.id!!)
                 findNavController().popBackStack()
             }
         }
@@ -100,9 +102,15 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
         if (requestCode == 1 && dataImg != null) {
             val uri: Uri? = dataImg.data
             binding.userIcon.setImageURI(uri)
-            if (uri != null) {
-                viewModel.loadPhotoUser(uri, googleAccount.id)
+            if (uri != null && googleAccount?.id != null) {
+                viewModel.loadPhotoUser(uri, googleAccount?.id!!)
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home)
+            findNavController().popBackStack()
+        return super.onOptionsItemSelected(item)
     }
 }

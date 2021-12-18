@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val googleAuth = GoogleSignIn.getLastSignedInAccount(this)
-        if (googleAuth != null)
-            viewModel.getUser(googleAuth.id)
+        if (googleAuth?.id != null)
+            viewModel.getUser(googleAuth.id!!)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +58,9 @@ class MainActivity : AppCompatActivity() {
         }
         navHostController.addOnDestinationChangedListener { _, destination, _ ->
             val needHomeButton =
-                arrayOf(R.id.newFragment, R.id.chatFragment, R.id.addPersonalChatFragment)
+                arrayOf(R.id.newFragment, R.id.chatFragment, R.id.addPersonalChatFragment
+//                    , R.id.editProfileFragment
+                )
             supportActionBar?.setDisplayHomeAsUpEnabled(
                 destination.id in needHomeButton
             )
@@ -123,6 +125,9 @@ class MainActivity : AppCompatActivity() {
         Glide.with(this)
             .load(img)
             .into(binding.imageView2)
-//        setSupportActionBar(findViewById(R.id.toolbar))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navHostController.navigateUp() || super.onSupportNavigateUp()
     }
 }

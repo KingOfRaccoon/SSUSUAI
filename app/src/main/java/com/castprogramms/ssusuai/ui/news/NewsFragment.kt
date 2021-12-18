@@ -19,7 +19,6 @@ import com.castprogramms.ssusuai.tools.New
 import com.castprogramms.ssusuai.tools.ui.BounceEdgeEffectFactory
 import com.castprogramms.ssusuai.users.Admin
 import com.castprogramms.ssusuai.users.CommonUser
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsFragment : Fragment(R.layout.fragment_news), NewsClickCallback {
@@ -31,7 +30,8 @@ class NewsFragment : Fragment(R.layout.fragment_news), NewsClickCallback {
         (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         (activity as MainActivity?)?.slideUp()
         binding = FragmentNewsBinding.bind(view)
-        binding.recyclerNews.adapter = NewsAdapter(this)
+        val adapter = NewsAdapter(this)
+        binding.recyclerNews.adapter = adapter
         binding.recyclerNews.edgeEffectFactory = BounceEdgeEffectFactory()
         binding.recyclerNews.apply {
             postponeEnterTransition()
@@ -39,25 +39,39 @@ class NewsFragment : Fragment(R.layout.fragment_news), NewsClickCallback {
                 startPostponedEnterTransition()
             }
         }
-        val userId = GoogleSignIn.getLastSignedInAccount(requireContext()).id
-        viewModel.getUser(userId).observe(viewLifecycleOwner, {
+        viewModel.getAllNews().observe(viewLifecycleOwner){
+            when(it){
+                is Resource.Error -> {
+
+                }
+                is Resource.Loading -> {
+                    //TODO Надо сделать анимацию загрузки данных
+                }
+
+                is Resource.Success -> {
+                    if (it.data != null){
+                        adapter.news = it.data.toMutableList()
+                    }
+                }
+            }
+        }
+
+        viewModel.getUser().observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {}
                 is Resource.Loading -> {}
                 is Resource.Success -> {
-                    if (userId != null) {
                         when (it.data) {
                             is CommonUser -> {
                                 setHasOptionsMenu(false)
                             }
                             is Admin -> {
                                 setHasOptionsMenu(true)
-                            }
                         }
                     }
                 }
             }
-        })
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -86,6 +100,5 @@ class NewsFragment : Fragment(R.layout.fragment_news), NewsClickCallback {
         findNavController().navigate(
             R.id.action_newsFragment_to_newFragment, bundle, null, extra
         )
-//        this.binding.motion.transitionToEnd()
     }
 }

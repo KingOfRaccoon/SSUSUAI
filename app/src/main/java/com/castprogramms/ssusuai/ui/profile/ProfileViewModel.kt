@@ -6,5 +6,5 @@ import com.castprogramms.ssusuai.repository.firebase.DataUserFirebaseRepository
 class ProfileViewModel(
     private val dataUserFirebaseRepository: DataUserFirebaseRepository
 ) : ViewModel() {
-    fun getCommonUser() = dataUserFirebaseRepository.commonUser
+    fun getPerson() = dataUserFirebaseRepository.person
 }

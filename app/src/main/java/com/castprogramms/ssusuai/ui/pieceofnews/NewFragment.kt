@@ -1,15 +1,11 @@
-package com.castprogramms.ssusuai.ui.new
+package com.castprogramms.ssusuai.ui.pieceofnews
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.core.view.ViewCompat
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater

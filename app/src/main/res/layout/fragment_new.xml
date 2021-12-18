@@ -104,7 +104,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/background_oval_for_new_button"
                 android:backgroundTint="#d7e1FF"
                 android:padding="10dp"

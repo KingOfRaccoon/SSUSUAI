@@ -72,7 +72,7 @@ class ChatsAdapter<T : Chat>(
 
     override fun getItemCount() = chats.size
 
-    inner class ChatsViewHolder(view: View, val lifecycleOwner: LifecycleOwner?) : RecyclerView.ViewHolder(view) {
+    inner class ChatsViewHolder(view: View, private val lifecycleOwner: LifecycleOwner?) : RecyclerView.ViewHolder(view) {
         private val binding = ItemChatBinding.bind(view)
 
         fun bind(pair: Pair<String, T>) {
@@ -94,8 +94,8 @@ class ChatsAdapter<T : Chat>(
                         val chat = pair.second as PersonalChat
                         val otherUserId = if (chat.idFirstUser == googleSignIn.id) chat.idSecondUser else chat.idFirstUser
                         lifecycleOwner?.let {
-                            getUser(otherUserId).observe(lifecycleOwner, {
-                                when(it){
+                            getUser(otherUserId).observe(lifecycleOwner) {
+                                when (it) {
                                     is Resource.Error -> {}
                                     is Resource.Loading -> {}
                                     is Resource.Success -> {
@@ -112,7 +112,7 @@ class ChatsAdapter<T : Chat>(
                                         }
                                     }
                                 }
-                            })
+                            }
                         }
                     }
                 }

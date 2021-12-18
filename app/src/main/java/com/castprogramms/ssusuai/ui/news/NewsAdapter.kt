@@ -11,19 +11,23 @@ import com.castprogramms.ssusuai.tools.New
 class NewsAdapter(val callback: NewsClickCallback) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    val news = mutableListOf<New>()
-
-    init {
-        repeat(17) {
-            news.add(
-                New(
-                    "A big-big-big Neeeeews name name!",
-                    "Body 2: Lorem ipsum dolor sit amet, consectetur adipiscingit, sed do  tempor incididunt fkgjfkgjkjgfkjg",
-                    titleImg = R.drawable.test_img_for_news.toString()
-                )
-            )
-        }
+    var news = mutableListOf<New>()
+    set(value) {
+        field = value
+        notifyDataSetChanged()
     }
+
+//    init {
+//        repeat(17) {
+//            news.add(
+//                New(
+//                    "A big-big-big Neeeeews name name!",
+//                    "Body 2: Lorem ipsum dolor sit amet, consectetur adipiscingit, sed do  tempor incididunt fkgjfkgjkjgfkjg",
+//                    titleImg = R.drawable.test_img_for_news.toString()
+//                )
+//            )
+//        }
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         return NewsViewHolder(

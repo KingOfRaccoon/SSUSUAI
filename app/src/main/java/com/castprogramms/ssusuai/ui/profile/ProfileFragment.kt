@@ -1,13 +1,8 @@
 package com.castprogramms.ssusuai.ui.profile
 
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.core.graphics.drawable.toAdaptiveIcon
-import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.drawable.toIcon
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigator
@@ -17,6 +12,7 @@ import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentProfileBinding
 import com.castprogramms.ssusuai.repository.Resource
+import com.castprogramms.ssusuai.users.CommonUser
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -36,7 +32,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.root.startNestedScroll(0)
         (requireActivity() as MainActivity).slideUp()
         val adapter = VisitedEventAdapter()
-        viewModel.getCommonUser().observe(viewLifecycleOwner, {
+        viewModel.getPerson().observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {}
                 is Resource.Loading -> {}
@@ -44,18 +40,19 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     if (it.data != null) {
                         binding.fullNameProfile.text = it.data.getFullName()
                         setUserImg(it.data.img)
-                        if (it.data.visitedEvents.isNotEmpty()) {
-                            binding.layoutNoVisitedEvents.visibility = View.GONE
-                            binding.recyclerVisitedEvents.visibility = View.VISIBLE
-                            adapter.setVisitedEvents(it.data.visitedEvents.toMutableList())
-                        }
-                        else {
-                            setEmptyMessage()
+                        if (it.data is CommonUser) {
+                            if (it.data.visitedEvents.isNotEmpty()) {
+                                binding.layoutNoVisitedEvents.visibility = View.GONE
+                                binding.recyclerVisitedEvents.visibility = View.VISIBLE
+                                adapter.setVisitedEvents(it.data.visitedEvents.toMutableList())
+                            } else {
+                                setEmptyMessage()
+                            }
                         }
                     }
                 }
             }
-        })
+        }
 
         binding.buttonGoToCalendar.setOnClickListener {
             (requireActivity() as MainActivity).centerBNVClick()
@@ -68,7 +65,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             val bundle = Bundle().apply {
                 putString("Uri", uri.toString())
             }
-            findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment, bundle, null, extra)
+            findNavController().navigate(
+                R.id.action_profileFragment_to_editProfileFragment,
+                bundle,
+                null,
+                extra
+            )
         }
     }
 

@@ -1,6 +1,8 @@
 package com.castprogramms.ssusuai.ui.chats
 
-enum class ChatsType(val text: String) {
+import java.io.Serializable
+
+enum class ChatsType(val text: String):Serializable {
     Group("Группы"),
     PERSONAL("Личные")
 }

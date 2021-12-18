@@ -68,13 +68,13 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
             layoutManager = flexboxLayoutManager
             adapter = PhotosAdapter()
         }
-        val userId = GoogleSignIn.getLastSignedInAccount(requireContext()).id
-        viewModel.getUser(userId).observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Error -> {}
-                is Resource.Loading -> {}
-                is Resource.Success -> {
-                    if (userId != null) {
+        val userId = GoogleSignIn.getLastSignedInAccount(requireContext())?.id
+        if (userId != null) {
+            viewModel.getUser(userId).observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Error -> {}
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
                         when (it.data) {
                             is CommonUser -> {
                                 setHasOptionsMenu(false)
@@ -86,7 +86,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
                     }
                 }
             }
-        })
+        }
 
         binding.allAlbums.setOnClickListener {
             findNavController().navigate(R.id.action_galleryFragment_to_allAlbumsFragment)

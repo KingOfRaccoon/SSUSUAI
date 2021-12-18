@@ -50,31 +50,22 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
                 }
             })
         val user = GoogleSignIn.getLastSignedInAccount(requireContext())
-        if (user != null) {
-            viewModel.getUser(user.id).observe(viewLifecycleOwner, {
+        if (user?.id != null) {
+            viewModel.getUser(user.id!!).observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> {}
                     is Resource.Loading -> {}
                     is Resource.Success -> {
-                        when (it.data) {
-                            is CommonUser -> {
-                                setHasOptionsMenu(false)
-                            }
-                            is Admin -> {
-                                setHasOptionsMenu(true)
-                            }
-                        }
+                        setHasOptionsMenu(it.data is Admin)
                     }
                 }
-            })
+            }
         }
         datesAdapter.dates = generateDatesAdapter()
         binding.recyclerEventsSoon.adapter = SoonEventAdapter()
         binding.recyclerEvents.adapter = EventAdapter()
         binding.recyclerDates.layoutManager = datesLayoutManager
         binding.recyclerDates.adapter = datesAdapter
-        println(binding.recyclerDates.getChildAt(0))
-
 
 //
 //        binding.recyclerEvents.setOnTouchListener { v, event ->

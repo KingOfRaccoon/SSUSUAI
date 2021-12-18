@@ -49,6 +49,8 @@
             style="@style/standardText.date"
             android:textStyle="bold"
             android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end"
             tools:text="Последнее сообщение"/>
 
         <de.hdodenhof.circleimageview.CircleImageView

@@ -2,14 +2,10 @@ package com.castprogramms.ssusuai.ui.chats
 
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.castprogramms.ssusuai.SuaiApplication
 import com.castprogramms.ssusuai.repository.Resource
 import com.castprogramms.ssusuai.repository.firebase.ChatsFirebaseRepository
 import com.castprogramms.ssusuai.repository.firebase.DataUserFirebaseRepository
-import com.castprogramms.ssusuai.repository.interfaces.ChatsInterface
-import com.castprogramms.ssusuai.tools.NeedTools.lifecycleOwner
-import com.castprogramms.ssusuai.tools.chat.Chat
 import com.castprogramms.ssusuai.tools.chat.PersonalChat
 import com.castprogramms.ssusuai.tools.chat.PublicChat
 import com.castprogramms.ssusuai.users.Person
@@ -39,10 +35,10 @@ class ChatsViewModel(
     fun <T: Person> getUser(): MutableLiveData<Resource<T>> {
         return when (dataUserFirebaseRepository.typeOfPerson){
             TypeOfPerson.Admin -> {
-                dataUserFirebaseRepository.admin as MutableLiveData<Resource<T>>
+                dataUserFirebaseRepository.person as MutableLiveData<Resource<T>>
             }
             TypeOfPerson.User -> {
-                dataUserFirebaseRepository.commonUser as MutableLiveData<Resource<T>>
+                dataUserFirebaseRepository.person as MutableLiveData<Resource<T>>
             }
         }
     }

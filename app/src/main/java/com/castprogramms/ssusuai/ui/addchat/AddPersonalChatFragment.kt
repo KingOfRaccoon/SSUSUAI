@@ -30,7 +30,7 @@ class AddPersonalChatFragment : Fragment(R.layout.fragment_add_personal_chat),
         val adapter = AddPersonalChatAdapter(this)
         binding.recyclerAddUsersPersonal.adapter = adapter
 
-        viewModel.getCurrentUser().observe(viewLifecycleOwner, {
+        viewModel.getCurrentUser().observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {
 
@@ -42,14 +42,14 @@ class AddPersonalChatFragment : Fragment(R.layout.fragment_add_personal_chat),
                     if (it.data != null) {
                         viewModel.getUsers(
                             it.data,
-                            GoogleSignIn.getLastSignedInAccount(requireContext()).id.toString()
+                            GoogleSignIn.getLastSignedInAccount(requireContext())?.id.toString()
                         )
                     }
                 }
             }
-        })
+        }
 
-        viewModel.usersLiveData.observe(viewLifecycleOwner, {
+        viewModel.usersLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {
 
@@ -63,13 +63,13 @@ class AddPersonalChatFragment : Fragment(R.layout.fragment_add_personal_chat),
                     }
                 }
             }
-        })
+        }
     }
 
     override fun addPersonalChat(pair: Pair<String, Person>) {
         val googleSignIn = GoogleSignIn.getLastSignedInAccount(requireContext())
-        if (googleSignIn != null)
-            viewModel.addPersonalChat(googleSignIn.id, pair).observe(viewLifecycleOwner, {
+        if (googleSignIn?.id != null)
+            viewModel.addPersonalChat(googleSignIn.id!!, pair).observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> {
 
@@ -89,7 +89,7 @@ class AddPersonalChatFragment : Fragment(R.layout.fragment_add_personal_chat),
                         }
                     }
                 }
-            })
+            }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

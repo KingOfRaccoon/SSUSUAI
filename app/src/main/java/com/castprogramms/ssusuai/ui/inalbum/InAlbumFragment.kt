@@ -1,9 +1,11 @@
 package com.castprogramms.ssusuai.ui.inalbum
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.InAlbumFragmentBinding
@@ -15,6 +17,7 @@ class InAlbumFragment : Fragment(R.layout.in_album_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.setHasOptionsMenu(true)
         binding = InAlbumFragmentBinding.bind(view)
         binding.root.startNestedScroll(0)
         (requireActivity() as MainActivity).setHtmlText("Название альбома")
@@ -37,4 +40,9 @@ class InAlbumFragment : Fragment(R.layout.in_album_fragment) {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home)
+            findNavController().popBackStack()
+        return super.onOptionsItemSelected(item)
+    }
 }

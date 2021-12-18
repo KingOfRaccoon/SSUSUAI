@@ -89,7 +89,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             }
         }
 
-        viewModel.mutableLiveDataOtherUser.observe(viewLifecycleOwner, {
+        viewModel.mutableLiveDataOtherUser.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {}
                 is Resource.Loading -> {}
@@ -101,17 +101,17 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
                     }
                 }
             }
-        })
+        }
 
         binding.buttonSend.setOnClickListener {
             if (binding.userNameText.text?.trim().toString().isNotEmpty()
-                && googleAccount != null
+                && googleAccount?.id != null
             ) {
                 viewModel.addMessage(
                     idChat,
                     Message(
                         binding.userNameText.text?.trim().toString(),
-                        googleAccount.id
+                        googleAccount.id!!
                     )
                 )
                 binding.userNameText.text?.clear()

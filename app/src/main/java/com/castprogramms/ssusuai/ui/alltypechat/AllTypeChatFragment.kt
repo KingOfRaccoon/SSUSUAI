@@ -31,6 +31,7 @@ class AllTypeChatFragment: Fragment(R.layout.fragment_all_type_chat), AddChatCal
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
             tab.text = ChatsType.values()[position].text
         }.attach()
+        println("create view all chats")
 
     }
 

@@ -48,7 +48,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userNameText"
-            android:capitalize="sentences"
+            android:inputType="textMultiLine|textCapSentences"
+            android:maxLines="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

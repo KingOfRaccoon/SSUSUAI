@@ -10,9 +10,7 @@ import com.castprogramms.ssusuai.users.Admin
 import com.castprogramms.ssusuai.users.CommonUser
 import com.castprogramms.ssusuai.users.Person
 import com.castprogramms.ssusuai.users.TypeOfPerson
-import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 class DataUserFirebaseRepository(
     private val firebase: FirebaseFirestore,
@@ -21,8 +19,7 @@ class DataUserFirebaseRepository(
     companion object {
         const val users_tag = "users"
     }
-    val commonUser = MutableLiveData<Resource<CommonUser>>()
-    val admin = MutableLiveData<Resource<Admin>>()
+    val person = MutableLiveData<Resource<Person>>()
     var typeOfPerson = TypeOfPerson.User
 
     override fun getPerson(id: String): MutableLiveData<Resource<Person>> {
@@ -34,12 +31,12 @@ class DataUserFirebaseRepository(
                     when (value.getString("typeOfPerson")) {
                         TypeOfPerson.Admin.name -> {
                             mutableLiveData.postValue(Resource.Success(value.toObject(Admin::class.java)!!))
-                            admin.postValue(Resource.Success(value.toObject(Admin::class.java)!!))
+                            person.postValue(Resource.Success(value.toObject(Admin::class.java)!!))
                             typeOfPerson = TypeOfPerson.Admin
                         }
                         TypeOfPerson.User.name -> {
                             mutableLiveData.postValue(Resource.Success(value.toObject(CommonUser::class.java)!!))
-                            commonUser.postValue(Resource.Success(value.toObject(CommonUser::class.java)!!))
+                            person.postValue(Resource.Success(value.toObject(CommonUser::class.java)!!))
                             typeOfPerson = TypeOfPerson.User
                         }
                         else ->
