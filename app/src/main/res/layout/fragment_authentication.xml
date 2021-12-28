@@ -37,7 +37,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
-
                 android:text="@string/about_sno"
                 android:textSize="18sp"
                 style="@style/standardText.text_in_card_in_calendar"
@@ -51,12 +50,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
     </com.google.android.material.card.MaterialCardView>
-
-
-        
 
     <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
         android:background="@drawable/background_button"
@@ -65,7 +59,7 @@
         android:layout_width="0dp"
         android:layout_marginBottom="25dp"
         android:gravity="center"
-        android:text="Войти"
+        android:text="@string/enter"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/endVertical"
@@ -100,13 +94,6 @@
         android:id="@+id/endVertical"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.85"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/center"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/center2"

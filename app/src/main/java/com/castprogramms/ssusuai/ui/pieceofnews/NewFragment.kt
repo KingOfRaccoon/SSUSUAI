@@ -1,6 +1,7 @@
 package com.castprogramms.ssusuai.ui.pieceofnews
 
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -21,17 +22,16 @@ import com.castprogramms.ssusuai.tools.New
 class NewFragment : Fragment(R.layout.fragment_new) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.setHasOptionsMenu(true)
-        (requireActivity() as MainActivity).setHtmlText("Новость") //TODO выводить название новости
         val animation = TransitionInflater.from(requireContext())
             .inflateTransition(android.R.transition.move)
         sharedElementReturnTransition = animation
         sharedElementEnterTransition = animation
-        (activity as MainActivity?)?.slideDown()
+        (requireActivity() as MainActivity).slideDown()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).setHtmlText("Новость") //TODO выводить название новости
         val binding = FragmentNewBinding.bind(view)
         val new = requireArguments().getSerializable("new") as New
         ViewCompat.setTransitionName(
@@ -44,6 +44,11 @@ class NewFragment : Fragment(R.layout.fragment_new) {
         binding.goToGallery.setOnClickListener {
             findNavController().navigate(R.id.action_newFragment_to_inAlbumFragment)
         }
+
+        binding.textTitleNew.text = new.title
+        binding.textBodyNew.text = new.body
+        binding.textCounterSeeNew.text = new.sees.size.toString()
+        binding.textCounterLikeNew.text = new.likes.size.toString()
     }
 
     private fun startEnterTransitionAfterLoadingImage(
@@ -51,7 +56,7 @@ class NewFragment : Fragment(R.layout.fragment_new) {
         imageView: ImageView
     ) {
         Glide.with(this)
-            .load(imageAddress.toInt())
+            .load(Uri.parse(imageAddress))
             .dontTransform()
             .dontAnimate() // 1
             .listener(object : RequestListener<Drawable> { // 2
@@ -77,11 +82,5 @@ class NewFragment : Fragment(R.layout.fragment_new) {
                 }
             })
             .into(imageView)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home)
-            findNavController().popBackStack()
-        return super.onOptionsItemSelected(item)
     }
 }

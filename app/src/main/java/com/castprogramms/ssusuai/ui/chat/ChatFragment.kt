@@ -43,7 +43,6 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.setHasOptionsMenu(true)
         binding = FragmentChatBinding.bind(view)
         binding.recyclerMessages.scrollToPosition(0)
         val adapter = MessageAdapter()
@@ -117,12 +116,6 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
                 binding.userNameText.text?.clear()
             }
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home)
-            findNavController().popBackStack()
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onPause() {

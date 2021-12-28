@@ -83,6 +83,7 @@ class NewsFragment : Fragment(R.layout.fragment_news), NewsClickCallback {
         when (item.itemId) {
             R.id.item_add_news -> {
                 findNavController().navigate(R.id.action_newsFragment_to_addNewsFragment)
+                (requireActivity() as MainActivity).slideDown()
             }
         }
         return true

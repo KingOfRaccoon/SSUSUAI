@@ -1,5 +1,6 @@
 package com.castprogramms.ssusuai.ui.editProfile
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -25,6 +27,18 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
     lateinit var binding: FragmentEditProfileBinding
     private val viewModel: EditProfileViewModel by viewModel()
     var googleAccount : GoogleSignInAccount? = null
+    private val resultActivityGetPhoto = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        if (it.resultCode == Activity.RESULT_OK){
+            val dataImg = it.data
+            if (dataImg != null) {
+                val uri: Uri? = dataImg.data
+                binding.userIcon.setImageURI(uri)
+                if (uri != null && googleAccount?.id != null) {
+                    viewModel.loadPhotoUser(uri, googleAccount?.id!!)
+                }
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,9 +85,8 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
         binding.butTextEdit.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             intent.putExtra("return-data", true)
-            startActivityForResult(intent, 1)
+            resultActivityGetPhoto.launch(intent)
         }
-        //TODO починить обновление данных
 
         binding.buttonEditNowProfile.setOnClickListener {
             if (!binding.userName.text.isNullOrEmpty() && !binding.lastNameUser.text.isNullOrEmpty() && googleAccount?.id != null){
@@ -93,19 +106,8 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 
     override fun onPause() {
         super.onPause()
-        viewModel._name = binding.userName.text.toString()
-        viewModel._surname = binding.lastNameUser.text.toString()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, dataImg: Intent?) {
-        super.onActivityResult(requestCode, resultCode, dataImg)
-        if (requestCode == 1 && dataImg != null) {
-            val uri: Uri? = dataImg.data
-            binding.userIcon.setImageURI(uri)
-            if (uri != null && googleAccount?.id != null) {
-                viewModel.loadPhotoUser(uri, googleAccount?.id!!)
-            }
-        }
+        viewModel.name = binding.userName.text.toString()
+        viewModel.surname = binding.lastNameUser.text.toString()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

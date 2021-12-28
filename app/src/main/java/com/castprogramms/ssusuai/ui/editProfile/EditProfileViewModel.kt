@@ -11,12 +11,10 @@ class EditProfileViewModel(
 ) : ViewModel() {
     fun getCommonUser() = dataUserFirebaseRepository.person
 
-    var _name: String = ""
-    var _surname: String = ""
+    var name: String = ""
+    var surname: String = ""
 
-    val lifeDataLoadPhoto = MutableLiveData<Resource<String>>()
-
-//TODO починить обновление данных
+    private val lifeDataLoadPhoto = MutableLiveData<Resource<String>>()
 
     fun updateUserFirstName(name: String, id: String) =
         dataUserFirebaseRepository.editNameStudent(name, id)

@@ -17,7 +17,6 @@ class InAlbumFragment : Fragment(R.layout.in_album_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.setHasOptionsMenu(true)
         binding = InAlbumFragmentBinding.bind(view)
         binding.root.startNestedScroll(0)
         (requireActivity() as MainActivity).setHtmlText("Название альбома")
@@ -38,11 +37,5 @@ class InAlbumFragment : Fragment(R.layout.in_album_fragment) {
             layoutManager = flexboxLayoutManager
             adapter = PhotosAdapter()
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home)
-            findNavController().popBackStack()
-        return super.onOptionsItemSelected(item)
     }
 }

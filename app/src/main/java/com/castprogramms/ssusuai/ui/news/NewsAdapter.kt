@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.ItemNewsBinding
 import com.castprogramms.ssusuai.tools.New
@@ -13,21 +15,9 @@ class NewsAdapter(val callback: NewsClickCallback) :
 
     var news = mutableListOf<New>()
     set(value) {
-        field = value
+        field = value.sortedByDescending { it.date.getTimeAndDate() }.toMutableList()
         notifyDataSetChanged()
     }
-
-//    init {
-//        repeat(17) {
-//            news.add(
-//                New(
-//                    "A big-big-big Neeeeews name name!",
-//                    "Body 2: Lorem ipsum dolor sit amet, consectetur adipiscingit, sed do  tempor incididunt fkgjfkgjkjgfkjg",
-//                    titleImg = R.drawable.test_img_for_news.toString()
-//                )
-//            )
-//        }
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         return NewsViewHolder(
@@ -49,6 +39,14 @@ class NewsAdapter(val callback: NewsClickCallback) :
             binding.root.setOnClickListener {
                 callback.clickOnNews(adapterPosition, binding, new)
             }
+
+            Glide.with(itemView.context)
+                .load(new.titleImg)
+                .transform(CenterCrop())
+                .into(binding.imageNewInCard)
+            binding.titleNew.text = new.title
+            binding.bodyNew.text = new.body
+            binding.newDate.text = new.date.getServiceTime()
         }
     }
 }

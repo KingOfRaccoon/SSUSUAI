@@ -23,9 +23,9 @@
 <!--        <item name="hintTextColor">@color/blue</item>-->
 <!--    </style>-->
 
-    <!--<style name="standardTextBold">
-        <item name="android:fontFamily">@font/centurygothic_bold</item>
-    </style>-->
+<!--    <style name="standardTextBold">-->
+<!--        <item name="android:fontFamily">@font/centurygothic_bold</item>-->
+<!--    </style>-->
 
     <style name="standardText">
         <item name="android:fontFamily">@font/centurygothic</item>

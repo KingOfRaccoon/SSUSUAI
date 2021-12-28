@@ -5,7 +5,7 @@
     <string name="calendar">Календарь</string>
     <string name="gallery">Галерея</string>
     <string name="profile">Профиль</string>
-    <string name="name_hint">Имя</string>
+    <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="dateHint">Дата рождения</string>
     <string name="registr">Зарегестрироваться</string>
@@ -21,12 +21,21 @@
     <string name="photos">Фотографии</string>
     <string name="albums">События</string>
     <string name="go_to_calendar">Перейти в календарь</string>
-    <string name="message">Сообщение...</string>
+    <string name="message">Сообщение…</string>
 
     <string name="about_sno">
         Cтуденческое научное общество — это форма организации научного творчества молодёжи и научно-исследовательской работы студентов, направленная на подготовку научных и инженерных кадров, их вовлечения в разработку конкретных проектов в период обучения.
     </string>
     <string name="all">All</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Заголовок новости</string>
+    <string name="body_text">Текст новости</string>
+    <string name="add_new">Добавить новость</string>
+    <string name="isAdmin">Ты - админ?</string>
+    <string name="hint_pin">0000</string>
+    <string name="add_photo">Добавить фото</string>
+    <string name="preview_new">Предпросмотр новости</string>
+    <string name="public_chat">Группы</string>
+    <string name="enter">Войти</string>
+    <string name="no_event">Мероприятий нет</string>
 </resources>

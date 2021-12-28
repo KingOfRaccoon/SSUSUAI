@@ -12,10 +12,10 @@ object NeedTools {
         var curContext = this
         var maxDepth = 20
         while (maxDepth-- > 0 && curContext !is LifecycleOwner) {
-            try {
-                curContext = (curContext as ContextWrapper).baseContext
+            curContext = try {
+                (curContext as ContextWrapper).baseContext
             }catch (e:Exception){
-                curContext = (curContext)
+                (curContext)
             }
         }
         return if (curContext is LifecycleOwner) {
@@ -26,5 +26,6 @@ object NeedTools {
     }
 
     fun View.toTransitionGroup() = this to transitionName
+
 
 }

@@ -7,6 +7,7 @@
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="16dp"
     style="@style/CardBackgroundTint"
+    app:strokeWidth="0dp"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout

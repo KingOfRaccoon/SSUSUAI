@@ -1,5 +1,6 @@
 package com.castprogramms.ssusuai.repository.firebase
 
+import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.castprogramms.ssusuai.repository.interfaces.DataUserInterface
@@ -10,17 +11,23 @@ import com.castprogramms.ssusuai.users.Admin
 import com.castprogramms.ssusuai.users.CommonUser
 import com.castprogramms.ssusuai.users.Person
 import com.castprogramms.ssusuai.users.TypeOfPerson
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.firestore.FirebaseFirestore
 
 class DataUserFirebaseRepository(
     private val firebase: FirebaseFirestore,
-    private val videoAndDescFirebaseStorage: VideoAndDescFirebaseStorage) : DataUserInterface {
+    private val videoAndDescFirebaseStorage: VideoAndDescFirebaseStorage,
+    val context: Context
+) : DataUserInterface {
 
     companion object {
         const val users_tag = "users"
     }
+
     val person = MutableLiveData<Resource<Person>>()
     var typeOfPerson = TypeOfPerson.User
+    var googleAccount: GoogleSignInAccount? = null
 
     override fun getPerson(id: String): MutableLiveData<Resource<Person>> {
         val mutableLiveData = MutableLiveData<Resource<Person>>(Resource.Loading())
@@ -51,8 +58,8 @@ class DataUserFirebaseRepository(
     }
 
     override fun addPerson(id: String, person: Person): MutableLiveData<Resource<String>> {
-        val mutableLiveData = MutableLiveData<Resource<String>>()
-        firebase.collection(users_tag).document(id).set(person).addOnSuccessListener {
+        val mutableLiveData = MutableLiveData<Resource<String>>(Resource.Loading())
+        firebase.collection(users_tag).document(id).set(person).addOnSuccessListener { _: Void? ->
             mutableLiveData.postValue(Resource.Success("Success"))
         }.addOnFailureListener {
             mutableLiveData.postValue(Resource.Error(it.message.toString()))
@@ -74,9 +81,9 @@ class DataUserFirebaseRepository(
                 value.documents.forEach {
                     checkPersonNotInChats(person, it.id).observeForever { bool ->
                         if (!bool && id != it.id) {
-                            val person = it.toObject(Person::class.java)
-                            if (person != null)
-                                list.add(it.id to person)
+                            val user = it.toObject(Person::class.java)
+                            if (user != null)
+                                list.add(it.id to user)
                         }
                     }
                 }
@@ -141,6 +148,16 @@ class DataUserFirebaseRepository(
             }
         return mutableLiveData
     }
+
     fun loadPhotoUser(uri: Uri, userId: String) =
         videoAndDescFirebaseStorage.loadPhotoUser(uri, userId)
+
+    fun loadPhotoUserInRegistration(uri: Uri, userId: String) =
+        videoAndDescFirebaseStorage.loadPhotoUserInRegistration(uri, userId)
+
+    fun getGoogleSignAccount(): GoogleSignInAccount? {
+        if (googleAccount == null)
+            googleAccount = GoogleSignIn.getLastSignedInAccount(context)
+        return googleAccount
+    }
 }

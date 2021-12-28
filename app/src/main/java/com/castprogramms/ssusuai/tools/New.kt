@@ -7,8 +7,8 @@ data class New(
     val title: String = "",
     val body: String = "",
     val titleImg: String = "",
-    val date: DataTime = DataTime(),
     val imgs: List<String> = listOf(),
+    val date: DataTime = DataTime.now(),
     val likes: List<String> = listOf(),
     val sees: List<String> = listOf()
 ): Serializable

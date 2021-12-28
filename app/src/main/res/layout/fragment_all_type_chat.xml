@@ -29,9 +29,8 @@
             android:layout_gravity="bottom|center"
             app:layout_collapseMode="pin"
             style="@style/TabLayoutChats"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:tabMode="scrollable"
-            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabGravity="center"
             app:tabPaddingStart="45dp"
             app:tabPaddingEnd="45dp"
             app:tabIndicator="@drawable/rating_tab_layout_item"
@@ -39,13 +38,14 @@
             app:tabIndicatorGravity="stretch">
 
             <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:paddingHorizontal="45dp"
                 android:layout_height="wrap_content"
-                android:text="Группы" />
+                android:text="@string/public_chat" />
 
             <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="Личные" />
 
         </com.google.android.material.tabs.TabLayout>

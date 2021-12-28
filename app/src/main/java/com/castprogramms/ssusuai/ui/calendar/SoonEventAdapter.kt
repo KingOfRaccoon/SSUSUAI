@@ -1,11 +1,14 @@
 package com.castprogramms.ssusuai.ui.calendar
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.ItemSoonEventBinding
+import com.google.firebase.database.collection.LLRBNode
 
 class SoonEventAdapter: RecyclerView.Adapter<SoonEventAdapter.SoonEventViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SoonEventViewHolder {

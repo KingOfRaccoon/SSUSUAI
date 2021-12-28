@@ -1,7 +1,5 @@
 package com.castprogramms.ssusuai.tools.time
 
-import com.google.firebase.firestore.IgnoreExtraProperties
-import java.time.DayOfWeek
 import java.util.*
 
 data class DataTime(
@@ -75,14 +73,9 @@ data class DataTime(
         var string = ""
         val date = now()
         when (date.day - newDataTime.day) {
-//            -1 -> string += "Завтра"
             0 -> string += "Сегодня, "
             1 -> string += "Вчера, "
-            else -> {
-//                string += newDataTime.day.toString()
-//                string += " "
-//                string += getMouth(newDataTime.mouth)
-            }
+            else -> {}
         }
         string += newDataTime.day.toString()
         string += " "
@@ -128,6 +121,14 @@ data class DataTime(
         Calendar.SATURDAY -> "Суббота"
         Calendar.SUNDAY -> "Воскресенье"
         else -> ""
+    }
+
+    override fun toString(): String {
+        return "$day.${mouth+1}.$year"
+    }
+
+    fun getTimeAndDate(): String{
+        return time + " " + toString()
     }
 
 

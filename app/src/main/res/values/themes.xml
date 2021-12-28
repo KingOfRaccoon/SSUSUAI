@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SSUSUAI" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.SSUSUAI" parent="Theme.MaterialComponents.DayNight">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:homeAsUpIndicator">@drawable/arrow_back</item>
@@ -37,7 +37,8 @@
         <item name="boxBackgroundColor">@color/white</item>
     </style>
 
-    <style name="TabLayoutChats" parent="standardText">
+    <style name="TabLayoutChats" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:fontFamily">@font/centurygothic</item>
         <item name="tabSelectedTextColor">@color/white</item>
         <item name="tabTextColor">#4F5A85</item>
         <item name="tabIndicatorColor">@color/background_bnv_fab</item>
@@ -45,7 +46,8 @@
         <item name="android:backgroundTint">@color/white</item>
     </style>
 
-    <style name="button">
+    <style name="button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="shapeAppearanceOverlay">@style/Theme.SSUSUAI</item>
         <item name="android:backgroundTint">@color/background_tint_button</item>
         <item name="android:textColor">@color/text_color_button</item>
     </style>
@@ -99,4 +101,16 @@
         <item name="android:textColor">#212525</item>
     </style>
 
+    <style name="standardTextBold.textNoEvents">
+        <item name="android:textColor">#BFBFBF</item>
+    </style>
+
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/colorPrimary</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+    <style name="standardTextBold.password" parent="PinWidget.PinView">
+        <item name="android:textColor">#7572FF</item>
+        <item name="lineColor">#D8D7FB</item>
+    </style>
 </resources>

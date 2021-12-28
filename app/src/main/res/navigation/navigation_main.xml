@@ -27,11 +27,19 @@
         <action
             android:id="@+id/action_newsFragment_to_newFragment"
             app:destination="@id/newFragment"
-            app:popUpToSaveState="true"/>
+            app:popUpToSaveState="true"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
         <action
             android:id="@+id/action_newsFragment_to_addNewsFragment"
             app:destination="@id/addNewFragment"
-            app:popUpToSaveState="true"/>
+            app:popUpToSaveState="true"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
     </fragment>
 
     <fragment
@@ -41,7 +49,11 @@
         <action
             android:id="@+id/action_calendarFragment_to_addEventFragment2"
             app:destination="@id/addEventFragment"
-            app:popUpToSaveState="true"/>
+            app:popUpToSaveState="true"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
     </fragment>
 
     <fragment
@@ -109,7 +121,11 @@
         <action
             android:id="@+id/action_galleryFragment_to_addAlbumFragment"
             app:destination="@id/addAlbumFragment"
-            app:popUpToSaveState="true"/>
+            app:popUpToSaveState="true"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
     </fragment>
 
     <fragment
@@ -138,7 +154,11 @@
             android:id="@+id/action_addPersonalChatFragment_to_chatFragment"
             app:destination="@id/chatFragment"
             app:popUpTo="@id/allTypeChatFragment"
-            app:popUpToSaveState="true"/>
+            app:popUpToSaveState="true"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
     </fragment>
 
     <fragment
@@ -149,7 +169,16 @@
     <fragment
         tools:layout="@layout/fragment_add_news"
         android:id="@+id/addNewFragment"
-        android:name="com.castprogramms.ssusuai.ui.addNew.AddNewFragment" />
+        android:name="com.castprogramms.ssusuai.ui.addNew.AddNewFragment" >
+        <action
+            android:id="@+id/action_addNewFragment_to_newFragment"
+            app:destination="@id/newFragment"
+            app:popUpToSaveState="true"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
+    </fragment>
 
     <fragment
         android:id="@+id/addAlbumFragment"

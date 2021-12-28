@@ -53,7 +53,8 @@
                         android:fontFamily="@font/centurygothic_bold"
                         app:fontFamily="@font/centurygothic_bold"
                         android:layout_width="wrap_content"
-                        android:text="test"
+                        tools:text="test"
+                        app:autoSizeTextType="uniform"
                         android:layout_height="wrap_content"/>
 
                 </androidx.appcompat.widget.Toolbar>

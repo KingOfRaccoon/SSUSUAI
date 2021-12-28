@@ -35,6 +35,23 @@ class VideoAndDescFirebaseStorage(storage: FirebaseStorage, val firebase: Fireba
         return mutableLiveData
     }
 
+    fun loadPhotoUserInRegistration(uri: Uri, userID: String): MutableLiveData<Resource<Uri>> {
+        val mutableLiveData = MutableLiveData<Resource<Uri>>(Resource.Loading())
+        ref.child(imagesTag + userID).putFile(uri).addOnSuccessListener {
+            ref.child(imagesTag + userID).downloadUrl.addOnCompleteListener {
+                if (it.isSuccessful){
+                    mutableLiveData.postValue(Resource.Success(it.result))
+                } else {
+                    mutableLiveData.postValue(Resource.Error(it.exception?.message.toString()))
+                }
+            }
+        }.addOnFailureListener {
+            mutableLiveData.postValue(Resource.Error(it.message.toString()))
+        }
+
+        return mutableLiveData
+    }
+
     companion object {
         const val imagesTag = "images/"
     }

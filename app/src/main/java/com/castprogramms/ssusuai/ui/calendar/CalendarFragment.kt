@@ -2,7 +2,6 @@ package com.castprogramms.ssusuai.ui.calendar
 
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -18,21 +17,24 @@ import com.castprogramms.ssusuai.repository.Resource
 import com.castprogramms.ssusuai.tools.time.DataTime
 import com.castprogramms.ssusuai.tools.ui.CenterSmoothScroller
 import com.castprogramms.ssusuai.users.Admin
-import com.castprogramms.ssusuai.users.CommonUser
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class CalendarFragment : Fragment(R.layout.fragment_calendar) {
     private val viewModel: CalendarViewModel by viewModel()
-    private var currentIndex = 0
+    private var currentIndex = -1
     lateinit var binding: FragmentCalendarBinding
+    lateinit var smoothScroller: CenterSmoothScroller
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCalendarBinding.bind(view)
-        val smoothScroller = CenterSmoothScroller(requireContext())
+        smoothScroller = CenterSmoothScroller(requireContext())
         val currentDate = DataTime.now()
+        val dates = generateDatesAdapter()
+        viewModel.loadEvents(currentDate.toString())
         binding.textDay.text = currentDate.day.toString()
         binding.textDayWeek.text = currentDate.getDayOfWeekText()
         binding.textMouthAndYear.text = currentDate.getMouthAndYear()
@@ -40,15 +42,14 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
         val datesAdapter =
             DatesAdapter(datesLayoutManager, object : DatesAdapter.OnDatesClickListener {
                 override fun clickOnDate(position: Int) {
-                    currentIndex = position
-                    smoothScroller.targetPosition = position
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        binding.recyclerDates.layoutManager?.startSmoothScroll(
-                            smoothScroller
-                        )
-                    }, 2)
+                    if (position != currentIndex) {
+                        changeCurrentDay(position)
+                        viewModel.loadEvents(dates[position].toString())
+                    }
                 }
-            })
+            }).apply {
+                this.dates = dates
+            }
         val user = GoogleSignIn.getLastSignedInAccount(requireContext())
         if (user?.id != null) {
             viewModel.getUser(user.id!!).observe(viewLifecycleOwner) {
@@ -61,45 +62,18 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
                 }
             }
         }
-        datesAdapter.dates = generateDatesAdapter()
+
+        val eventsAdapter = EventAdapter()
         binding.recyclerEventsSoon.adapter = SoonEventAdapter()
-        binding.recyclerEvents.adapter = EventAdapter()
+        binding.recyclerEvents.adapter = eventsAdapter
         binding.recyclerDates.layoutManager = datesLayoutManager
         binding.recyclerDates.adapter = datesAdapter
-
-//
-//        binding.recyclerEvents.setOnTouchListener { v, event ->
-//            when (event.action) {
-//                MotionEvent.ACTION_DOWN -> {
-//                    dx = v.x - event.rawX
-//                    dy = v.y - event.rawY
-//                    binding.root.isEnableScrolling = false
-//                }
-//                MotionEvent.ACTION_MOVE -> v.animate()
-//                    .x(event.rawX + dx)
-////                    .y(event.rawY + dy)
-//                    .setDuration(0)
-//                    .start()
-//                MotionEvent.ACTION_UP -> {
-//                    binding.root.isEnableScrolling = true
-//                }
-//                else -> return@setOnTouchListener false
-//            }
-//
-//            return@setOnTouchListener true
-//        }
 
         datesAdapter.dates.forEachIndexed { index, it ->
             if (it.day == currentDate.day
                 && it.getMouthAndYear() == currentDate.getMouthAndYear()
             ) {
-                currentIndex = index
-                smoothScroller.targetPosition = index
-                Handler(Looper.getMainLooper()).postDelayed({
-                    binding.recyclerDates.layoutManager?.startSmoothScroll(
-                        smoothScroller
-                    )
-                }, 2)
+                changeCurrentDay(index)
             }
         }
 
@@ -108,20 +82,59 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
                 if (it.day == currentDate.day
                     && it.getMouthAndYear() == currentDate.getMouthAndYear()
                 ) {
-                    currentIndex = index
-
-                    smoothScroller.targetPosition = index
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        binding.recyclerDates.layoutManager?.startSmoothScroll(
-                            smoothScroller
-                        )
-                    }, 2)
+                    changeCurrentDay(index)
                     datesAdapter.setCurrentItem(index)
+                    viewModel.loadEvents(dates[index].toString())
                 }
             }
         }
 
         (requireActivity() as MainActivity).setHtmlText("Календарь мероприятий")
+
+        viewModel.liveDataEvents.observe(viewLifecycleOwner){
+            when(it){
+                is Resource.Error -> {
+                    if (it.message == "null"){
+                        binding.recyclerEvents.visibility = View.GONE
+                        binding.textTitleTime.visibility = View.GONE
+                        binding.textTitleEvent.visibility = View.GONE
+                        binding.buttonFilterEvent.visibility = View.GONE
+                        binding.noEventsContainer.visibility = View.VISIBLE
+                    }
+                }
+                is Resource.Loading -> {
+//                    TODO анимация загрузки данных
+                }
+                is Resource.Success -> {
+                    if (it.data != null) {
+                        if (it.data.events.isNotEmpty()) {
+                            eventsAdapter.events = it.data.events
+                            binding.recyclerEvents.visibility = View.VISIBLE
+                            binding.textTitleTime.visibility = View.VISIBLE
+                            binding.textTitleEvent.visibility = View.VISIBLE
+                            binding.buttonFilterEvent.visibility = View.VISIBLE
+                            binding.noEventsContainer.visibility = View.GONE
+                        } else {
+                            binding.recyclerEvents.visibility = View.GONE
+                            binding.textTitleTime.visibility = View.GONE
+                            binding.textTitleEvent.visibility = View.GONE
+                            binding.buttonFilterEvent.visibility = View.GONE
+                            binding.noEventsContainer.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun changeCurrentDay(position: Int) {
+        currentIndex = position
+        smoothScroller.targetPosition = position
+        Handler(requireContext().mainLooper).postDelayed({
+            binding.recyclerDates.layoutManager?.startSmoothScroll(
+                smoothScroller
+            )
+        }, 2)
     }
 
     private fun generateDatesAdapter(): MutableList<DataTime> {

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.castprogramms.ssusuai.tools.ui.CustomNestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.castprogramms.ssusuai.tools.ui.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/background_std"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/background_std"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="12dp"
-            android:text="24"
+            tools:text="24"
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:text="Wed"
+            tools:text="Wed"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@id/text_day"
             app:layout_constraintTop_toTopOf="@id/text_day" />
@@ -39,15 +38,19 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_mouth_and_year"
             style="@style/standardText.date"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
             android:layout_marginTop="1dp"
-            android:text="Jan 2020"
+            tools:text="Jan 2020"
             android:textSize="18sp"
+            app:autoSizeTextType="uniform"
+            android:lines="1"
+            android:layout_marginEnd="7dp"
             app:layout_constraintBottom_toBottomOf="@id/text_day"
             app:layout_constraintStart_toEndOf="@id/text_day"
-            app:layout_constraintTop_toBottomOf="@id/text_day_week" />
+            app:layout_constraintTop_toBottomOf="@id/text_day_week"
+            app:layout_constraintEnd_toStartOf="@id/button_today"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_today"
@@ -56,9 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="35dp"
             android:text="@string/today"
+            app:layout_constraintBottom_toBottomOf="@id/text_mouth_and_year"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_day_week"
-            app:layout_constraintBottom_toBottomOf="@id/text_mouth_and_year"/>
+            app:layout_constraintTop_toTopOf="@id/text_day_week" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_for_events"
@@ -68,13 +71,15 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="7dp"
             app:cardCornerRadius="32dp"
+            app:cardElevation="3dp"
+            app:strokeWidth="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_mouth_and_year">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
                 style="@style/CardBackground"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.todkars.shimmer.ShimmerRecyclerView
@@ -87,7 +92,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:itemCount="7"
+                    tools:itemCount="9"
                     tools:listitem="@layout/item_date" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -117,27 +122,80 @@
                     app:layout_constraintTop_toBottomOf="@id/recycler_dates" />
 
                 <ImageButton
-                    app:layout_constraintTop_toBottomOf="@id/recycler_dates"
                     android:id="@+id/button_filter_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
+                    android:layout_marginEnd="28dp"
                     android:background="@drawable/filter_events"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="28dp"/>
+                    app:layout_constraintTop_toBottomOf="@id/recycler_dates" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
-                    app:layout_constraintTop_toBottomOf="@id/text_title_event"
                     android:id="@+id/recycler_events"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="19dp"
                     android:layout_marginEnd="28dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/text_title_event"
                     tools:itemCount="2"
                     tools:listitem="@layout/item_event" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:visibility="gone"
+                    android:id="@+id/no_events_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_dates">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/end_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
+
+                    <ImageView
+                        android:id="@+id/image_sad"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:paddingVertical="10dp"
+                        android:src="@drawable/sad"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="@id/end_image"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@id/image_sad"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/image_sad"
+                        app:layout_constraintTop_toTopOf="@id/image_sad">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_no_events"
+                            style="@style/standardTextBold.textNoEvents"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="@string/no_event"
+                            app:autoSizeTextType="uniform" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

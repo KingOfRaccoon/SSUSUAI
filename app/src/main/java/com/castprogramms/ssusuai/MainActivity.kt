@@ -16,6 +16,7 @@ import com.castprogramms.ssusuai.tools.Utils.isDarkThemeOn
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.HideBehaviorWithBlockChat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.color.DynamicColors
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -57,8 +58,10 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigationView.setupWithNavController(navHostController)
         }
         navHostController.addOnDestinationChangedListener { _, destination, _ ->
+
             val needHomeButton =
-                arrayOf(R.id.newFragment, R.id.chatFragment, R.id.addPersonalChatFragment
+                arrayOf(R.id.newFragment, R.id.chatFragment, R.id.addPersonalChatFragment,
+                    R.id.addNewFragment
 //                    , R.id.editProfileFragment
                 )
             supportActionBar?.setDisplayHomeAsUpEnabled(
