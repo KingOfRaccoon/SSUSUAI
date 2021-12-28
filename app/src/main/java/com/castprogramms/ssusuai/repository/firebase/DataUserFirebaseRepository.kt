@@ -13,7 +13,10 @@ import com.castprogramms.ssusuai.users.Person
 import com.castprogramms.ssusuai.users.TypeOfPerson
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.tasks.Tasks
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 class DataUserFirebaseRepository(
     private val firebase: FirebaseFirestore,
@@ -75,24 +78,37 @@ class DataUserFirebaseRepository(
     ): MutableLiveData<Resource<List<Pair<String, Person>>>> {
         val mutableLiveData =
             MutableLiveData<Resource<List<Pair<String, Person>>>>(Resource.Loading())
-        firebase.collection(users_tag).addSnapshotListener { value, error ->
-            if (value != null) {
-                val list = mutableListOf<Pair<String, Person>>()
-                value.documents.forEach {
-                    checkPersonNotInChats(person, it.id).observeForever { bool ->
-                        if (!bool && id != it.id) {
-                            val user = it.toObject(Person::class.java)
-                            if (user != null)
-                                list.add(it.id to user)
-                        }
+        val firstQuery = firebase.collection(ChatsFirebaseRepository.chats_tag)
+            .whereEqualTo("idFirstUser", id).get()
+        val secondQuery = firebase.collection(ChatsFirebaseRepository.chats_tag)
+            .whereEqualTo("idSecondUser", id).get()
+        Tasks.whenAllSuccess<QuerySnapshot>(firstQuery, secondQuery).addOnCompleteListener {
+            if (it.isSuccessful) {
+                val list = mutableListOf<String>()
+                it.result.forEach {
+                    it.documents.forEach {
+                        val firstId = it.getString("idFirstUser").toString()
+                        val secondId = it.getString("idSecondUser").toString()
+                        list.add(if (firstId == id) secondId else firstId)
                     }
                 }
-                mutableLiveData.postValue(Resource.Success(list))
-            } else {
-                mutableLiveData.postValue(Resource.Error(error?.message.toString()))
+
+                firebase.collection(users_tag).whereNotIn(FieldPath.documentId(), list + listOf(id)).addSnapshotListener { value, error ->
+                    if (value != null){
+                        val persons = mutableListOf<Pair<String, Person>>()
+                        value.documents.forEach {
+                            if (it.toObject(Person::class.java) != null)
+                                persons.add(
+                                    it.id to it.toObject(Person::class.java)!!
+                                )
+                        }
+                        mutableLiveData.postValue(Resource.Success(persons))
+                    } else {
+                        mutableLiveData.postValue(Resource.Error(error?.message.toString()))
+                    }
+                }
             }
         }
-
         return mutableLiveData
     }
 //TODO починить обновление данных
@@ -107,23 +123,6 @@ class DataUserFirebaseRepository(
         firebase.collection(users_tag)
             .document(userID)
             .update(EditProfile.SECOND_NAME.desc, second_name)
-    }
-
-    private fun checkPersonNotInChats(person: Person, id: String): MutableLiveData<Boolean> {
-        val mutableLiveData = MutableLiveData<Boolean>()
-        if (person.idsPersonalChat.isEmpty()) {
-            mutableLiveData.postValue(false)
-            return mutableLiveData
-        }
-        person.idsPersonalChat.forEach {
-            firebase.collection(ChatsFirebaseRepository.chats_tag)
-                .document(it).get().addOnSuccessListener {
-                    val chat = it.toObject(PersonalChat::class.java)
-                    if (chat != null)
-                        mutableLiveData.postValue(chat.idFirstUser == id || chat.idSecondUser == id)
-                }
-        }
-        return mutableLiveData
     }
 
     fun getPersonWithoutLiveData(id: String): MutableLiveData<Resource<Person>> {

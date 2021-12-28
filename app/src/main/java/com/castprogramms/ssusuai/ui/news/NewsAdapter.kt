@@ -35,6 +35,7 @@ class NewsAdapter(val callback: NewsClickCallback) :
 
     inner class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemNewsBinding.bind(view)
+
         fun bind(new: New) {
             binding.root.setOnClickListener {
                 callback.clickOnNews(adapterPosition, binding, new)

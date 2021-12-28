@@ -34,7 +34,6 @@ class ChatViewModel(
     fun getUser(id: String) = dataUserFirebaseRepository.getPerson(id)
 
     fun getPersonWithoutLiveData(id: String) {
-
         dataUserFirebaseRepository.getPersonWithoutLiveData(id).observeForever(observer)
     }
 }

@@ -48,12 +48,6 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         val adapter = MessageAdapter()
         binding.recyclerMessages.adapter = adapter
         binding.recyclerMessages.edgeEffectFactory = BounceEdgeEffectFactory()
-        binding.recyclerMessages.layoutManager = LinearLayoutManager(requireContext()).apply {
-            stackFromEnd = true
-            reverseLayout = true
-            isSmoothScrollbarEnabled = true
-            orientation = LinearLayoutManager.VERTICAL
-        }
 
         binding.userNameText.text =
             Editable.Factory.getInstance().newEditable(viewModel.messages[idChat].orEmpty())
@@ -63,7 +57,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
 
         when (typeChats) {
             TypeChats.PersonalChat -> {
-                viewModel.mutableLiveDataChat.observe(viewLifecycleOwner, {
+                viewModel.mutableLiveDataChat.observe(viewLifecycleOwner) {
                     when (it) {
                         is Resource.Error -> {}
                         is Resource.Loading -> {}
@@ -80,7 +74,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
                             }
                         }
                     }
-                })
+                }
             }
 
             TypeChats.PublicChat -> {

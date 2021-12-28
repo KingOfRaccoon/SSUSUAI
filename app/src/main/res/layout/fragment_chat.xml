@@ -9,10 +9,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_messages"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:stackFromEnd="false"
+        app:reverseLayout="true"
         app:layout_constraintBottom_toTopOf="@id/button_send"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_height="0dp"
         tools:listitem="@layout/item_message"/>
 
