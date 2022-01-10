@@ -14,7 +14,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/for_photo_container"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.44" />
+                app:layout_constraintGuide_percent="0.46" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/start_vertical"
@@ -49,20 +49,12 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.68" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/end_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="1.0" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mani_photo_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/center_vertical"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintStart_toStartOf="@id/start_vertical"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -77,6 +69,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
+                        android:id="@+id/image_title_add_new"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
@@ -95,10 +88,11 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/center_horizontal"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toStartOf="@+id/right_vertical"
-                app:layout_constraintStart_toStartOf="@+id/center_vertical">
+                app:layout_constraintStart_toStartOf="@+id/center_vertical"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/photo_2"
@@ -128,9 +122,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
-                android:orientation="vertical"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toStartOf="@+id/right_vertical"
                 app:layout_constraintStart_toStartOf="@+id/center_vertical"
                 app:layout_constraintTop_toTopOf="@+id/center_horizontal">
@@ -163,11 +158,12 @@
                 android:id="@+id/photo_4_container"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
-                android:orientation="vertical"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/center_horizontal"
-                app:layout_constraintStart_toStartOf="@+id/right_vertical">
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintStart_toStartOf="@+id/right_vertical"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/photo_4"
@@ -196,21 +192,22 @@
                 android:id="@+id/photo_5_container"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
-                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintStart_toStartOf="@+id/right_vertical"
                 app:layout_constraintTop_toTopOf="@+id/center_horizontal">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/photo_5"
+                    android:id="@+id/add_many_photo_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/background_tint_button"
-                    app:cardCornerRadius="8dp"
                     android:checkable="true"
                     android:clickable="true"
                     android:focusable="true"
+                    app:cardCornerRadius="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -255,13 +252,14 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:hint="@string/body_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_container">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/body_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/centurygothic_bold"
@@ -270,7 +268,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_preview"
+            android:id="@+id/preview_new_button"
             style="@style/button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -281,7 +279,7 @@
             app:layout_constraintTop_toBottomOf="@id/body_container" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_add_news"
+            android:id="@+id/add_new_button"
             style="@style/button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -291,7 +289,7 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_preview" />
+            app:layout_constraintTop_toBottomOf="@+id/preview_new_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

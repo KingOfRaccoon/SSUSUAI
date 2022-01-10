@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.ViewCompat
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import com.castprogramms.ssusuai.MainActivity
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.FragmentProfileBinding
 import com.castprogramms.ssusuai.repository.Resource
+import com.castprogramms.ssusuai.tools.ProgressBarRequestListener
 import com.castprogramms.ssusuai.users.CommonUser
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -84,6 +86,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         uri = Uri.parse(img)
         Glide.with(binding.imageProfile)
             .load(Uri.parse(img))
+            .listener(ProgressBarRequestListener(binding.progressBarImageProfile))
             .into(binding.imageProfile)
     }
 }

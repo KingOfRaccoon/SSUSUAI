@@ -12,16 +12,19 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.castprogramms.ssusuai.databinding.ActivityMainBinding
+import com.castprogramms.ssusuai.tools.ProgressBarRequestListener
 import com.castprogramms.ssusuai.tools.Utils.isDarkThemeOn
 import com.castprogramms.ssusuai.ui.custombottomnavigationview.HideBehaviorWithBlockChat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
-import com.google.android.material.color.DynamicColors
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     val viewModel: MainActivityViewModel by viewModel()
-    val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) } 
+    val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var navHostController: NavController
 
     override fun onStart() {
@@ -38,9 +41,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         binding.fab.visibility = View.INVISIBLE
         binding.bottomNavigationView.transform(binding.fab)
+//        GoogleSignIn.getClient(this, GoogleSignInOptions.Builder().build()).signOut()
         navHostController =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.findNavController()!!
-
 
         binding.fab.setOnClickListener {
             centerBNVClick()
@@ -70,9 +73,9 @@ class MainActivity : AppCompatActivity() {
             supportActionBar?.setHomeAsUpIndicator(R.drawable.arrow_back)
 
             if (destination.id == R.id.chatFragment)
-                binding.imageView2.visibility = View.VISIBLE
+                binding.toolbarImageUser.visibility = View.VISIBLE
             else
-                binding.imageView2.visibility = View.GONE
+                binding.toolbarImageUser.visibility = View.GONE
         }
     }
 
@@ -125,9 +128,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setCustomImage(img: String) {
+        binding.progressBarToolbarImageUser.visibility = View.VISIBLE
         Glide.with(this)
             .load(img)
-            .into(binding.imageView2)
+            .listener(ProgressBarRequestListener(binding.progressBarToolbarImageUser))
+            .into(binding.toolbarImageUser)
     }
 
     override fun onSupportNavigateUp(): Boolean {

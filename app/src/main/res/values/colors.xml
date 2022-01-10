@@ -27,6 +27,7 @@
     <color name="d_main_accent">#B6C5FF</color>
     <color name="d_btnv">#3D4870</color>
     <color name="d_background">#202F52</color>
+    <color name="color_reply">#c4c4c4</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#FFBB86FC</color>
 

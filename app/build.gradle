@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs.kotlin'
 }
@@ -81,4 +82,7 @@ dependencies {
 
     implementation 'io.github.chaosleung:pinview:1.4.4'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
+    implementation 'com.xwray:groupie:2.8.0'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.8.0'
 }

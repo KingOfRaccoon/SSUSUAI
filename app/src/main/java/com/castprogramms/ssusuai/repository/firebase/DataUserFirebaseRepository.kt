@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.castprogramms.ssusuai.repository.interfaces.DataUserInterface
 import com.castprogramms.ssusuai.repository.Resource
 import com.castprogramms.ssusuai.tools.EditProfile
-import com.castprogramms.ssusuai.tools.chat.PersonalChat
 import com.castprogramms.ssusuai.users.Admin
 import com.castprogramms.ssusuai.users.CommonUser
 import com.castprogramms.ssusuai.users.Person
@@ -20,7 +19,7 @@ import com.google.firebase.firestore.QuerySnapshot
 
 class DataUserFirebaseRepository(
     private val firebase: FirebaseFirestore,
-    private val videoAndDescFirebaseStorage: VideoAndDescFirebaseStorage,
+    private val videoAndPhotoFirebaseStorage: VideoAndPhotoFirebaseStorage,
     val context: Context
 ) : DataUserInterface {
 
@@ -149,10 +148,10 @@ class DataUserFirebaseRepository(
     }
 
     fun loadPhotoUser(uri: Uri, userId: String) =
-        videoAndDescFirebaseStorage.loadPhotoUser(uri, userId)
+        videoAndPhotoFirebaseStorage.loadPhotoUser(uri, userId)
 
     fun loadPhotoUserInRegistration(uri: Uri, userId: String) =
-        videoAndDescFirebaseStorage.loadPhotoUserInRegistration(uri, userId)
+        videoAndPhotoFirebaseStorage.loadPhotoUserInRegistration(uri, userId)
 
     fun getGoogleSignAccount(): GoogleSignInAccount? {
         if (googleAccount == null)
