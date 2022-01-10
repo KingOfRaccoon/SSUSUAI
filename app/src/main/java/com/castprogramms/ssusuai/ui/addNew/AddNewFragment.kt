@@ -9,10 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.ViewCompat
 import androidx.core.view.setPadding
 import androidx.core.widget.addTextChangedListener
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -24,8 +22,6 @@ import com.castprogramms.ssusuai.tools.New
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
-import kotlin.concurrent.timerTask
 
 class AddNewFragment : Fragment(R.layout.fragment_add_news) {
     val viewModel: AddNewViewModel by viewModel()
@@ -36,10 +32,8 @@ class AddNewFragment : Fragment(R.layout.fragment_add_news) {
             val data = it.data
             if (data != null && data.clipData != null) {
                 val count = data.clipData!!.itemCount
-                for (i in 0 until count) {
-                    val imageUri = data.clipData!!.getItemAt(i)?.uri
-                    println(imageUri)
-                }
+                val imagesUri = Array(count) { data.clipData!!.getItemAt(it) }
+                println(imagesUri.size)
             } else if (data != null) {
                 val imageUri = data.data
                 println("One")
@@ -51,8 +45,7 @@ class AddNewFragment : Fragment(R.layout.fragment_add_news) {
     private val cropActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if (it.resultCode == Activity.RESULT_OK){
             val data = CropImage.getActivityResult(it.data).uri
-            imageUri = data
-            setImage(imageUri)
+            viewModel.loadPhoto(data)
         }
     }
 
@@ -130,6 +123,23 @@ class AddNewFragment : Fragment(R.layout.fragment_add_news) {
                                 goToAllNewsFragment()
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        viewModel.newImageLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
+
+                }
+                is Resource.Loading -> {
+
+                }
+                is Resource.Success -> {
+                    if (it.data != null) {
+                        imageUri = it.data
+                        setImage(imageUri)
                     }
                 }
             }

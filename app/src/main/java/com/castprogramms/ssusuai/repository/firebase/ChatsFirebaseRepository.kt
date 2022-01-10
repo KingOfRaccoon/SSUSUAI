@@ -7,8 +7,6 @@ import com.castprogramms.ssusuai.tools.chat.*
 import com.castprogramms.ssusuai.users.Person
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.ktx.toObject
 import java.util.*
 
 class ChatsFirebaseRepository(private val firebase: FirebaseFirestore) : ChatsInterface(firebase) {
@@ -123,8 +121,26 @@ class ChatsFirebaseRepository(private val firebase: FirebaseFirestore) : ChatsIn
         return mutableLiveData
     }
 
-    fun addMessage(idChat: String, message: Message){
+    fun addMessage(idChat: String, textMessage: TextMessage) {
         firebase.collection(chats_tag).document(idChat)
-            .update("messages", FieldValue.arrayUnion(message))
+            .update("messages", FieldValue.arrayUnion(textMessage))
+    }
+
+    fun getMessage(idChat: String, idMessage: String): MutableLiveData<Resource<String>> {
+        val mutableLiveData = MutableLiveData<Resource<String>>()
+        firebase.collection(chats_tag).document(idChat)
+            .get()
+            .addOnCompleteListener {
+                if (it.isSuccessful)
+                    mutableLiveData.postValue(
+                        Resource.Success(
+                            (it.result.get("messages") as List<TextMessage>)
+                                .find { it.id == idMessage }?.text.toString()
+                        )
+                    )
+                else
+                    mutableLiveData.postValue(Resource.Error(it.exception?.message.toString()))
+            }
+        return mutableLiveData
     }
 }

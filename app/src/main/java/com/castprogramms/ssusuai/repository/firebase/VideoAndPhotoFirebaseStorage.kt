@@ -10,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.storage.FirebaseStorage
 
-class VideoAndDescFirebaseStorage(storage: FirebaseStorage, val firebase: FirebaseFirestore) :
+class VideoAndPhotoFirebaseStorage(storage: FirebaseStorage, val firebase: FirebaseFirestore) :
     VideoAndDescApi {
     private val ref = storage.reference
 
@@ -52,7 +52,26 @@ class VideoAndDescFirebaseStorage(storage: FirebaseStorage, val firebase: Fireba
         return mutableLiveData
     }
 
+    fun loadPhotoInNews(uri: Uri): MutableLiveData<Resource<Uri>>{
+        val mutableLiveData = MutableLiveData<Resource<Uri>>(Resource.Loading())
+        ref.child(imagesNewsTag + uri.path).putFile(uri).addOnSuccessListener {
+            ref.child(imagesNewsTag + uri.path).downloadUrl.addOnCompleteListener {
+                if (it.isSuccessful){
+                    mutableLiveData.postValue(Resource.Success(it.result))
+                } else {
+                    mutableLiveData.postValue(Resource.Error(it.exception?.message.toString()))
+                }
+            }
+        }.addOnFailureListener {
+            mutableLiveData.postValue(Resource.Error(it.message.toString()))
+        }
+
+
+        return mutableLiveData
+    }
+
     companion object {
+        const val imagesNewsTag = "images_news/"
         const val imagesTag = "images/"
     }
 }

@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <!-- ToolBar widget -->
                 <androidx.appcompat.widget.Toolbar
                     app:elevation="0dp"
                     android:id="@+id/toolbar"
@@ -37,25 +36,47 @@
                     app:theme="@style/ThemeOverlay.Material3.ActionBar"
                     app:titleTextColor="#ffff" >
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="9dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:src="@drawable/test_image_for_user" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/title_toolbar"
-                        style="@style/TextAppearance.Material3.ActionBar.Title"
-                        android:fontFamily="@font/centurygothic_bold"
-                        app:fontFamily="@font/centurygothic_bold"
-                        android:layout_width="wrap_content"
-                        tools:text="test"
-                        app:autoSizeTextType="uniform"
-                        android:layout_height="wrap_content"/>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/toolbar_image_user"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:paddingVertical="6dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@drawable/test_image_for_user" />
+
+                        <ProgressBar
+                            android:id="@+id/progress_bar_toolbar_image_user"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:paddingVertical="6dp"
+                            app:layout_constraintTop_toTopOf="@id/toolbar_image_user"
+                            app:layout_constraintBottom_toBottomOf="@id/toolbar_image_user"
+                            app:layout_constraintStart_toStartOf="@id/toolbar_image_user"
+                            app:layout_constraintEnd_toEndOf="@id/toolbar_image_user"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/title_toolbar"
+                            android:layout_marginStart="9dp"
+                            style="@style/TextAppearance.Material3.ActionBar.Title"
+                            android:fontFamily="@font/centurygothic_bold"
+                            app:fontFamily="@font/centurygothic_bold"
+                            android:layout_width="0dp"
+                            tools:text="test"
+                            app:autoSizeTextType="uniform"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/toolbar_image_user"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.appcompat.widget.Toolbar>
 

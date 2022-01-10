@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.castprogramms.ssusuai.R
 import com.castprogramms.ssusuai.databinding.ItemChatBinding
 import com.castprogramms.ssusuai.repository.Resource
+import com.castprogramms.ssusuai.tools.ProgressBarRequestListener
 import com.castprogramms.ssusuai.tools.chat.Chat
 import com.castprogramms.ssusuai.tools.chat.PersonalChat
 import com.castprogramms.ssusuai.tools.chat.PublicChat
@@ -102,12 +103,13 @@ class ChatsAdapter<T : Chat>(
                                         if (it.data != null) {
                                             Glide.with(itemView)
                                                 .load(it.data.img)
+                                                .listener(ProgressBarRequestListener(binding.progressBarImageUserChatCard))
                                                 .into(binding.imageUserChatCard)
                                             binding.textUserFullName.text = it.data.getFullName()
                                             if (chat.messages.isNotEmpty()) {
                                                 val lastMessage = chat.messages.last()
-                                                binding.textLastMessage.text =
-                                                    if (lastMessage.idUser == googleSignIn.id) "Вы: " + lastMessage.text else lastMessage.text
+//                                                binding.textLastMessage.text =
+//                                                    if (lastMessage.idUser == googleSignIn.id) "Вы: " + lastMessage.text else lastMessage.text
                                             }
                                         }
                                     }

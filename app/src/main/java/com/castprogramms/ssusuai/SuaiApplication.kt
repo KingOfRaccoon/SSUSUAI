@@ -46,7 +46,7 @@ class SuaiApplication : Application() {
                 }
             }
         }
-        single { VideoAndDescFirebaseStorage(get(), get()) }
+        single { VideoAndPhotoFirebaseStorage(get(), get()) }
         single { DataUserFirebaseRepository(get(), get(), androidContext()) }
         single { NewsFirebaseRepository(get()) }
         single { ChatsFirebaseRepository(get()) }
@@ -64,7 +64,7 @@ class SuaiApplication : Application() {
         viewModel { ChatsViewModel(get(), get(), this@SuaiApplication) }
         viewModel { AddPersonalChatViewModel(get(), get()) }
         viewModel { ChatViewModel(get(), get()) }
-        viewModel { AddNewViewModel(get()) }
+        viewModel { AddNewViewModel(get(), get()) }
     }
 
     override fun onCreate() {
