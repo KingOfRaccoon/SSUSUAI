@@ -50,6 +50,8 @@
         <item name="shapeAppearanceOverlay">@style/Theme.SSUSUAI</item>
         <item name="android:backgroundTint">@color/background_tint_button</item>
         <item name="android:textColor">@color/text_color_button</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="android:fontFamily">@font/centurygothic_bold</item>
     </style>
 
     <style name="standardTextBold">

@@ -145,7 +145,7 @@
     <fragment
         android:id="@+id/inAlbumFragment"
         android:name="com.castprogramms.ssusuai.ui.inalbum.InAlbumFragment"
-        tools:layout="@layout/in_album_fragment" />
+        tools:layout="@layout/fragment_in_album" />
 
     <fragment
         android:id="@+id/addPersonalChatFragment"
@@ -183,7 +183,7 @@
     <fragment
         android:id="@+id/addAlbumFragment"
         android:name="com.castprogramms.ssusuai.ui.addAlbum.AddAlbumFragment"
-        tools:layout="@layout/add_album_fragment" />
+        tools:layout="@layout/fragment_add_album" />
 
     <fragment
         android:id="@+id/editProfileFragment"
