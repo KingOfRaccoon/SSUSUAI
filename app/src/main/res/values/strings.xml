@@ -34,6 +34,7 @@
     <string name="isAdmin">Ты - админ?</string>
     <string name="hint_pin">0000</string>
     <string name="add_photo">Добавить фото</string>
+    <string name="total_photo">Выбранно фотографий</string>
     <string name="preview_new">Предпросмотр новости</string>
     <string name="public_chat">Группы</string>
     <string name="enter">Войти</string>

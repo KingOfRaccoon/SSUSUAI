@@ -68,6 +68,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/progress_bar_main_image_add_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:layout_gravity="center"/>
+
                     <ImageView
                         android:id="@+id/image_title_add_new"
                         android:layout_width="100dp"
@@ -104,6 +111,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/progress_bar_1_image_add_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:layout_gravity="center"/>
 
                     <ImageView
                         android:layout_width="40dp"
@@ -227,16 +241,28 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/total_photo"
+            style="@style/standardText.profileText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/total_photo"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/for_photo_container" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/title_container"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:hint="@string/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/for_photo_container">
+            app:layout_constraintTop_toBottomOf="@id/total_photo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/title_text"
