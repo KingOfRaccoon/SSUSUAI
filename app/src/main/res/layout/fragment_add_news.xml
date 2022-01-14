@@ -73,6 +73,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:indeterminate="true"
+                        android:elevation="100dp"
+                        android:visibility="invisible"
                         android:layout_gravity="center"/>
 
                     <ImageView
@@ -81,6 +83,7 @@
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_margin="20dp"
+                        android:elevation="80dp"
                         android:background="@drawable/landscape_24"
                         android:backgroundTint="#929CB8" />
 
@@ -117,6 +120,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:indeterminate="true"
+                        android:elevation="100dp"
+                        android:visibility="invisible"
                         android:layout_gravity="center"/>
 
                     <ImageView
@@ -124,6 +129,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
+                        android:elevation="80dp"
                         android:background="@drawable/landscape_24"
                         android:backgroundTint="#929CB8" />
 
@@ -154,6 +160,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/progress_bar_2_image_add_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:elevation="100dp"
+                        android:visibility="invisible"
+                        android:layout_gravity="center"/>
 
                     <ImageView
                         android:layout_width="40dp"
@@ -189,6 +204,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/progress_bar_3_image_add_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:elevation="100dp"
+                        android:visibility="invisible"
+                        android:layout_gravity="center"/>
 
                     <ImageView
                         android:layout_width="40dp"
@@ -317,6 +341,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/preview_new_button" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_new_button">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/info_24"
+                android:backgroundTint="@color/d_day_fio"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                style="@style/standardText.body"
+                android:text="@string/about_photo_in_add_new"/>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

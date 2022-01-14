@@ -22,6 +22,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress_bar_main_image_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="100dp"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/image_new"
+                app:layout_constraintEnd_toEndOf="@+id/image_new"
+                app:layout_constraintStart_toStartOf="@+id/image_new"
+                app:layout_constraintTop_toTopOf="@+id/image_new" />
+
             <ImageView
                 android:transitionName="test"
                 android:id="@+id/image_new"

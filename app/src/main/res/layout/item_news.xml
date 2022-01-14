@@ -75,6 +75,15 @@
             app:layout_constraintEnd_toEndOf="@id/end_image"
             app:cardCornerRadius="10dp">
 
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress_bar_new_card_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:elevation="100dp"
+                android:visibility="invisible"
+                android:layout_gravity="center"/>
+
             <ImageView
                 android:transitionName="test_start"
                 android:id="@+id/image_new_in_card"

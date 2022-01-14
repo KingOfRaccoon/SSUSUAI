@@ -47,6 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
+            android:elevation="100dp"
+            android:visibility="invisible"
             app:layout_constraintTop_toTopOf="@id/image_profile"
             app:layout_constraintEnd_toEndOf="@id/image_profile"
             app:layout_constraintBottom_toBottomOf="@id/image_profile"

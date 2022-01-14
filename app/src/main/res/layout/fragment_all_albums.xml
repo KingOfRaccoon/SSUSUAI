@@ -71,6 +71,15 @@
 
             </LinearLayout>
 
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress_bar_frag_all_albums1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:elevation="100dp"
+                android:visibility="invisible"
+                android:layout_gravity="center"/>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -124,6 +133,15 @@
                     android:textStyle="bold"
                     android:transitionName="textStart" />
 
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progress_bar_frag_all_albums2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:elevation="100dp"
+                    android:visibility="invisible"
+                    android:layout_gravity="center"/>
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -167,6 +185,15 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:transitionName="textStart" />
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progress_bar_frag_all_albums3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:elevation="100dp"
+                    android:visibility="invisible"
+                    android:layout_gravity="center"/>
 
                 <FrameLayout
                     android:layout_width="match_parent"

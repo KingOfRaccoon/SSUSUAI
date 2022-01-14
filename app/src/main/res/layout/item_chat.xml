@@ -25,10 +25,14 @@
             app:layout_constraintDimensionRatio="1:1"
             tools:src="@drawable/test_image_user_for_chat"/>
 
-        <ProgressBar
+        <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress_bar_image_user_chat_card"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:indeterminate="true"
+            android:elevation="100dp"
+            android:visibility="invisible"
+            android:layout_gravity="center"
             app:layout_constraintTop_toTopOf="@id/image_user_chat_card"
             app:layout_constraintEnd_toEndOf="@id/image_user_chat_card"
             app:layout_constraintBottom_toBottomOf="@id/image_user_chat_card"
