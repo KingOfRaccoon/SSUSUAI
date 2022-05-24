@@ -75,6 +75,7 @@
         <entry key="app/src/main/res/drawable/back.xml" value="0.16203703703703703" />
         <entry key="app/src/main/res/drawable/back_tabs.xml" value="0.16203703703703703" />
         <entry key="app/src/main/res/drawable/background_button.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/drawable/background_dark.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/background_for_counter_new_messages.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/background_item_date.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/background_oval_for_new_button.xml" value="0.186" />
@@ -85,6 +86,7 @@
         <entry key="app/src/main/res/drawable/chat.xml" value="0.36875" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.36875" />
         <entry key="app/src/main/res/drawable/fab_bnv.xml" value="0.23703703703703705" />
+        <entry key="app/src/main/res/drawable/filter_events.xml" value="0.2105" />
         <entry key="app/src/main/res/drawable/gallery.xml" value="0.36875" />
         <entry key="app/src/main/res/drawable/gradient_background.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/gradient_circle.xml" value="0.186" />
@@ -94,6 +96,7 @@
         <entry key="app/src/main/res/drawable/news.xml" value="0.36875" />
         <entry key="app/src/main/res/drawable/popup.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/drawable/rating_tab_layout_item.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/test_img_for_events.xml" value="0.2105" />
         <entry key="app/src/main/res/drawable/test_img_for_events_teacher.xml" value="0.16018518518518518" />
         <entry key="app/src/main/res/drawable/their_message.xml" value="0.196875" />
         <entry key="app/src/main/res/layout-v26/fragment_calendar.xml" value="0.15520833333333334" />
@@ -101,6 +104,7 @@
         <entry key="app/src/main/res/layout/activity_registration.xml" value="0.14322916666666666" />
         <entry key="app/src/main/res/layout/add_album_fragment.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/content_expande.xml" value="0.15520833333333334" />
+        <entry key="app/src/main/res/layout/fragment_add_album.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/fragment_add_news.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_all_type_chat.xml" value="0.21299058502795648" />
         <entry key="app/src/main/res/layout/fragment_authentication.xml" value="0.1953125" />

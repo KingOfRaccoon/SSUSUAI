@@ -95,7 +95,7 @@
         <item name="android:textColor">#BFBFBF</item>
     </style>
 
-    <style name="textInSmalCard">
+    <style name="textInSmallCard">
         <item name="android:textColor">#9FADCA</item>
     </style>
 

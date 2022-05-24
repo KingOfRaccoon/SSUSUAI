@@ -27,7 +27,6 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
     lateinit var binding: FragmentCalendarBinding
     lateinit var smoothScroller: CenterSmoothScroller
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCalendarBinding.bind(view)

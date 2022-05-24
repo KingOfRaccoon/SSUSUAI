@@ -49,11 +49,6 @@
         <item name="android:backgroundTint">@color/d_main_accent</item>
     </style>
 
-    <style name="standardTextBold">
-        <item name="android:fontFamily">@font/centurygothic_bold</item>
-        <item name="android:textColor">@color/d_main_accent</item>
-    </style>
-
     <style name="standardText.body">
         <item name="android:textColor">@color/white</item>
     </style>
@@ -66,7 +61,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="textInSmalCard">
+    <style name="textInSmallCard">
         <item name="android:textColor">@color/white</item>
     </style>
 

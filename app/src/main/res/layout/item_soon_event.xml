@@ -55,7 +55,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/date_event"
-            style="@style/textInSmalCard"
+            style="@style/textInSmallCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

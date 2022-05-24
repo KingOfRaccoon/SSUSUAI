@@ -40,9 +40,7 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
                     binding.icon.rotation += 10
                 }
 
-                override fun onFinish() {
-
-                }
+                override fun onFinish() {}
             }.start()
         }
     }

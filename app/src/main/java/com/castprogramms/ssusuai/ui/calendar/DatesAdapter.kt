@@ -26,7 +26,13 @@ class DatesAdapter(
         return DatesViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_date, parent, false)
-        )
+        ).apply {
+//            parent.post {
+                val height: Int = parent.measuredWidth / 7
+                val view: View = this.itemView
+                view.layoutParams.width = height
+//            }
+        }
     }
 
     override fun onBindViewHolder(holder: DatesViewHolder, position: Int) {
@@ -50,7 +56,7 @@ class DatesAdapter(
                 && dataTime.getMouthAndYear() == currentDay.getMouthAndYear()
             ) {
                 currentPosition = position
-                binding.root.setBackgroundResource(R.drawable.current_day_background)
+                binding.containerDate.setBackgroundResource(R.drawable.current_day_background)
                 binding.textDayNumber.setTextColor(Color.WHITE)
                 binding.textDaySymbol.setTextColor(Color.WHITE)
             }
@@ -59,7 +65,7 @@ class DatesAdapter(
             binding.textDayNumber.text = dataTime.day.toString()
 
             if (position == currentPosition){
-                binding.root.setBackgroundResource(R.drawable.current_day_background)
+                binding.containerDate.setBackgroundResource(R.drawable.current_day_background)
                 binding.textDayNumber.setTextColor(Color.WHITE)
                 binding.textDaySymbol.setTextColor(Color.WHITE)
             }
@@ -73,7 +79,7 @@ class DatesAdapter(
 
     private fun getViewByPosition(pos: Int): View? {
         val firstListItemPosition: Int = layoutManager.findFirstVisibleItemPosition()
-        val lastListItemPosition: Int = firstListItemPosition + layoutManager.getChildCount() - 1
+        val lastListItemPosition: Int = firstListItemPosition + layoutManager.childCount - 1
         return if (pos < firstListItemPosition || pos > lastListItemPosition) {
             null
         } else {
@@ -92,10 +98,10 @@ class DatesAdapter(
             // change the appearance
             val binding = ItemDateBinding.bind(targetView)
 //            if ()
-            binding.root.setBackgroundResource(R.drawable.current_day_background)
+            binding.containerDate.setBackgroundResource(R.drawable.current_day_background)
             binding.textDayNumber.setTextColor(Color.WHITE)
             binding.textDaySymbol.setTextColor(Color.WHITE)
-            binding.root.elevation = 20f
+            binding.containerDate.elevation = 20f
         }
         onDatesClickListener.clickOnDate(position)
         currentPosition = position
@@ -109,10 +115,10 @@ class DatesAdapter(
             if (targetView != null) {
                 // change the appearance
                 val binding = ItemDateBinding.bind(targetView)
-                binding.root.setBackgroundResource(R.drawable.background_item_date)
+                binding.containerDate.setBackgroundResource(R.drawable.background_item_date)
                 binding.textDayNumber.setTextColor(Color.parseColor("#212525"))
                 binding.textDaySymbol.setTextColor(Color.parseColor("#BCC1CD"))
-                binding.root.elevation = 5f
+                binding.containerDate.elevation = 5f
             }
         }
         currentPosition = -1
